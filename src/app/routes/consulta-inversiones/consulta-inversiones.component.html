@@ -1,0 +1,42 @@
+<section class="consulta-seccion">
+    <div class="anuncio" *ngIf="!inversiones?.length; else listaInversiones">
+      <h2>No tiene inversiones disponibles en este momento</h2>
+    </div>
+  
+    <ng-template #listaInversiones>
+      <button class="boton-continuar" routerLink="/">Regresar</button>
+      <div class="contenedor-inversiones">
+        <h2>Consulta de inversiones</h2>
+        <div class="inversion" *ngFor="let inversion of inversiones">
+          <h3 class="inversion-titulo">{{ inversion.nombre }}</h3>
+          <p class="inversion-descripcion">{{ inversion.descripcion }}</p>
+          <div class="inversion-detalles">
+            <p>
+              <strong>Cliente:</strong> {{ inversion.nombreCliente }}
+              {{ inversion.apellidoCliente}}
+            </p>
+            <p><strong>ID Cuenta:</strong> {{ inversion.idCuentaInvertida.idCuenta }}</p>
+            <p>
+              <strong>Saldo Cuenta:</strong>
+              ${{ inversion.saldo}}
+            </p>
+            <p>
+              <strong>Instrucción:</strong> {{ inversion.instruccionVencimiento }}
+            </p>
+            <p><strong>Plazo:</strong> {{ inversion.plazo }} días</p>
+            <p><strong>Rendimiento:</strong> {{ inversion.rendimiento }}</p>
+            <p><strong>Tasa:</strong> {{ inversion.tasa }}%</p>
+            <p>
+              <strong>Inversión inicial:</strong> ${{ inversion.saldoInicial }}
+            </p>
+            <p>
+              <strong>Saldo al Término:</strong>
+              ${{ inversion.saldoALTermino }}
+            </p>
+          </div>
+        </div>
+        
+      </div>
+    </ng-template>
+  </section>
+  

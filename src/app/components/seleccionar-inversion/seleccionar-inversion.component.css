@@ -1,0 +1,128 @@
+.home-seccion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 3rem;
+  }
+  
+  .titulo {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--segundo-color);
+    margin-bottom: 2rem;
+  }
+  
+  .titulo-contenedor {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .contenedor-inversiones {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .inversiones {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+    max-width: 600px;
+  }
+  
+  .inversion {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--primer-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .inversion:hover {
+    background-color: var(--segundo-color);
+    transform: translateY(-5px);
+  }
+  
+  .titulo-inversion{
+    color: var(--tercer-color);
+  }
+  
+  .inversion:hover .titulo-inversion{
+    color: var(--primer-color);
+  }
+  
+  .inversion p {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: var(--tercer-color);
+    margin: 0;
+  }
+  
+  .inversion p:hover {
+    color: var(--primer-color);
+  }
+  h3:hover{
+    color: var(--primer-color) ;
+  }
+  
+  p {
+    font-size: 3rem;
+    color: black;
+  }
+  .boton-continuar{
+    margin-top: 2rem;
+    width: 43%;
+  }
+  
+  @media (max-width: 640px) {
+    .contenedor-inversiones {
+      flex-direction: column;
+      gap: 1rem;
+      padding: 0.5rem;
+    }
+  
+    .inversion {
+      padding: 0.75rem;
+      width: 100%;
+    }
+  
+    .inversion p {
+      font-size: 1rem;
+    }
+  
+    .titulo {
+      font-size: 1.75rem;
+    }
+  }
+  
+  @media (max-width: 400px) {
+    .contenedor-inversiones {
+      flex-direction: column;
+      gap: 0.75rem;
+      padding: 0.25rem;
+    }
+  
+    .inversion {
+      padding: 0.5rem;
+      width: 100%;
+    }
+  
+    .inversion p {
+      font-size: 0.9rem;
+    }
+  
+    .titulo {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+  }
+  

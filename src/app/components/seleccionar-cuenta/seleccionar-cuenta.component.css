@@ -1,0 +1,85 @@
+.seleccion-cuenta-contenedor {
+    padding: 2rem;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .titulo {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--segundo-color);
+    margin-bottom: 1rem;
+  }
+  
+  .mensaje {
+    font-size: 1.25rem;
+    color: var(--cuarto-color);
+    margin-bottom: 2rem;
+  }
+  
+  .lista-cuentas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    cursor: pointer;
+  }
+  
+  .cuenta {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--primer-color);
+    width: 100%;
+    max-width: 400px;
+    text-align: left;
+    transition: all 0.3s ease;
+  }
+  
+  .cuenta:hover {
+    background-color: var(--segundo-color);
+    transform: translateY(-5px);
+    color: var(--primer-color);
+  }
+  
+  .id-cuenta {
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: var(--tercer-color);
+    margin: 0;
+  }
+  
+  .saldo-cuenta {
+    font-size: 1rem;
+    color: var(--cuarto-color);
+    margin: 0.5rem 0 0;
+  }
+  
+  @media (max-width: 640px) {
+    .seleccion-cuenta-contenedor {
+      padding: 1.5rem;
+    }
+  
+    .titulo {
+      font-size: 1.5rem;
+    }
+  
+    .mensaje {
+      font-size: 1rem;
+    }
+  
+    .cuenta {
+      padding: 0.75rem;
+    }
+  
+    .id-cuenta {
+      font-size: 1rem;
+    }
+  
+    .saldo-cuenta {
+      font-size: 0.9rem;
+    }
+  }
+  

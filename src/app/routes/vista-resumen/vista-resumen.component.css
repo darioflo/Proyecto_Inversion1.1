@@ -1,0 +1,26 @@
+.vista-resumen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 4rem 1rem;
+    background-color: var(--primer-color);
+    min-height: 100vh;
+  }
+@media (max-width: 768px) {
+    .vista-resumen {
+        flex-direction: column;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .vista-resumen {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}

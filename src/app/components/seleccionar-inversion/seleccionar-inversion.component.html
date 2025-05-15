@@ -1,0 +1,26 @@
+<section class="home-seccion">
+    <div class="titulo-contenedor">
+      <h1 class="titulo">Catálogo de inversiones:</h1>
+    </div>
+    <div class="contenedor-inversiones">
+      <div
+        class="inversiones"
+        *ngFor="let inversion of servicioInversiones.inversionesDisponibles"
+      >
+        <div
+          class="inversion"
+          [routerLink]="[
+            '/vistaSeleccion',
+            servicioCliente.cuentaSeleccionada?.idCuenta,
+            inversion.idInversion
+          ]"
+          (click)="obtenerInversionActual(inversion.idInversion)"
+        >
+          <h3 class="titulo-inversion">{{ inversion.nombre }}</h3>
+          <p>{{ inversion.descripcion }}</p>
+        </div>
+      </div>
+    </div>
+    <button class="boton-continuar" routerLink="/">Regresar</button>
+  </section>
+  

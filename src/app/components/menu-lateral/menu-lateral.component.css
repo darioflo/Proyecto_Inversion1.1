@@ -1,0 +1,143 @@
+/* Contenedor principal del menú lateral */
+.example-container {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+    background-color: var(--primer-color);
+    overflow: hidden;
+  }
+  
+  .example-sidenav-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1rem;
+  }
+  
+  .example-sidenav {
+    width: 300px;
+    max-width: 80%;
+    padding: 20px;
+    background-color: var(--primer-color);
+    color: var(--segundo-color);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    z-index: 1001;
+  }
+  
+  .menu-button {
+    position: absolute;
+    top: 1px;
+    right: 15px;
+    z-index: 1002;
+    background-color: var(--primer-color);
+    border: none;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .menu-button:hover {
+    background-color: var(--tercer-color);
+    transform: scale(1.05);
+  }
+  
+  .menu-button:active {
+    transform: scale(0.95);
+  }
+  
+  .hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+  }
+  
+  .hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--segundo-color);
+    border-radius: 2px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .menu-button:hover .hamburger-menu span {
+    background-color: var(--primer-color);
+  }
+  
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+  
+  .example-sidenav button {
+    width: 100%;
+    padding: 0.85rem 1.25rem;
+    margin: 0.5rem 0;
+    background-color: var(--primer-color);
+    color: var(--segundo-color);
+    border: none;
+    border-radius: 0.5rem;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .example-sidenav button:hover {
+    background-color: var(--tercer-color);
+    color: var(--primer-color);
+    transform: scale(1.05);
+  }
+  
+  .example-sidenav button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+    .example-sidenav {
+      width: 250px;
+      padding: 15px;
+    }
+  
+    .menu-button {
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+    }
+  
+    .example-sidenav button {
+      font-size: 0.9rem;
+      padding: 0.5rem 0.75rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .example-sidenav {
+      width: 200px;
+      padding: 10px;
+    }
+  
+    .menu-button {
+      padding: 0.5rem 0.75rem;
+      font-size: 0.8rem;
+    }
+  
+    .example-sidenav button {
+      font-size: 0.8rem;
+      padding: 0.5rem;
+    }
+  }
+  

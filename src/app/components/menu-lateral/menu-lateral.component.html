@@ -1,0 +1,39 @@
+<mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="over">
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Compra de inversión
+      </button>
+      <button
+        (click)="showFiller = !showFiller"
+        mat-raised-button
+        [routerLink]="['/consultaInversiones']"
+      >
+        Consulta de inversiones
+      </button>
+      <button (click)="showFiller = !showFiller" mat-raised-button>
+        Actualizar datos de inversión
+      </button>
+      <button (click)="limpiar()" mat-raised-button>
+        Limpiar
+      </button>
+    </mat-drawer>
+  
+    <div class="overlay" *ngIf="drawer.opened" (click)="drawer.close()"></div>
+  
+    <div class="example-sidenav-content">
+      <button
+        type="button"
+        mat-button
+        class="menu-button"
+        (click)="drawer.toggle()"
+      >
+        <span class="hamburger-menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </span>
+      </button>
+      <app-seleccionar-cuenta></app-seleccionar-cuenta>
+    </div>
+  </mat-drawer-container>
+  

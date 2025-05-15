@@ -1,0 +1,44 @@
+<div class="resumen-contenedor">
+    <h2 class="titulo-resumen">Resumen de Inversión</h2>
+  
+    <div class="dato">
+      <span class="label">Nombre:</span>
+      <span class="valor">{{servicioCLiente.clienteSeleccionado?.nombre}}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Apellidos:</span>
+      <span class="valor">{{servicioCLiente.clienteSeleccionado?.apellido_paterno}} {{servicioCLiente.clienteSeleccionado?.apellido_materno}}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Inversión en:</span>
+      <span class="valor">{{inversionActual?.nombre}}</span>
+    </div>
+    <div class="dato">
+      <span class="label">Saldo a invertir:</span>
+      <span class="valor" data-color="verde"
+        ><b>$ {{inversionActual?.saldoInicial}}</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Plazo:</span>
+      <span class="valor"
+        ><b>{{inversionActual?.plazo}}</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Tasa ofrecida:</span>
+      <span class="valor"
+        ><b>{{inversionActual?.plazo}}%</b></span
+      >
+    </div>
+    <div class="dato">
+      <span class="label">Rendimiento anual:</span>
+      <span class="valor"
+        ><b>$ {{inversionActual?.rendimiento}}</b></span
+      >
+    </div>
+  
+    <button class="continuar" (click)="continuar()">Continuar compra</button>
+    <button class="continuar" (click)="regresar()">Cancelar compra</button>
+  </div>
+  

@@ -1,0 +1,55 @@
+@import "tailwindcss";
+
+:root {
+  --primer-color: rgb(238, 238, 238);
+  --segundo-color: rgb(216, 64, 64);
+  --tercer-color: rgb(142, 22, 22);
+  --cuarto-color: rgb(29, 22, 22);
+  --color-extra: rgb(29, 205, 159);
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+body {
+  background-color: var(--primer-color);
+  font-family: "DM Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: weight;
+  font-style: normal;
+}
+
+.boton-continuar {
+  background-color: var(--segundo-color);
+  color: var(--primer-color);
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.boton-continuar:hover {
+  background-color: var(--tercer-color);
+}
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

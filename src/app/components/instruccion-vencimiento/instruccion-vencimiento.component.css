@@ -1,0 +1,132 @@
+.resumen-contenedor {
+  padding: 2.5rem;
+  border-radius: 1.25rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+  width: auto;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.resultados {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+}
+
+.dato {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.dato:last-child {
+  border-bottom: none;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--cuarto-color);
+  font-size: 1rem;
+}
+
+.valor {
+  font-weight: 500;
+  color: #444;
+  font-size: 1rem;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  appearance: none;
+}
+
+.resaltar {
+  font-weight: 500;
+  color: #444;
+  font-size: 1rem;
+  text-align: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: left;
+  appearance: none;
+  color: var(--color-extra);
+}
+
+.titulo-resumen {
+  font-size: 2rem;
+  font-weight: bold;
+  text-align: center;
+  color: var(--segundo-color);
+  margin-bottom: 2rem;
+}
+
+.dato {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+}
+
+.label {
+  font-weight: 600;
+  color: var(--cuarto-color);
+  font-size: 1.05rem;
+  margin-bottom: 0.5rem;
+}
+
+.valor {
+  font-weight: 500;
+  color: #444;
+  font-size: 1.05rem;
+  padding: 0.5rem;
+  border: 1px solid #e4e4e4;
+  border-radius: 0.5rem;
+}
+
+.botones {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.continuar {
+  background-color: var(--segundo-color);
+  color: var(--primer-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  margin-top: 2rem;
+  width: 100%;
+  text-align: center;
+}
+
+.continuar:hover {
+  background-color: var(--tercer-color);
+}
+
+@media (max-width: 640px) {
+  .resumen-contenedor {
+    padding: 2rem 1.5rem;
+  }
+
+  .titulo-resumen {
+    font-size: 1.5rem;
+  }
+
+  .label,
+  .valor {
+    font-size: 0.95rem;
+  }
+
+  .continuar {
+    font-size: 1rem;
+  }
+}

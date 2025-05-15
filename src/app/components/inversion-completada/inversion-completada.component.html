@@ -1,0 +1,47 @@
+<div class="anuncio-inversion">
+    <h2 class="titulo-anuncio">Compra de inversión completada:</h2>
+    <h3 class="subtitulo-anuncio">
+      <b>{{inversionActual?.nombre}}</b>
+    </h3>
+    <div class="detalle">
+      <div class="fila">
+        <p class="label">Cliente:</p>
+        <p class="valor" id="cliente">
+          {{clienteServicio.clienteSeleccionado?.nombre}} {{clienteServicio.clienteSeleccionado?.apellido_paterno}} {{clienteServicio.clienteSeleccionado?.apellido_materno}}
+        </p>
+      </div>
+      <div class="fila">
+        <p class="label">Monto invertido:</p>
+        <p class="valor">$ {{inversionActual?.saldoInicial}}</p>
+      </div>
+      <div class="fila">
+        <p class="label">Plazo:</p>
+        <p class="valor">{{inversionActual?.plazo}} días</p>
+      </div>
+      <div class="fila">
+        <p class="label">Tasa ofrecida:</p>
+        <p class="valor">{{inversionActual?.tasa}} %</p>
+      </div>
+      <div class="fila">
+        <p class="label">Rendimiento anual:</p>
+        <p class="valor">$ {{inversionActual?.rendimiento}}</p>
+      </div>
+      <div class="fila">
+        <p class="label">Saldo al término:</p>
+        <p class="valor">$ {{inversionActual?.saldoAlTermino}}</p>
+      </div>
+      <div class="fila">
+        <p class="label">Instrucción de vencimiento:</p>
+        <p class="valor">{{inversionActual?.instruccionVencimiento}}</p>
+      </div>
+      <div class="fila">
+        <p class="label">Cuenta asociada:</p>
+        <p class="valor" id="cuenta">
+          ID: {{this.clienteServicio.cuentaSeleccionada?.idCuenta}}<br />
+          Saldo en cuenta: $ {{this.clienteServicio.cuentaSeleccionada?.saldo}}
+        </p>
+      </div>
+      <button class="boton-continuar" (click)="irAlHome()">Regresar</button>
+    </div>
+  </div>
+  

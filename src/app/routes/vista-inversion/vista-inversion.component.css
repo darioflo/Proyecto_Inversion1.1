@@ -1,0 +1,33 @@
+.inversion-seccion {
+    padding: 2.5rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  @media (max-width: 640px) {
+    .inversion-seccion {
+      padding: 2rem 1.5rem;
+    }
+  
+    .titulo {
+      font-size: 1.75rem;
+    }
+  
+    .contenedor-inversiones {
+      gap: 1rem;
+    }
+  
+    .inversion {
+      padding: 0.75rem;
+    }
+  
+    .inversion p {
+      font-size: 1rem;
+    }
+  }
+  

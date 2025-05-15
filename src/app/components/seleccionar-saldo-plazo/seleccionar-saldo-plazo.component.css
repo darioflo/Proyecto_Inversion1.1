@@ -1,0 +1,96 @@
+/* Contenedor principal del formulario */
+.contenedor-formulario {
+  max-width: 600px;
+  margin: 4rem auto;
+  padding: 2rem;
+  background-color: var(--primer-color);
+  border-radius: 1rem;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.datos {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.nombre-inversion {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--segundo-color);
+  margin-bottom: 0.5rem;
+}
+
+.nombre-cliente {
+  font-size: 1.2rem;
+  color: var(--cuarto-color);
+  margin-bottom: 0.25rem;
+}
+
+.monto-disponible {
+  font-size: 1rem;
+  color: var(--color-extra);
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.grupo-formulario {
+  display: flex;
+  flex-direction: column;
+}
+
+.etiqueta {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+
+.campo {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.campo:focus {
+  outline: none;
+  border-color: var(--segundo-color);
+  box-shadow: 0 0 0 3px rgba(216, 64, 64, 0.2);
+}
+
+.boton-continuar {
+  padding: 1rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: white;
+  background-color: var(--segundo-color);
+  border: none;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-continuar:hover {
+  background-color: var(--tercer-color);
+}
+
+@media (max-width: 640px) {
+  .contenedor-formulario {
+    padding: 1.5rem;
+    margin: 2rem 1rem;
+  }
+
+  .nombre-inversion {
+    font-size: 1.5rem;
+  }
+
+  .boton-continuar {
+    font-size: 1rem;
+  }
+}
