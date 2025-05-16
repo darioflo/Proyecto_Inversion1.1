@@ -31,7 +31,7 @@ export class EditarInversionCommand implements Command{
         this.inversiones[this.indice].saldoInicial = this.nuevoSaldo,
         this.inversiones[this.indice].plazo = this.nuevoPlazo
 
-        const nuevaTasa = this.inversionesServicio.calcularTasa(this.nuevoSaldo)
+        const nuevaTasa = this.inversionesServicio.calcularTasa(this.nuevoSaldo,this.nuevoPlazo)
         const nuevoRendimiento = this.inversionesServicio.calcularRendimiento(this.nuevoSaldo, nuevaTasa)
 
         this.inversiones[this.indice].tasa= nuevaTasa

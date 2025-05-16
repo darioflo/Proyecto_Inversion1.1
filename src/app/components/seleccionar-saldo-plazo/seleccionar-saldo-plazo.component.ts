@@ -48,7 +48,9 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
       this.inversionActual.plazo = plazo!;
       if ( this.inversionActual && this.inversionActual.saldoInicial <= this.servicioCliente.cuentaSeleccionada?.saldo!) {
         
-        this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo!);
+        this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo,plazo);
+        console.log(this.inversionActual.tasa,'tasa');
+        
         this.inversionActual.rendimiento = this.servicioInversion.calcularRendimiento(this.inversionActual.saldoInicial!,this.inversionActual.tasa);
         this.router.navigate([`vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`,]);
 

@@ -34,7 +34,6 @@ export class ObtenerClienteAutenticado {
     this.clienteServicio.obtenerCuentas().subscribe({
       next:(cuentas)=>{
         this.cuentasDeCliente = cuentas
-        console.log('Cuentas: ',cuentas);
         if (typeof localStorage !== 'undefined') {
           let actualizarCuenta = localStorage.getItem('inversionesDelCliente');
           if (actualizarCuenta) {

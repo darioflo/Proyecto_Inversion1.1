@@ -5,11 +5,13 @@
         {{ servicioCliente.clienteSeleccionado?.nombre }}
         {{ servicioCliente.clienteSeleccionado?.apellido_paterno}}
       </p>
+      <p >
+        Cuenta asociada: {{ servicioCliente.cuentaSeleccionada?.idCuenta }}
+      </p>
       <p class="monto-disponible">
         Monto disponible: ${{ servicioCliente.cuentaSeleccionada?.saldo }}
       </p>
     </div>
-  
     <form
       (submit)="enviarSaldoPlazo($event)"
       [formGroup]="formulario"
