@@ -8,7 +8,7 @@ export interface Inversion {
   saldoInicial: number,
     saldoAlTermino: number,
     instruccionVencimiento:
-    | 'Reinvertir ganancia'
+    | 'Reinvertir inversion-ganancia'
     | 'Reinvertir inversion'
     | 'Reembolso total'
     | '';

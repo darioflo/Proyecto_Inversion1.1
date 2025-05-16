@@ -1,35 +1,48 @@
 <section class="actualizar-inversion-seccion">
-    <div class="cliente-nombre" *ngIf="inversionesDelCliente?.length">
-      <h2 style="color: var(--tercer-color);">
-        <b>Editar inversiones</b>
-      </h2>
-    </div>
-  
-    <div class="lista-inversiones">
-      <h3 style="color: var(--tercer-color);">Inversiones disponibles</h3>
-      <div 
-        class="inversion-card"
-        *ngFor="let inversion of inversionesDelCliente; let i = index"
-        (click)="toggleDetalle(i)"
-        [class.activa]="i === indiceSeleccionado"
-      >
-        <div class="inversion-resumen">
-          <span><strong>{{ inversion.nombre }}</strong> ({{ inversion.descripcion }})</span>
-          <span style="color: var(--tercer-color); cursor: pointer;">Editar ▼</span>
-        </div>
-        <div class="inversion-detalle" *ngIf="i === indiceSeleccionado">
-          <form (ngSubmit)="guardarCambios(i)">
-            <label>
-              Saldo inicial:
-              <input type="number" [(ngModel)]="inversion.saldoInicial" name="saldoInicial{{i}}" required />
-            </label>
-            <label>
-              Plazo (días):
-              <input type="number" [(ngModel)]="inversion.plazo" name="plazo{{i}}" required />
-            </label>
-            <button type="submit" class="boton-guardar">Guardar cambios</button>
-          </form>
-        </div>
+  <div class="cliente-nombre">
+    <h2 style="color: var(--tercer-color);">
+      <b>Editar inversiones:</b>
+    </h2>
+  </div>
+
+  <div class="lista-inversiones">
+    <h3 style="color: var(--tercer-color);">Inversiones disponibles</h3>
+    <div 
+      class="inversion-card"
+      *ngFor="let inversion of inversionesDelCliente; let i = index"
+      (click)="mostrarCampos(i)"
+      [class.activa]="i === indiceSeleccionado"
+    >
+      <div class="inversion-resumen">
+        <span><strong>{{ inversion.nombre }}</strong> ({{ inversion.descripcion }})</span>
+        <span style="color: var(--tercer-color); cursor: pointer;">Editar ▼</span>
+      </div>
+      <div class="inversion-detalle" *ngIf="i === indiceSeleccionado">
+        <form (ngSubmit)="guardarCambios(i)" (click)="$event.stopPropagation()">
+          <label>
+            Saldo inicial:
+            <input type="number" [(ngModel)]="inversion.saldoInicial" name="saldoInicial{{i}}" required />
+          </label>
+          <label>
+            Plazo (días):
+            <select [(ngModel)]="inversion.plazo" name="plazo{{i}}" required>
+              <option [ngValue]="28">28 días</option>
+              <option [ngValue]="90">90 días</option>
+              <option [ngValue]="180">180 días</option>
+              <option [ngValue]="365">365 días</option>
+            </select>
+          </label>
+          <label>
+            Instrucción de vencimiento:
+            <select [(ngModel)]="inversion.instruccionVencimiento" name="instruccionVencimiento{{i}}" required>
+              <option value="Reinvertir inversion-ganancia">Reinvertir inversión-ganancia</option>
+              <option value="Reinvertir inversion">Reinvertir inversión</option>
+              <option value="Reembolso total">Reembolsar todo</option>
+            </select>
+          </label>
+          <button type="submit" class="boton-guardar">Guardar cambios</button>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>

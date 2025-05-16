@@ -44,7 +44,8 @@ export class InstruccionVencimientoComponent
 
   reinvertirInversionGanancia(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoAlTermino = saldoInvertido + rendimiento;
+      this.inversionActual.saldoInicial += rendimiento
+      this.inversionActual.saldoAlTermino += this.clienteActual.cuentaSeleccionada.saldo;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
@@ -52,7 +53,8 @@ export class InstruccionVencimientoComponent
 
   reinvertirInversion(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoAlTermino += saldoInvertido + rendimiento;
+      this.inversionActual.saldoInicial += saldoInvertido 
+      this.inversionActual.saldoAlTermino = this.clienteActual.cuentaSeleccionada.saldo + rendimiento;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
@@ -60,7 +62,7 @@ export class InstruccionVencimientoComponent
 
   reembolsarTodo(saldoInvertido: number, rendimiento: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoAlTermino += saldoInvertido + rendimiento;
+      this.inversionActual.saldoAlTermino += saldoInvertido + rendimiento + this.clienteActual.cuentaSeleccionada.saldo;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
@@ -109,7 +111,7 @@ export class InstruccionVencimientoComponent
         tasa: this.inversionActual.tasa,
         saldoInicial: this.inversionActual.saldoInicial,
         saldoALTermino: this.inversionActual.saldoAlTermino,
-        rendimiento: this.inversionActual.saldoAlTermino
+        rendimiento: this.inversionActual.rendimiento
       };
   
       arregloInversiones.push(inversionCompleta); 
@@ -123,12 +125,12 @@ export class InstruccionVencimientoComponent
     if (this.formulario.valid && this.inversionActual) {
       console.log(this.formulario.valid, this.formulario.value);
       switch (this.instruccionSeleccionada) {
-        case 'Reinvertir ganancia':
+        case 'Reinvertir inversion-ganancia':
           this.reinvertirInversionGanancia(
             this.inversionActual?.saldoInicial,
             this.inversionActual?.rendimiento
           );
-          this.inversionActual.instruccionVencimiento = 'Reinvertir ganancia';
+          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
