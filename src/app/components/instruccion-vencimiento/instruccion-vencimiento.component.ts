@@ -42,27 +42,27 @@ export class InstruccionVencimientoComponent
     this.suscribirseAInversion(this.servicioInversion);
   }
 
-  reinvertirInversionGanancia(saldoInvertido: number, rendimiento: number) {
+  reinvertirInversionGanancia(saldoInvertido: number, rendimientoAnual: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoInicial += rendimiento
+      this.inversionActual.saldoInicial += rendimientoAnual
       this.inversionActual.saldoAlTermino += this.clienteActual.cuentaSeleccionada.saldo;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
   }
 
-  reinvertirInversion(saldoInvertido: number, rendimiento: number) {
+  reinvertirInversion(saldoInvertido: number, rendimientoAnual: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
       this.inversionActual.saldoInicial += saldoInvertido 
-      this.inversionActual.saldoAlTermino = this.clienteActual.cuentaSeleccionada.saldo + rendimiento;
+      this.inversionActual.saldoAlTermino = this.clienteActual.cuentaSeleccionada.saldo + rendimientoAnual;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
   }
 
-  reembolsarTodo(saldoInvertido: number, rendimiento: number) {
+  reembolsarTodo(saldoInvertido: number, rendimientoAnual: number) {
     if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoAlTermino += saldoInvertido + rendimiento + this.clienteActual.cuentaSeleccionada.saldo;
+      this.inversionActual.saldoAlTermino += saldoInvertido + rendimientoAnual + this.clienteActual.cuentaSeleccionada.saldo;
       this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
     }
     return 0;
@@ -111,7 +111,8 @@ export class InstruccionVencimientoComponent
         tasa: this.inversionActual.tasa,
         saldoInicial: this.inversionActual.saldoInicial,
         saldoALTermino: this.inversionActual.saldoAlTermino,
-        rendimiento: this.inversionActual.rendimiento
+        rendimiento: this.inversionActual.rendimiento,
+        rendimientoAnual: this.inversionActual.rendimientoAnual
       };
   
       arregloInversiones.push(inversionCompleta); 
@@ -128,7 +129,7 @@ export class InstruccionVencimientoComponent
         case 'Reinvertir inversion-ganancia':
           this.reinvertirInversionGanancia(
             this.inversionActual?.saldoInicial,
-            this.inversionActual?.rendimiento
+            this.inversionActual?.rendimientoAnual
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
           this.unificarInversionCuenta()
@@ -137,7 +138,7 @@ export class InstruccionVencimientoComponent
         case 'Reinvertir inversion':
           this.reinvertirInversion(
             this.inversionActual.saldoInicial,
-            this.inversionActual.rendimiento
+            this.inversionActual.rendimientoAnual
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
           this.unificarInversionCuenta()
@@ -146,7 +147,7 @@ export class InstruccionVencimientoComponent
         case 'Reembolso total':
           this.reembolsarTodo(
             this.inversionActual.saldoInicial,
-            this.inversionActual.rendimiento
+            this.inversionActual.rendimientoAnual
           );
           this.inversionActual.instruccionVencimiento = 'Reembolso total';
           this.unificarInversionCuenta()          

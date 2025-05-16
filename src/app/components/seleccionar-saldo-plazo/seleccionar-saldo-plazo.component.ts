@@ -40,9 +40,16 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
     this.suscribirseAInversion(this.servicioInversion);
   }
   enviarMonto(event: Event) {
+
     event.preventDefault();
-    if (this.formMonto.valid && this.inversionActual) {
+    if (this.formMonto.valid && this.inversionActual && this.clienteServicio.cuentaSeleccionada) {
       const { saldo } = this.formMonto.value;
+
+      if (saldo! > this.clienteServicio.cuentaSeleccionada?.saldo) {
+        alert('El monto de inversión no puede ser mayor a su saldo en cuenta :(')
+        return
+      }
+      
       this.inversionActual.saldoInicial = saldo!;
       this.paso = 2;
     } else {
@@ -57,6 +64,7 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
       const tasa = this.servicioInversion.calcularTasa(saldo, plazo);
       this.inversionActual.tasa = tasa;
       this.inversionActual.rendimiento = this.servicioInversion.calcularRendimiento(saldo, tasa);
+      this.inversionActual.rendimientoAnual = this.servicioInversion.calcularRendimientoAnual(saldo,tasa,plazo)
     }
   }
 

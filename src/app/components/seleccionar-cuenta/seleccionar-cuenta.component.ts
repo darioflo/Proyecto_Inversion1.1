@@ -17,6 +17,5 @@ implements OnInit{
       this.obtenerClienteAutenticado();
     }
     this.obtenerCuentas();
-    console.log('Cuentas: ',this.cuentasDeCliente);
   }
 }

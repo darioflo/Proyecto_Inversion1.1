@@ -54,6 +54,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Inversión ideal para asegurar tu futuro financiero.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -65,6 +66,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Plan diseñado para los visionarios del mañana.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -76,6 +78,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Maximiza tu capital con esta inversión estratégica.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -87,6 +90,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Impulsa tu capital con rendimientos garantizados.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -98,6 +102,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Inversión dinámica para un crecimiento constante.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -109,6 +114,7 @@ export class InversionesBDService implements InMemoryDbService {
         plazo: 0,
         tasa: 0,
         rendimiento: 0,
+        rendimientoAnual:0,
         descripcion: 'Obtén el mejor rendimiento con esta opción única.',
         saldoInicial:0,
         saldoAlTermino:0,
@@ -118,6 +124,6 @@ export class InversionesBDService implements InMemoryDbService {
 
     const inversiones_cuentas : InversionCuenta[]=[]
 
-    return { inversiones, clientes, inversiones_cuentas, cuentas };
+    return { inversiones, clientes, inversiones_cuentas, cuentas, contratos };
   }
 }

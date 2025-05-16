@@ -16,9 +16,9 @@ export class InversionesService {
 
   calcularTasa(monto: number, plazo: number): number {
     const tasas = [
-      { montoMax: 5000,  plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3 },
+      { montoMax: 5000,  plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.0 },
       { montoMax: 5000,  plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.5 },
-      { montoMax: 5000,  plazoMin: 180, plazoMax: 365, tasaDestinada: 4 },
+      { montoMax: 5000,  plazoMin: 180, plazoMax: 365, tasaDestinada: 4.0 },
   
       { montoMax: 10000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.2 },
       { montoMax: 10000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.7 },
@@ -37,12 +37,23 @@ export class InversionesService {
         return tasa.tasaDestinada;
       }
     }
-
     return 0
   }
 
   calcularRendimiento(monto: number, tasaDestinada: number): number {
     return Number((monto * (tasaDestinada/100)).toFixed(2));
+  }
+
+  calcularRendimientoAnual(monto: number, tasa: number, plazo: number): number {
+    const tasaDecimal = tasa / 100;
+    const cicloAnual = Math.floor(365 / plazo);
+    let montoActual = monto;
+    
+    for (let i = 0; i < cicloAnual; i++) {
+      const rendimientoCiclo = montoActual * tasaDecimal;
+      montoActual += rendimientoCiclo;
+    }
+    return Number(montoActual.toFixed(2));
   }
 
   obtenerInversiones(): Observable<Inversion[]> {

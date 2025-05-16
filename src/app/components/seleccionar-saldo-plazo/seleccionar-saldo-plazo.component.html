@@ -45,12 +45,20 @@
   >
     <div class="grupo-formulario sombreado">
       <p class="datos-previos">
+        <strong >Saldo a invertir:</strong>
+        ${{ inversionActual?.saldoInicial}}
+      </p>
+      <p class="datos-previos">
         <strong >Tasa estimada:</strong>
         {{ inversionActual?.tasa}}%
       </p>
       <p class="datos-previos">
-        <strong>Rendimiento anual:</strong>
+        <strong>Rendimiento:</strong>
         ${{ inversionActual?.rendimiento }}
+      </p>
+      <p class="datos-previos">
+        <strong>Rendimiento anual:</strong>
+        ${{ inversionActual?.rendimientoAnual }}
       </p>
     </div>
     <div class="grupo-formulario sombreado">

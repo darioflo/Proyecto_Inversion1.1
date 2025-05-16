@@ -16,6 +16,7 @@ export type inversionCompleta  = {
         saldoInicial: number,
         saldoALTermino: number,
         rendimiento: number,
+        rendimientoAnual: number,
 }
 
 @Component({
@@ -32,6 +33,8 @@ export class ConsultaInversionesComponent implements OnInit {
     const inversionesCliente = localStorage.getItem('inversionesDelCliente');
     if (inversionesCliente) {
       this.inversiones = JSON.parse(inversionesCliente)
+      console.log('Inversiones listas: ', this.inversiones);
+      
     }
     
     

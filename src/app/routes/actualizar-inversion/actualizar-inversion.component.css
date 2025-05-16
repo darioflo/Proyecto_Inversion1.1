@@ -119,4 +119,18 @@ input[type="number"]:focus {
   .inversion-detalle {
     padding: 0.8rem 0.4rem;
   }
+  @media (max-width: 400px) {
+    .actualizar-inversion-seccion {
+      margin-top: 10rem;
+      padding: 1rem 0.5rem;
+      width: 90%;
+      height: 60%;
+    }
+    .inversion-card {
+      padding: 1rem 0.5rem;
+    }
+    .inversion-detalle {
+      padding: 0.8rem 0.4rem;
+    }
+  }
 }

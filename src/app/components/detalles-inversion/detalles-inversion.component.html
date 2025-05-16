@@ -1,6 +1,9 @@
 <div class="resumen-contenedor">
     <h2 class="titulo-resumen">Resumen de Inversión</h2>
-  
+    <div class="dato">
+      <span class="label">Cuenta asociada:</span>
+      <span class="valor">{{servicioCLiente.cuentaSeleccionada?.idCuenta}}</span>
+    </div>  
     <div class="dato">
       <span class="label">Nombre:</span>
       <span class="valor">{{servicioCLiente.clienteSeleccionado?.nombre}}</span>
@@ -16,26 +19,26 @@
     <div class="dato">
       <span class="label">Saldo a invertir:</span>
       <span class="valor" data-color="verde"
-        ><b>$ {{inversionActual?.saldoInicial}}</b></span
-      >
+        ><b>$ {{inversionActual?.saldoInicial}}</b></span>
     </div>
     <div class="dato">
       <span class="label">Plazo:</span>
       <span class="valor"
-        ><b>{{inversionActual?.plazo}} días</b></span
-      >
+        ><b>{{inversionActual?.plazo}} días</b></span>
     </div>
     <div class="dato">
       <span class="label">Tasa ofrecida:</span>
       <span class="valor"
-        ><b>{{inversionActual?.tasa}}%</b></span
-      >
+        ><b>{{inversionActual?.tasa}}%</b></span>
+    </div>
+    <div class="dato">
+      <span class="label">Rendimiento:</span>
+      <span class="valor"
+        ><b>$ {{inversionActual?.rendimiento}}</b></span>
     </div>
     <div class="dato">
       <span class="label">Rendimiento anual:</span>
-      <span class="valor"
-        ><b>$ {{inversionActual?.rendimiento}}</b></span
-      >
+      <span class="valor"><b>$ {{inversionActual?.rendimientoAnual}}</b></span>
     </div>
   
     <button class="continuar" (click)="continuar()">Continuar compra</button>

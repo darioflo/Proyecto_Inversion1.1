@@ -5,6 +5,7 @@ export interface Inversion {
   plazo: number;
   tasa: number;
   rendimiento: number;
+  rendimientoAnual:number;
   saldoInicial: number,
     saldoAlTermino: number,
     instruccionVencimiento:
