@@ -1,0 +1,122 @@
+.actualizar-inversion-seccion {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: var(--primer-color);
+  border-radius: 1.2rem;
+  padding: 2.5rem 2rem;
+  box-shadow: 0 4px 24px rgba(20,2,2,0.20);
+  color: var(--segundo-color);
+}
+
+.cliente-nombre {
+  margin-bottom: 1.5rem;
+  color: var(--tercer-color);
+  text-align: center;
+  letter-spacing: 1px;
+}
+
+.lista-inversiones {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.inversion-card {
+  background: var(--primer-color);
+  border-radius: 0.7rem;
+  padding: 1.2rem 1rem;
+  cursor: pointer;
+  transition: box-shadow 0.2s, border 0.2s;
+  color: var(--segundo-color);
+  border: 1.5px solid var(--segundo-color);
+  box-shadow: 0 2px 12px rgba(216,64,64,0.07);
+  position: relative;
+}
+
+.inversion-card.activa {
+  border: 2px solid var(--tercer-color);
+  box-shadow: 0 0 16px rgba(142,22,22,0.13);
+  background: #fff6f6;
+}
+
+.inversion-resumen {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--segundo-color);
+  font-size: 1.1rem;
+}
+
+.inversion-resumen span:last-child {
+  color: var(--tercer-color);
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.inversion-detalle {
+  margin-top: 1rem;
+  background: var(--primer-color);
+  padding: 1.1rem 0.8rem;
+  border-radius: 0.5rem;
+  color: var(--tercer-color);
+  border: 1.5px dashed var(--tercer-color);
+  box-shadow: 0 1px 8px rgba(142,22,22,0.06);
+}
+
+label {
+  display: block;
+  margin-bottom: 0.7rem;
+  color: var(--tercer-color);
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+input[type="number"] {
+  width: 100%;
+  padding: 0.4rem 0.6rem;
+  margin-top: 0.2rem;
+  border: 1.5px solid var(--segundo-color);
+  border-radius: 0.4rem;
+  color: var(--tercer-color);
+  background: #fff;
+  font-size: 1rem;
+  transition: border 0.2s;
+}
+
+input[type="number"]:focus {
+  border: 1.5px solid var(--tercer-color);
+  outline: none;
+}
+
+.boton-guardar {
+  background: var(--tercer-color);
+  color: var(--primer-color);
+  border: none;
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 1rem;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 8px rgba(142,22,22,0.10);
+  transition: background 0.2s, color 0.2s;
+}
+
+.boton-guardar:hover {
+  background: var(--segundo-color);
+  color: var(--primer-color);
+}
+
+@media (max-width: 600px) {
+  .actualizar-inversion-seccion {
+    padding: 1rem 0.5rem;
+  }
+  .inversion-card {
+    padding: 1rem 0.5rem;
+  }
+  .inversion-detalle {
+    padding: 0.8rem 0.4rem;
+  }
+}

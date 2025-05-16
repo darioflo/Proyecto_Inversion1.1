@@ -10,7 +10,7 @@
       >
         Consulta de inversiones
       </button>
-      <button (click)="showFiller = !showFiller" mat-raised-button>
+      <button (click)="showFiller = !showFiller" mat-raised-button [routerLink]="['/actualizarInversion']">
         Actualizar datos de inversión
       </button>
       <button (click)="limpiar()" mat-raised-button>

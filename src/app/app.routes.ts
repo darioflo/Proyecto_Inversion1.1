@@ -7,6 +7,8 @@ import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminad
 import { ConsultaInversionesComponent } from './routes/consulta-inversiones/consulta-inversiones.component';
 import { SeleccionarInversionComponent } from './components/seleccionar-inversion/seleccionar-inversion.component';
 import { inversionGuard } from './core/guard/inversion.guard';
+import { ActualizarInversionComponent } from './routes/actualizar-inversion/actualizar-inversion.component';
+
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -41,5 +43,6 @@ export const routes: Routes = [
     component: ConsultaInversionesComponent,
     canActivate: [inversionGuard],
   },
+  {path:'actualizarInversion', component: ActualizarInversionComponent, canActivate:[inversionGuard]},
   { path: '**', component: HomeComponent },
 ];

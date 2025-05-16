@@ -15,6 +15,6 @@ export class HomeComponent extends ObtenerClienteAutenticado implements OnInit {
     if (!this.clienteServicio.clienteSeleccionado) {
       this.obtenerClienteAutenticado();
     }
-    this.obtenerCuentas(); // <-- Siempre cargar cuentas
+    this.obtenerCuentas(); 
   }
 }
