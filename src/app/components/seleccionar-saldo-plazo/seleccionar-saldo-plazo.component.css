@@ -1,96 +1,98 @@
-
+/* Reusa tu contenedor y clases previas */
 .contenedor-formulario {
   max-width: 600px;
-  margin: 4rem auto;
-  padding: 2rem;
-  background-color: var(--primer-color);
-  border-radius: 1rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
-  text-align: center;
+  margin: 2rem auto;
+  padding: 1rem;
 }
 
 .datos {
   text-align: center;
   margin-bottom: 2rem;
+  background: #f5f6fa;
+  padding: 1rem;
+  border-radius: 0.5rem;
 }
 
-.nombre-inversion {
+.nombre-inversion{
   font-size: 2rem;
-  font-weight: bold;
   color: var(--segundo-color);
-  margin-bottom: 0.5rem;
+}
+.nombre-cliente{
+  color: #ccc;
+  font-size: 1.3rem;
 }
 
-.nombre-cliente {
-  font-size: 1.2rem;
-  color: var(--cuarto-color);
-  margin-bottom: 0.25rem;
-}
-
-.monto-disponible {
-  font-size: 1rem;
+.monto-disponible{
   color: var(--color-extra);
 }
 
 .formulario {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 1rem;
 }
 
-.grupo-formulario {
-  display: flex;
-  flex-direction: column;
+.input-con-simbolo {
+  position: relative;
+  width: 100%;
 }
 
-.etiqueta {
+.simbolo {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #888c94;
   font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
+  pointer-events: none;
 }
 
-.campo {
-  padding: 0.75rem;
-  font-size: 1rem;
-  border: 1px solid #ccc;
+.input-con-simbolo .campo {
+  padding-left: 2.2rem; 
+}
+
+.campo{
+  border: 2px solid #333;
+  border-radius: .3rem;
+}
+
+.grupo-formulario.sombreado {
+  background: #f5f6fa;
+  padding: 1rem;
   border-radius: 0.5rem;
-  transition: border-color 0.3s, box-shadow 0.3s;
 }
 
-.campo:focus {
-  outline: none;
-  border-color: var(--segundo-color);
-  box-shadow: 0 0 0 3px rgba(216, 64, 64, 0.2);
+.campo,
+select {
+  width: 100%;
+  padding: 0.7rem;
+  margin-top: 0.5rem;
+}
+
+.datos-previos{
+  color: var(--color-extra);
+  font-size: 1.2rem;
+}
+
+.datos-previos strong{
+  color: #333;
 }
 
 .boton-continuar {
-  padding: 1rem;
-  font-size: 1.1rem;
-  font-weight: bold;
-  color: white;
-  background-color: var(--segundo-color);
+  margin-top: 1rem;
+  padding: 0.8rem;
+  color: #fff;
   border: none;
-  border-radius: 0.75rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  border-radius: 0.5rem;
 }
 
-.boton-continuar:hover {
-  background-color: var(--tercer-color);
-}
-
-@media (max-width: 640px) {
+@media (max-width: 480px) {
   .contenedor-formulario {
-    padding: 1.5rem;
-    margin: 2rem 1rem;
+    padding: 0.5rem;
+    margin: 1rem;
   }
-
-  .nombre-inversion {
-    font-size: 1.5rem;
-  }
-
-  .boton-continuar {
-    font-size: 1rem;
+  .boton-continuar,
+  .boton-secundario {
+    width: 100%;
   }
 }

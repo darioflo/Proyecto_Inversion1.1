@@ -1,56 +1,75 @@
 <div class="contenedor-formulario">
+  <div class="datos">
     <h3 class="nombre-inversion">{{ inversionActual?.nombre }}</h3>
-    <div class="datos">
-      <p class="nombre-cliente">
-        {{ servicioCliente.clienteSeleccionado?.nombre }}
-        {{ servicioCliente.clienteSeleccionado?.apellido_paterno}}
-      </p>
-      <p >
-        Cuenta asociada: {{ servicioCliente.cuentaSeleccionada?.idCuenta }}
-      </p>
-      <p class="monto-disponible">
-        Monto disponible: ${{ servicioCliente.cuentaSeleccionada?.saldo }}
-      </p>
+    <p class="nombre-cliente">
+      {{ servicioCliente.clienteSeleccionado?.nombre }}
+      {{ servicioCliente.clienteSeleccionado?.apellido_paterno}}
+    </p>
+    <p >
+      Cuenta asociada: {{ servicioCliente.cuentaSeleccionada?.idCuenta }}
+    </p>
+    <p class="monto-disponible">
+      Monto disponible: ${{ servicioCliente.cuentaSeleccionada?.saldo }}
+    </p>
+  </div>
+  <form
+    *ngIf="paso === 1"
+    [formGroup]="formMonto"
+    (submit)="enviarMonto($event)"
+    class="formulario"
+  >
+  <div class="grupo-formulario sombreado">
+    <label for="saldo" class="etiqueta">Monto a invertir (MXN):</label>
+    <div class="input-con-simbolo">
+      <span class="simbolo">$</span>
+      <input
+        type="number"
+        id="saldo"
+        formControlName="saldo"
+        class="campo"
+        placeholder="Ingresa tu monto"
+        min="1000"
+      />
     </div>
-    <form
-      (submit)="enviarSaldoPlazo($event)"
-      [formGroup]="formulario"
-      class="formulario"
-    >
-      <div class="grupo-formulario">
-        <label for="saldo" class="etiqueta">Monto a invertir:</label>
-        <input
-          type="number"
-          id="saldo"
-          name="saldo"
-          formControlName="saldo"
-          required
-          min="1000"
-          max="1000000000000000000"
-          class="campo"
-        />
-      </div>
-  
-      <div class="grupo-formulario">
-        <label for="plazo" class="etiqueta">Plazo:</label>
-        <select
-          name="plazo"
-          formControlName="plazo"
-          id="plazo"
-          required
-          class="campo"
-        >
-          <option [value]="28">28 días</option>
-          <option [value]="90">90 días</option>
-          <option [value]="180">180 días</option>
-          <option [value]="365">365 días</option>
-        </select>
-      </div>
-  
+  </div>
       <button type="submit" class="boton-continuar">Continuar</button>
-      <button type="reset" class="boton-continuar" (click)="regresar()">
+      <button type="button" class="boton-continuar" (click)="regresar()">
         Regresar
       </button>
-    </form>
-  </div>
-  
+  </form>
+  <form
+    *ngIf="paso === 2"
+    [formGroup]="formPlazo"
+    (submit)="enviarPlazo($event)"
+    class="formulario"
+  >
+    <div class="grupo-formulario sombreado">
+      <p class="datos-previos">
+        <strong >Tasa estimada:</strong>
+        {{ inversionActual?.tasa}}%
+      </p>
+      <p class="datos-previos">
+        <strong>Rendimiento anual:</strong>
+        ${{ inversionActual?.rendimiento }}
+      </p>
+    </div>
+    <div class="grupo-formulario sombreado">
+      <label for="plazo" class="etiqueta">Selecciona un plazo (días):</label>
+      <select
+      id="plazo"
+      formControlName="plazo"
+      class="campo"
+      (change)="actualizarTasaYRendimiento()"
+    >
+      <option [value]="28">28</option>
+      <option [value]="90">90</option>
+      <option [value]="180">180</option>
+      <option [value]="365">365</option>
+    </select>
+    </div>
+    <button type="submit" class="boton-continuar derecha">Continuar</button>
+    <button type="button" class="boton-continuar" (click)="paso = 1">
+      ↩ Cambiar Monto
+    </button>
+  </form>
+</div>

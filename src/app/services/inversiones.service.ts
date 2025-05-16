@@ -16,21 +16,21 @@ export class InversionesService {
 
   calcularTasa(monto: number, plazo: number): number {
     const tasas = [
-      { montoMax: 5000,  plazoMin: 28,  plazoMax: 89,  tasaDestinada: 0.03 },
-      { montoMax: 5000,  plazoMin: 90,  plazoMax: 179, tasaDestinada: 0.035 },
-      { montoMax: 5000,  plazoMin: 180, plazoMax: 365, tasaDestinada: 0.04 },
+      { montoMax: 5000,  plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3 },
+      { montoMax: 5000,  plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.5 },
+      { montoMax: 5000,  plazoMin: 180, plazoMax: 365, tasaDestinada: 4 },
   
-      { montoMax: 10000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 0.032 },
-      { montoMax: 10000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 0.037 },
-      { montoMax: 10000, plazoMin: 180, plazoMax: 365, tasaDestinada: 0.042 },
+      { montoMax: 10000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.2 },
+      { montoMax: 10000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.7 },
+      { montoMax: 10000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.2 },
   
-      { montoMax: 15000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 0.034 },
-      { montoMax: 15000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 0.039 },
-      { montoMax: 15000, plazoMin: 180, plazoMax: 365, tasaDestinada: 0.044 },
+      { montoMax: 15000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.4 },
+      { montoMax: 15000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.9 },
+      { montoMax: 15000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.4 },
   
-      { montoMax: 20000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 0.036 },
-      { montoMax: 20000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 0.041 },
-      { montoMax: 20000, plazoMin: 180, plazoMax: 365, tasaDestinada: 0.046 },
+      { montoMax: 20000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.6 },
+      { montoMax: 20000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 4.1 },
+      { montoMax: 20000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.6 },
     ];
     for (const tasa of tasas) {
       if ( monto <= tasa.montoMax && plazo >= tasa.plazoMin && plazo <= tasa.plazoMax ) {
@@ -42,7 +42,7 @@ export class InversionesService {
   }
 
   calcularRendimiento(monto: number, tasaDestinada: number): number {
-    return Number((monto * tasaDestinada).toFixed(2));
+    return Number((monto * (tasaDestinada/100)).toFixed(2));
   }
 
   obtenerInversiones(): Observable<Inversion[]> {

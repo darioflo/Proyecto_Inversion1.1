@@ -1,76 +1,79 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Location } from '@angular/common';
+import { Location, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
+
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
-import { Router } from '@angular/router';
-import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { ClienteService } from '../../services/cliente.service';
 
 @Component({
   selector: 'app-seleccionar-saldo-plazo',
-  imports: [ReactiveFormsModule],
+  standalone: true,                     // ↓ CAMBIO: Convertimos el componente a standalone
+  imports: [ReactiveFormsModule, NgIf],
   templateUrl: './seleccionar-saldo-plazo.component.html',
-  styleUrl: './seleccionar-saldo-plazo.component.css'
+  styleUrls: ['./seleccionar-saldo-plazo.component.css']
 })
-export class SeleccionarSaldoPlazoComponent extends TraerInversion implements OnInit{
-
-  formulario : FormGroup
-  servicioInversion = inject(InversionesService)
-  servicioInversionCuenta = inject(InversionesCuentasService)
-  servicioCliente = inject(ClienteService)
-  ubicacion = inject(Location)
-  router = inject(Router)
-
-  constructor(){
-    super()
-    this.formulario = new FormGroup({ 
-      saldo: new FormControl<number | null>(1000, [
+export class SeleccionarSaldoPlazoComponent extends TraerInversion implements OnInit {
+  paso = 1;                         
+  servicioInversion = inject(InversionesService);
+  servicioCliente= inject(ClienteService);
+  ubicacion = inject(Location);
+  router = inject(Router);
+  formMonto = new FormGroup({
+    saldo: new FormControl<number | null>(null, [
       Validators.required,
-      Validators.min(1000),
+      Validators.min(1000)
     ]),
-    plazo: new FormControl<number>(28, [
+  });
+  formPlazo = new FormGroup({
+    plazo: new FormControl<number | null>(null, [
       Validators.required,
-      Validators.min(1),
-    ]),})
+      Validators.min(1)
+    ]),
+  });
+  constructor() {
+    super();
   }
-
 
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
   }
-
-  enviarSaldoPlazo(evento: Event) {
-    evento.preventDefault();
-    if (this.formulario.valid && this.inversionActual) {
-      const { saldo, plazo } = this.formulario.value;
-      this.inversionActual.saldoInicial= saldo;
-      this.inversionActual.plazo = plazo!;
-      if ( this.inversionActual && this.inversionActual.saldoInicial <= this.servicioCliente.cuentaSeleccionada?.saldo!) {
-        
-        this.inversionActual.tasa = this.servicioInversion.calcularTasa(saldo,plazo);
-        console.log(this.inversionActual.tasa,'tasa');
-        
-        this.inversionActual.rendimiento = this.servicioInversion.calcularRendimiento(this.inversionActual.saldoInicial!,this.inversionActual.tasa);
-        this.router.navigate([`vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`,]);
-
-        console.log('Datos formulario:', this.formulario.value);
-        console.log('Inversion actual:', this.inversionActual);
-      } 
-      else {
-        window.alert(
-          'Formulario inválido: No se puede enviar una cantidad superior al saldo.'
-        );
-      }
+  enviarMonto(event: Event) {
+    event.preventDefault();
+    if (this.formMonto.valid && this.inversionActual) {
+      const { saldo } = this.formMonto.value;
+      this.inversionActual.saldoInicial = saldo!;
+      this.paso = 2;
     } else {
-      console.log('Formulario inválido');
-      window.alert(
-        'Formulario inválido: El monto mínimo para invertir es de 1000 mxn'
-      );
+      alert('El monto mínimo para invertir es de 1000 MXN');
     }
   }
-  regresar(){
-    this.ubicacion.back()
+
+  actualizarTasaYRendimiento() {
+    if ( this.formPlazo.valid && this.inversionActual && this.inversionActual.saldoInicial ) {
+      const plazo = this.formPlazo.value.plazo!;
+      const saldo = this.inversionActual.saldoInicial;
+      const tasa = this.servicioInversion.calcularTasa(saldo, plazo);
+      this.inversionActual.tasa = tasa;
+      this.inversionActual.rendimiento = this.servicioInversion.calcularRendimiento(saldo, tasa);
+    }
   }
 
+  enviarPlazo(event: Event) {
+    event.preventDefault();
+    if (this.formPlazo.valid && this.inversionActual) {
+      const { plazo } = this.formPlazo.value;
+      this.inversionActual.plazo = plazo!;
+      this.router.navigate([
+        `vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`
+      ]);
+    } else {
+      alert('Selecciona un plazo válido para continuar');
+    }
+  }
+
+  regresar() {
+    this.ubicacion.back();
+  }
 }
