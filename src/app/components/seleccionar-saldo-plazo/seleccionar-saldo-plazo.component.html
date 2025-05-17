@@ -5,12 +5,17 @@
       {{ servicioCliente.clienteSeleccionado?.nombre }}
       {{ servicioCliente.clienteSeleccionado?.apellido_paterno}}
     </p>
-    <p >
-      Cuenta asociada: {{ servicioCliente.cuentaSeleccionada?.idCuenta }}
-    </p>
-    <p class="monto-disponible">
-      Monto disponible: ${{ servicioCliente.cuentaSeleccionada?.saldo }}
-    </p>
+    <div class="cuenta-asociada-flex">
+      <img src="tarjeta.png" alt="tarjeta" style="width: 50px; height: 50px;">
+      <div class="cuenta-asociada-info">
+        <p class="cuenta-asociada-texto">
+          Cuenta asociada: {{ servicioCliente.cuentaSeleccionada?.idCuenta }}
+        </p>
+        <p class="monto-disponible">
+          Monto disponible: ${{ servicioCliente.cuentaSeleccionada?.saldo }}
+        </p>
+      </div>
+    </div>
   </div>
   <form
     *ngIf="paso === 1"

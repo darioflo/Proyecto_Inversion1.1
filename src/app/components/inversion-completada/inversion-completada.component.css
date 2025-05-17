@@ -13,12 +13,23 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  color: var(--segundo-color);
+  color: #949494;
   margin-bottom: 1rem;
+}
+
+.subtitulo-anuncio b{
+  color: #444
 }
 
 .titulo-anuncio {
   color: var(--color-extra);
+}
+
+.icono-central {
+  display: block;
+  margin: 0 auto 1.2rem auto;
+  width: 70px;
+  height: auto;
 }
 
 .detalle {
@@ -38,6 +49,7 @@
 .fila:last-child {
   border-bottom: none;
 }
+
 
 .label {
   font-weight: 600;

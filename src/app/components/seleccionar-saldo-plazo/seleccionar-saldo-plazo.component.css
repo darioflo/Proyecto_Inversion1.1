@@ -17,8 +17,21 @@
   font-size: 2rem;
   color: var(--segundo-color);
 }
+
+.cuenta-asociada-flex {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.cuenta-asociada-info {
+  display: flex;
+  flex-direction: column;
+}
 .nombre-cliente{
-  color: #ccc;
+  color: #9c9c9c;
   font-size: 1.3rem;
 }
 
@@ -90,7 +103,21 @@ select {
   .contenedor-formulario {
     padding: 0.5rem;
     margin: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
+
+  .cuenta-asociada-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+  }
+
   .boton-continuar,
   .boton-secundario {
     width: 100%;
