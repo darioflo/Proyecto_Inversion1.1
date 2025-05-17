@@ -11,6 +11,7 @@ import { ClienteService } from '../../services/cliente.service';
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
+import { InstruccionVencimientoService } from '../../services/instruccion-vencimiento.service';
 
 
 @Component({
@@ -28,6 +29,7 @@ export class InstruccionVencimientoComponent
   servicioInversion = inject(InversionesService);
   clienteActual = inject(ClienteService)
   servicioInversionCuenta = inject(InversionesCuentasService)
+  instruccionVServicio = inject(InstruccionVencimientoService)
   router = inject(Router);
   formulario = new FormGroup({
     instruccion: new FormControl<string>('', Validators.required),
@@ -41,33 +43,6 @@ export class InstruccionVencimientoComponent
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
   }
-
-  reinvertirInversionGanancia(saldoInvertido: number, rendimientoAnual: number) {
-    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoInicial += rendimientoAnual
-      this.inversionActual.saldoAlTermino += this.clienteActual.cuentaSeleccionada.saldo;
-      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
-    }
-    return 0;
-  }
-
-  reinvertirInversion(saldoInvertido: number, rendimientoAnual: number) {
-    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoInicial += saldoInvertido 
-      this.inversionActual.saldoAlTermino = this.clienteActual.cuentaSeleccionada.saldo + rendimientoAnual;
-      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
-    }
-    return 0;
-  }
-
-  reembolsarTodo(saldoInvertido: number, rendimientoAnual: number) {
-    if (this.inversionActual && this.clienteActual.cuentaSeleccionada) {
-      this.inversionActual.saldoAlTermino += saldoInvertido + rendimientoAnual + this.clienteActual.cuentaSeleccionada.saldo;
-      this.clienteActual.cuentaSeleccionada.saldo -= saldoInvertido
-    }
-    return 0;
-  }
-  
   
   elegirInstruccion(evento: Event) {
     if (this.inversionActual) {
@@ -127,27 +102,30 @@ export class InstruccionVencimientoComponent
       console.log(this.formulario.valid, this.formulario.value);
       switch (this.instruccionSeleccionada) {
         case 'Reinvertir inversion-ganancia':
-          this.reinvertirInversionGanancia(
+          this.instruccionVServicio.reinvertirInversionGanancia(
             this.inversionActual?.saldoInicial,
-            this.inversionActual?.rendimientoAnual
+            this.inversionActual?.rendimientoAnual,
+            this.inversionActual
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
         case 'Reinvertir inversion':
-          this.reinvertirInversion(
+          this.instruccionVServicio.reinvertirInversion(
             this.inversionActual.saldoInicial,
-            this.inversionActual.rendimientoAnual
+            this.inversionActual.rendimientoAnual,
+            this.inversionActual
           );
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
         case 'Reembolso total':
-          this.reembolsarTodo(
+          this.instruccionVServicio.reembolsarTodo(
             this.inversionActual.saldoInicial,
-            this.inversionActual.rendimientoAnual
+            this.inversionActual.rendimientoAnual,
+            this.inversionActual
           );
           this.inversionActual.instruccionVencimiento = 'Reembolso total';
           this.unificarInversionCuenta()          
