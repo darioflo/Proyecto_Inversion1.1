@@ -26,8 +26,11 @@
           <label>
             Plazo (días):
             <select [(ngModel)]="inversion.plazo" name="plazo{{i}}" required>
-              <option [ngValue]="28">28 días</option>
+              <option [ngValue]="15">15 días</option>
+              <option [ngValue]="30">30 días</option>
+              <option [ngValue]="45">45 días</option>
               <option [ngValue]="90">90 días</option>
+              <option [ngValue]="120">120 días</option>
               <option [ngValue]="180">180 días</option>
               <option [ngValue]="365">365 días</option>
             </select>

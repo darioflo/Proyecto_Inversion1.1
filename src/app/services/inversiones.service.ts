@@ -16,19 +16,23 @@ export class InversionesService {
 
   calcularTasa(monto: number, plazo: number): number {
     const tasas = [
-      { montoMax: 5000,  plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.0 },
+      { montoMax: 5000,  plazoMin: 15,  plazoMax: 29,  tasaDestinada: 2.0 },
+      { montoMax: 5000,  plazoMin: 30,  plazoMax: 89,  tasaDestinada: 3.0 },
       { montoMax: 5000,  plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.5 },
       { montoMax: 5000,  plazoMin: 180, plazoMax: 365, tasaDestinada: 4.0 },
   
-      { montoMax: 10000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.2 },
+      { montoMax: 10000,  plazoMin: 15,  plazoMax: 29,  tasaDestinada: 2.0 },
+      { montoMax: 10000, plazoMin: 30,  plazoMax: 89,  tasaDestinada: 3.2 },
       { montoMax: 10000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.7 },
       { montoMax: 10000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.2 },
   
-      { montoMax: 15000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.4 },
+      { montoMax: 15000,  plazoMin: 15,  plazoMax: 29,  tasaDestinada: 2.0 },
+      { montoMax: 15000, plazoMin: 30,  plazoMax: 89,  tasaDestinada: 3.4 },
       { montoMax: 15000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 3.9 },
       { montoMax: 15000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.4 },
   
-      { montoMax: 20000, plazoMin: 28,  plazoMax: 89,  tasaDestinada: 3.6 },
+      { montoMax: 20000,  plazoMin: 15,  plazoMax: 29,  tasaDestinada: 2.0 },
+      { montoMax: 20000, plazoMin: 30,  plazoMax: 89,  tasaDestinada: 3.6 },
       { montoMax: 20000, plazoMin: 90,  plazoMax: 179, tasaDestinada: 4.1 },
       { montoMax: 20000, plazoMin: 180, plazoMax: 365, tasaDestinada: 4.6 },
     ];

@@ -101,31 +101,40 @@ export class InstruccionVencimientoComponent
       console.log(this.formulario.valid, this.formulario.value);
       switch (this.instruccionSeleccionada) {
         case 'Reinvertir inversion-ganancia':
-          this.instruccionVServicio.reinvertirInversionGanancia(
+          /*this.instruccionVServicio.reinvertirInversionGanancia(
             this.inversionActual?.saldoInicial,
             this.inversionActual?.rendimientoAnual,
             this.inversionActual
-          );
+          );*/
+          if (this.clienteActual.cuentaSeleccionada) {
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+          }
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
         case 'Reinvertir inversion':
-          this.instruccionVServicio.reinvertirInversion(
+          /*this.instruccionVServicio.reinvertirInversion(
             this.inversionActual.saldoInicial,
             this.inversionActual.rendimientoAnual,
             this.inversionActual
-          );
+          );*/
+          if (this.clienteActual.cuentaSeleccionada) {
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+          }
           this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
         case 'Reembolso total':
-          this.instruccionVServicio.reembolsarTodo(
+          /*this.instruccionVServicio.reembolsarTodo(
             this.inversionActual.saldoInicial,
             this.inversionActual.rendimientoAnual,
             this.inversionActual
-          );
+          );*/
+          if (this.clienteActual.cuentaSeleccionada) {
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+          }
           this.inversionActual.instruccionVencimiento = 'Reembolso total';
           this.unificarInversionCuenta()          
           this.guardarInversion()

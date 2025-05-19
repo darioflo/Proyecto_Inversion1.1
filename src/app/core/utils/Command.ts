@@ -27,6 +27,10 @@ export class EditarInversionCommand implements Command{
             alert('La nueva inversión no puede exceder su saldo en cuenta')
             return
         }
+        if (this.nuevoSaldo < 1000) {
+            alert('La nueva inversión debe ser mayor a 1000 MXN')
+            return
+        }
 
         this.inversiones[this.indice].saldoInicial = this.nuevoSaldo,
         this.inversiones[this.indice].plazo = this.nuevoPlazo
@@ -38,7 +42,7 @@ export class EditarInversionCommand implements Command{
         this.inversiones[this.indice].rendimientoAnual= nuevoRendimiento
         this.inversiones[this.indice].instruccionVencimiento = this.nuevaInstruccionVencimiento
 
-        this.inversiones[this.indice].saldoALTermino= this.nuevoSaldo + nuevoRendimiento 
+        //this.inversiones[this.indice].saldoALTermino= this.nuevoSaldo + nuevoRendimiento 
         this.inversiones[this.indice].saldo-=this.nuevoSaldo
 
 
