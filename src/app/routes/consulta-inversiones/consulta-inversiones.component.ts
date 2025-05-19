@@ -15,7 +15,6 @@ export type inversionCompleta  = {
         tasa: number,
         saldoInicial: number,
         saldoALTermino: number,
-        rendimiento: number,
         rendimientoAnual: number,
 }
 

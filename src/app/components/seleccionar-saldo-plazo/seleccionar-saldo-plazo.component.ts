@@ -63,7 +63,6 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
       const saldo = this.inversionActual.saldoInicial;
       const tasa = this.servicioInversion.calcularTasa(saldo, plazo);
       this.inversionActual.tasa = tasa;
-      this.inversionActual.rendimiento = this.servicioInversion.calcularRendimiento(saldo, tasa);
       this.inversionActual.rendimientoAnual = this.servicioInversion.calcularRendimientoAnual(saldo,tasa,plazo)
     }
   }

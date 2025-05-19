@@ -39,21 +39,10 @@ export class InversionesService {
     }
     return 0
   }
-
-  calcularRendimiento(monto: number, tasaDestinada: number): number {
-    return Number((monto * (tasaDestinada/100)).toFixed(2));
-  }
-
   calcularRendimientoAnual(monto: number, tasa: number, plazo: number): number {
     const tasaDecimal = tasa / 100;
-    const cicloAnual = Math.floor(365 / plazo);
-    let montoActual = monto;
-    
-    for (let i = 0; i < cicloAnual; i++) {
-      const rendimientoCiclo = montoActual * tasaDecimal;
-      montoActual += rendimientoCiclo;
-    }
-    return Number(montoActual.toFixed(2));
+    let montoTotalInv = (monto * tasaDecimal * plazo)/365;
+    return Number(montoTotalInv.toFixed(2));
   }
 
   obtenerInversiones(): Observable<Inversion[]> {

@@ -86,7 +86,6 @@ export class InstruccionVencimientoComponent
         tasa: this.inversionActual.tasa,
         saldoInicial: this.inversionActual.saldoInicial,
         saldoALTermino: this.inversionActual.saldoAlTermino,
-        rendimiento: this.inversionActual.rendimiento,
         rendimientoAnual: this.inversionActual.rendimientoAnual
       };
   
