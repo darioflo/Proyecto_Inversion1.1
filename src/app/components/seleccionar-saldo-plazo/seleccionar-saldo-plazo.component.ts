@@ -15,7 +15,8 @@ import { ClienteService } from '../../services/cliente.service';
   styleUrls: ['./seleccionar-saldo-plazo.component.css']
 })
 export class SeleccionarSaldoPlazoComponent extends TraerInversion implements OnInit {
-  paso = 1;                         
+  paso: number = 1;
+  mostrar: boolean = false                         
   servicioInversion = inject(InversionesService);
   servicioCliente= inject(ClienteService);
   ubicacion = inject(Location);
@@ -58,6 +59,7 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
   }
 
   actualizarTasaYRendimiento() {
+    this.mostrar = true
     if ( this.formPlazo.valid && this.inversionActual && this.inversionActual.saldoInicial ) {
       const plazo = this.formPlazo.value.plazo!;
       const saldo = this.inversionActual.saldoInicial;

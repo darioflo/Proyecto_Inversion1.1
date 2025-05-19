@@ -53,14 +53,16 @@
         <strong >Saldo a invertir:</strong>
         ${{ inversionActual?.saldoInicial}}
       </p>
-      <p class="datos-previos">
-        <strong >Tasa estimada:</strong>
-        {{ inversionActual?.tasa}}%
-      </p>
-      <p class="datos-previos">
-        <strong>Rendimiento anual:</strong>
-        ${{ inversionActual?.rendimientoAnual }}
-      </p>
+      <div *ngIf="mostrar">
+        <p class="datos-previos">
+          <strong >Tasa estimada:</strong>
+          {{ inversionActual?.tasa}}%
+        </p>
+        <p class="datos-previos">
+          <strong>Rendimiento anual:</strong>
+          ${{ inversionActual?.rendimientoAnual }}
+        </p>
+      </div>
     </div>
     <div class="grupo-formulario sombreado">
       <label for="plazo" class="etiqueta">Selecciona un plazo (días):</label>

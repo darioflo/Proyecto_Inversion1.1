@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component} from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import {NgIf } from '@angular/common';
@@ -22,7 +22,6 @@ import { SeleccionarCuentaComponent } from "../seleccionar-cuenta/seleccionar-cu
 })
 export class SidenavAutosizeExample {
   showFiller:boolean ;
-
 
   constructor(){
     this.showFiller = false
