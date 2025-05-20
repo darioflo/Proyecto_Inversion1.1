@@ -1,5 +1,4 @@
 import { inject } from '@angular/core';
-import { Inversion } from '../../models/Inversion';
 import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
@@ -41,9 +40,7 @@ export class ObtenerClienteAutenticado {
             inversionHecha.forEach((inversion: inversionCompleta) => {
               this.cuentasDeCliente?.forEach((cuenta)=>{
                 if (inversion.idCuentaInvertida.idCuenta === cuenta.idCuenta) {
-                  if (inversion.idCuentaInvertida.idCuenta === cuenta.idCuenta) {
                     cuenta.saldo = Math.min(cuenta.saldo, inversion.saldo);
-                  }
                 }
               })
             }

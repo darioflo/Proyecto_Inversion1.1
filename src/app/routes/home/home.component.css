@@ -29,5 +29,29 @@
     .inversion p {
       font-size: 1rem;
     }
+
+    @media (max-width: 400px) {
+      .home-seccion {
+        padding: 2rem 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    
+      .titulo {
+        font-size: 1.75rem;
+      }
+    
+      .contenedor-inversiones {
+        gap: 1rem;
+      }
+    
+      .inversion {
+        padding: 0.75rem;
+      }
+    
+      .inversion p {
+        font-size: 1rem;
+      }
   }
-  
+}

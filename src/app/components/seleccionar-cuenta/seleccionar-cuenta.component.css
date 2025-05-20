@@ -81,5 +81,35 @@
     .saldo-cuenta {
       font-size: 0.9rem;
     }
+
+    @media (max-width: 640px) {
+      .seleccion-cuenta-contenedor {
+        padding: 1.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-right: 3rem;
+      }
+    
+      .titulo {
+        font-size: 1.5rem;
+      }
+    
+      .mensaje {
+        font-size: 1rem;
+      }
+    
+      .cuenta {
+        padding: 0.75rem;
+      }
+    
+      .id-cuenta {
+        font-size: 1rem;
+      }
+    
+      .saldo-cuenta {
+        font-size: 0.9rem;
+      }
   }
-  
+}

@@ -32,10 +32,8 @@ export class ConsultaInversionesComponent implements OnInit {
     const inversionesCliente = localStorage.getItem('inversionesDelCliente');
     if (inversionesCliente) {
       this.inversiones = JSON.parse(inversionesCliente)
+      this.inversiones = this.inversiones.reverse()
       console.log('Inversiones listas: ', this.inversiones);
-      
     }
-    
-    
   }
 }
