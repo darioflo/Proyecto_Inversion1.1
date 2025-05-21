@@ -17,6 +17,7 @@
     font-size: 1.25rem;
     color: var(--cuarto-color);
     margin-bottom: 2rem;
+    text-wrap: wrap;
   }
   
   .lista-cuentas {
