@@ -23,16 +23,6 @@ ngOnInit(): void {
 }
 
 regresar() {
-  /*this.servicioInversion.inversionActual$.subscribe({
-    next: (inversion) => {
-      if (this.servicioCLiente.cuentaSeleccionada && inversion?.saldoInicial) {
-        this.servicioCLiente.cuentaSeleccionada.saldo += inversion?.saldoInicial;
-      }
-    },
-    error: (error) => {
-      console.log(error);
-    },
-  });*/
   this.ubicacion.back();
 }
 continuar() {

@@ -6,6 +6,7 @@ import { EditarInversionCommand } from '../../core/utils/Command';
 import { InversionesService } from '../../services/inversiones.service';
 import { ErrorComponentComponent } from "../../components/error-component/error-component.component";
 import { TipoError } from '../../models/Error';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-actualizar-inversion',
@@ -19,6 +20,7 @@ export class ActualizarInversionComponent implements OnInit{
   inversionesDelCliente!: inversionCompleta[] | null
   inversionesServicio = inject(InversionesService)
   tipoError: TipoError = ''
+  router = inject(Router)
 
     ngOnInit(): void {
       let inversiones = localStorage.getItem('inversionesDelCliente')
