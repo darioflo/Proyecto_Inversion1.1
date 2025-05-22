@@ -12,11 +12,13 @@ import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { InstruccionVencimientoService } from '../../services/instruccion-vencimiento.service';
+import { ErrorComponentComponent } from "../error-component/error-component.component";
+import { TipoError } from '../../models/Error';
 
 
 @Component({
   selector: 'app-instruccion-vencimiento',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, ErrorComponentComponent],
   templateUrl: './instruccion-vencimiento.component.html',
   styleUrl: './instruccion-vencimiento.component.css',
 })
@@ -24,6 +26,7 @@ export class InstruccionVencimientoComponent
   extends TraerInversion
   implements OnInit
 {
+  tipoError: TipoError = ''
   instruccionSeleccionada: string;
   ubicacion = inject(Location);
   servicioInversion = inject(InversionesService);
@@ -147,12 +150,15 @@ export class InstruccionVencimientoComponent
         `vistaTerminada/${this.clienteActual.cuentaSeleccionada?.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
     } else {
-      alert(
-        'Formulario inválido: Debe seleccionar una opción antes de invertir'
-      );
+          this.tipoError = 'seleccionarInstruccion'
+
     }
   }
   regresar() {
     this.ubicacion.back();
+  }
+
+  cerrarError(){
+    this.tipoError = ""
   }
 }

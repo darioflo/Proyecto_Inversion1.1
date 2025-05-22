@@ -6,17 +6,20 @@ import { Router } from '@angular/router';
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
+import { ErrorComponentComponent } from "../error-component/error-component.component";
+import { TipoError } from '../../models/Error';
 
 @Component({
   selector: 'app-seleccionar-saldo-plazo',
   standalone: true,                     // ↓ CAMBIO: Convertimos el componente a standalone
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, ErrorComponentComponent],
   templateUrl: './seleccionar-saldo-plazo.component.html',
   styleUrls: ['./seleccionar-saldo-plazo.component.css']
 })
 export class SeleccionarSaldoPlazoComponent extends TraerInversion implements OnInit {
   paso: number = 1;
-  mostrar: boolean = false                         
+  mostrar: boolean = false
+  tipoError:TipoError = ''                     
   servicioInversion = inject(InversionesService);
   servicioCliente= inject(ClienteService);
   ubicacion = inject(Location);
@@ -47,14 +50,14 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
       const { saldo } = this.formMonto.value;
 
       if (saldo! > this.clienteServicio.cuentaSeleccionada?.saldo) {
-        alert('El monto de inversión no puede ser mayor a su saldo en cuenta :(')
+        this.tipoError = 'saldoSuperior'
         return
       }
       
       this.inversionActual.saldoInicial = saldo!;
       this.paso = 2;
     } else {
-      alert('El monto mínimo para invertir es de 1000 MXN');
+      this.tipoError = 'saldoInferior'
     }
   }
 
@@ -78,11 +81,15 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
         `vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`
       ]);
     } else {
-      alert('Selecciona un plazo válido para continuar');
+      this.tipoError = 'seleccionarPlazo'
     }
   }
 
   regresar() {
     this.ubicacion.back();
+  }
+
+  cerrarError(){
+    this.tipoError = ""
   }
 }

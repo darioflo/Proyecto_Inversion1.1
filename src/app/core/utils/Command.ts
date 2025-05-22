@@ -1,6 +1,7 @@
 import { Router } from "@angular/router";
 import { inversionCompleta } from "../../routes/consulta-inversiones/consulta-inversiones.component";
 import { InversionesService } from "../../services/inversiones.service";
+import { TipoError } from "../../models/Error";
 
 
 export interface Command {
@@ -16,7 +17,7 @@ export class EditarInversionCommand implements Command{
         private nuevoPlazo: number,
         private nuevaInstruccionVencimiento: string,
         private inversionesServicio : InversionesService,
-        private routerEditar : Router,
+        private setTipoError: (error:TipoError)=> void
     ){
     
     }
@@ -24,11 +25,11 @@ export class EditarInversionCommand implements Command{
 
     editar(): void {
         if (this.nuevoSaldo > this.inversiones[this.indice].saldo) {
-            alert('La nueva inversión no puede exceder su saldo en cuenta')
+            this.setTipoError('saldoSuperior')
             return
         }
         if (this.nuevoSaldo < 1000) {
-            alert('La nueva inversión debe ser mayor a 1000 MXN')
+            this.setTipoError('saldoInferior')
             return
         }
 
@@ -45,9 +46,7 @@ export class EditarInversionCommand implements Command{
         //this.inversiones[this.indice].saldoALTermino= this.nuevoSaldo + nuevoRendimiento 
         this.inversiones[this.indice].saldo-=this.nuevoSaldo
 
-
         localStorage.setItem('inversionesDelCliente',JSON.stringify(this.inversiones))
-        alert('Cambios aplicados');
-        this.routerEditar.navigate(['/consultaInversiones'])
+        this.setTipoError('cambiosAplicados')
     }
 }

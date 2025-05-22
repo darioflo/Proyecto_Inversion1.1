@@ -1,0 +1,10 @@
+<div class="error-backdrop" *ngIf="tipoError()">
+    <div class="error-mensaje">
+        <div *ngIf="tipoError() === 'saldoSuperior'"><b>El monto ingresado supera su saldo disponible.</b></div>
+        <div *ngIf="tipoError() === 'saldoInferior'"><b>El monto ingresado es menor al mínimo permitido (1000 MXN).</b></div>
+        <div *ngIf="tipoError() === 'seleccionarInstruccion'"><b>Debes seleccionar una instrucción de vencimiento.</b></div>
+        <div *ngIf="tipoError()=== 'seleccionarPlazo'"><b>Debe seleccionar un plazo de tiempo válido antes de continuar</b></div>
+        <div *ngIf="tipoError()=== 'cambiosAplicados'"><b>Cambios aplicados correctamente</b></div>
+      <button (click)="cerrarVentana.emit()" class="boton-continuar">Cerrar</button>
+    </div>
+  </div>

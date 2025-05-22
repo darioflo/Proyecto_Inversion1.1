@@ -1,3 +1,11 @@
+<div class="barra-superior">
+  <button class="btn-superior izquierda" (click)="router.navigate(['/'])">
+    regresar
+  </button>
+  <button class="btn-superior derecha" (click)="router.navigate(['/consultaInversiones'])">
+    Consulta de inversiones
+  </button>
+</div>
 <section class="actualizar-inversion-seccion">
   <div class="cliente-nombre">
     <h2 style="color: var(--tercer-color);">
@@ -49,3 +57,4 @@
     </div>
   </div>
 </section>
+<app-error-component [tipoError]="tipoError" (cerrarVentana)="cerrarError()"></app-error-component>
