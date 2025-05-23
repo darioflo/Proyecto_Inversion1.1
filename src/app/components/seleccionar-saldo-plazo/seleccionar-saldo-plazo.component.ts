@@ -43,8 +43,18 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
   ngOnInit(): void {
     this.suscribirseAInversion(this.servicioInversion);
   }
-  enviarMonto(event: Event) {
 
+/*Este método antes de enviar el valor del monto comprueba que el formulario sea válido, que exista una inversión actual 
+que se esté tratando y una cuenta seleccionada. Si todo está correcto extrae el saldo del valor actual del formulario, 
+luego valida que ese saldo no exceda el saldo disponible en la cuenta del cliente, si esto ocurre va a asignarle a la variable 
+tipoError el valor ”saldoSuperior” y sale de toda la función si no se cumple esta condición va a guardar en el saldo inicial 
+de la inversión actual el valor del monto introducido por el usuario y activará la variable this.paso = 2 donde pasará a 
+mostrar el formulario para seleccionar el plazo de inversión.
+
+La última condición va a asignarle a la variable tipoError el valor ”saldoInferior” que se ejecutara en 
+caso de que la inversión sea menor al valor mínimo introducido.
+ */
+  enviarMonto(event: Event) {
     event.preventDefault();
     if (this.formMonto.valid && this.inversionActual && this.clienteServicio.cuentaSeleccionada) {
       const { saldo } = this.formMonto.value;
@@ -53,7 +63,6 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
         this.tipoError = 'saldoSuperior'
         return
       }
-      
       this.inversionActual.saldoInicial = saldo!;
       this.paso = 2;
     } else {
