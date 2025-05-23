@@ -70,6 +70,10 @@ caso de que la inversión sea menor al valor mínimo introducido.
     }
   }
 
+  /*Esta función primero valida que el formulario sea válido, que exista una inversión actual y que esa inversión actual 
+  tenga un saldo disponible luego lo que hace es calcular el rendimiento y la tasa pasándole como argumentos las variables 
+  plazo, saldo y tasa una vez el cliente haya seleccionado el plazo y cada valor resultante de estos cálculos los asignará 
+  a su valor correspondiente en la inversiónActual. */
   actualizarTasaYRendimiento() {
     this.mostrar = true
     if ( this.formPlazo.valid && this.inversionActual && this.inversionActual.saldoInicial ) {

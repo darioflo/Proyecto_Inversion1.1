@@ -22,6 +22,10 @@ export class EditarInversionCommand implements Command{
     
     }
 
+    
+/*Este método primeramente se encarga de ejecutar las validaciones en caso de que el nuevoSaldo sea superior al saldo 
+de la cuenta del cliente o inferior a los 1000 MXN permitidos como valor mínimo luego se encarga de asignar cada uno 
+de los nuevos valores a las claves de la inversión seleccionada. */
 
     editar(): void {
         if (this.nuevoSaldo > this.inversiones[this.indice].saldo) {

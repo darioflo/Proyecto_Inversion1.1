@@ -14,6 +14,9 @@ export class InversionesService {
   inversionesDelCliente : Inversion[] = []
   
 
+
+/*Según los valores almacenados en el objeto tasas y luego de iterar por el mismo se analiza en base al monto y plazo 
+ingresado por el usuario y una vez este localizado su rango dentro de la condición ya tendríamos asignada la tasa.  */
   calcularTasa(monto: number, plazo: number): number {
     const tasas = [
       { montoMax: 5000,  plazoMin: 15,  plazoMax: 29,  tasaDestinada: 2.0 },
@@ -43,6 +46,11 @@ export class InversionesService {
     }
     return 0
   }
+
+
+
+/*Esta función calcula el rendimiento anual en base al monto, la tasa y el plazo de inversión seleccionado por el cliente. 
+Asigna el valor al montoTotalInv de la multiplicación del monto, la tasa y el plazo dividido en 365 días.  */
   calcularRendimientoAnual(monto: number, tasa: number, plazo: number): number {
     const tasaDecimal = tasa / 100;
     let montoTotalInv = (monto * tasaDecimal * plazo)/365;
