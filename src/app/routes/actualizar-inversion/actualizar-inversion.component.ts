@@ -38,7 +38,7 @@ export class ActualizarInversionComponent implements OnInit{
 del archivo html de este componente. Crea luego una instancia de la clase EditarInversionCommand  pasándole como argumentos 
 las inversiones del cliente, el saldo inicial, el plazo, la instrucción de vencimiento, el servicio de inversiones y un método 
 que va a actualizar la variable tipoError encargada de identificar el tipo de excepción que va a lanzar el software en caso 
-de que los datos introducidos no sean los correctos.. */
+de que los datos introducidos no sean los correctos.*/
     guardarCambios(i:number){
       if (this.inversionesDelCliente) {
         const inversion = this.inversionesDelCliente[i];
