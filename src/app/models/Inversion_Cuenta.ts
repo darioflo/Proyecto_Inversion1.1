@@ -6,4 +6,10 @@ export interface InversionCuenta{
     idCuenta : Pick<Cuenta,'idCuenta'>
     idInversion : Pick<Inversion,'idInversion'>
     estaActiva : boolean
+    plazo: number;
+    tasa: number;
+    rendimientoAnual:number;
+    saldoInicial: number,
+    saldoAlTermino: number,
+    instruccionVencimiento:'Reinvertir inversion-ganancia' | 'Reinvertir inversion' | 'Reembolso total' | '';
 }

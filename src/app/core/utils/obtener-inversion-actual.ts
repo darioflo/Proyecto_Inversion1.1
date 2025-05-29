@@ -8,18 +8,17 @@ import { InversionesService } from "../../services/inversiones.service";
 export class TraerInversion {
   protected inversionActual!: Inversion | null;
   clienteServicio = inject(ClienteService);
-  servicioInversioCuenta = inject(InversionesCuentasService)
-  inversionCuentaActual = this.servicioInversioCuenta.inversionCuentaActual
+  servicioInversionCuenta = inject(InversionesCuentasService)
   idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
 
   protected suscribirseAInversion(servicioInversiones: InversionesService) {
     servicioInversiones.inversionActual$.subscribe({
       next: (data) => {
-        (this.inversionActual = data)
-          if (this.inversionCuentaActual && this.inversionActual?.idInversion !== undefined) {
-            this.inversionCuentaActual.idInversion = { idInversion: this.inversionActual.idInversion };
-            this.inversionCuentaActual.idCuenta = {idCuenta: this.idCuentaSeleccionada!}
-          }
+        this.inversionActual = data
+        if (this.inversionActual && this.idCuentaSeleccionada) {
+          this.servicioInversionCuenta.inversionCuentaActual.idInversion = { idInversion: this.inversionActual.idInversion };
+          this.servicioInversionCuenta.inversionCuentaActual.idCuenta = {idCuenta: this.idCuentaSeleccionada}
+        }
       },
       error: (error) => console.log('Error:', error),
     });

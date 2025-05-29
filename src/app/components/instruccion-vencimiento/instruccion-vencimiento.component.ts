@@ -10,7 +10,6 @@ import {
 import { ClienteService } from '../../services/cliente.service';
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
-import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { InstruccionVencimientoService } from '../../services/instruccion-vencimiento.service';
 import { ErrorComponentComponent } from "../error-component/error-component.component";
 import { TipoError } from '../../models/Error';
@@ -22,16 +21,13 @@ import { TipoError } from '../../models/Error';
   templateUrl: './instruccion-vencimiento.component.html',
   styleUrl: './instruccion-vencimiento.component.css',
 })
-export class InstruccionVencimientoComponent
-  extends TraerInversion
-  implements OnInit
-{
+export class InstruccionVencimientoComponent extends TraerInversion implements OnInit {
   tipoError: TipoError = ''
   instruccionSeleccionada: string;
   ubicacion = inject(Location);
+  inversionCuentaActual = this.servicioInversionCuenta.inversionCuentaActual
   servicioInversion = inject(InversionesService);
   clienteActual = inject(ClienteService)
-  servicioInversionCuenta = inject(InversionesCuentasService)
   instruccionVServicio = inject(InstruccionVencimientoService)
   router = inject(Router);
   formulario = new FormGroup({
@@ -58,28 +54,10 @@ del elemento seleccionado por el usuario en la variable instruccionSeleccionada.
     }
   }
 
-  
-/*Lo primero que hace esta función es comprobar la existencia de la cuentaSeleccionada y la inversionActual, si ambos 
-existen pues va a crear la variable nuevaInversionCuenta y guarda como id de la nueva inversión el momento exacto en 
-que se crea utilizando el Date.now() luego guarda en su propiedad idCuenta el valor del id de la cuenta seleccionada y 
-en su propiedad idInversion el valor del id de la inversión actual, pone en true el valor de la propiedad estaActiva, 
-luego a la variable inversionCuentaActual del servicio servicioInversionCuenta le asigna la variable nuevaInversionCuenta 
-y luego agrega al arreglo inversionesCuentas esta última inversión creada. */
   unificarInversionCuenta() {
-    if (this.clienteActual.cuentaSeleccionada && this.inversionActual) {
-      const nuevaInversionCuenta = {
-        idInversionCuenta: String(Date.now()),
-        idCuenta: { idCuenta: this.clienteActual.cuentaSeleccionada.idCuenta },
-        idInversion: { idInversion: this.inversionActual.idInversion },
-        estaActiva: true
-      };
-      this.servicioInversioCuenta.inversionCuentaActual = nuevaInversionCuenta;
-      this.servicioInversioCuenta.inversionesCuentas.push(nuevaInversionCuenta);
-      console.log(this.servicioInversioCuenta.inversionCuentaActual, this.servicioInversioCuenta.inversionesCuentas);
-    } else {
-      console.log('No se obtuvo la inversion');
-      alert('No se obtuvo la inversion');
-    }
+    this.inversionCuentaActual.estaActiva = true
+    this.inversionCuentaActual.idInversionCuenta = String(Date.now())
+    this.servicioInversionCuenta.inversionesCuentas.push(this.inversionCuentaActual)
   }
 
 
@@ -90,24 +68,24 @@ y lo agrega al arreglo arregloInversiones. Finalmente, actualiza el localStorage
 propiedad inversionesDelCliente del servicio correspondiente, asegurando que la inversión recién realizada quede registrada y 
 disponible tanto en memoria como en almacenamiento persistente. */
   guardarInversion() {
-    if (this.inversionActual && this.clienteActual && this.servicioInversioCuenta.inversionCuentaActual) {
+    if (this.inversionActual && this.clienteActual && this.inversionCuentaActual) {
       const inversionesGuardadas = localStorage.getItem('inversionesDelCliente');
       const arregloInversiones = inversionesGuardadas ? JSON.parse(inversionesGuardadas) : [];
   
       const inversionCompleta = {
         nombreCliente: this.clienteActual.clienteSeleccionado?.nombre,
         apellidoCliente: this.clienteActual.clienteSeleccionado?.apellido_paterno,
-        idCuentaInvertida: this.servicioInversioCuenta.inversionCuentaActual.idCuenta,
-        saldo: this.clienteActual.cuentaSeleccionada?.saldo,
+        idCuentaInvertida: this.inversionCuentaActual?.idCuenta,
+        saldo: this.clienteActual.cuentaSeleccionada?.saldo ?? 0,
         idInversion: this.inversionActual.idInversion,
         descripcion: this.inversionActual.descripcion,
-        instruccionVencimiento: this.inversionActual.instruccionVencimiento,
+        instruccionVencimiento: this.inversionCuentaActual.instruccionVencimiento,
         nombre: this.inversionActual.nombre,
-        plazo: this.inversionActual.plazo,
-        tasa: this.inversionActual.tasa,
-        saldoInicial: this.inversionActual.saldoInicial,
-        saldoALTermino: this.inversionActual.saldoAlTermino,
-        rendimientoAnual: this.inversionActual.rendimientoAnual
+        plazo: this.inversionCuentaActual.plazo ?? 0,
+        tasa: this.inversionCuentaActual.tasa ?? 0,
+        saldoInicial: this.inversionCuentaActual.saldoInicial ?? 0,
+        saldoALTermino: this.inversionCuentaActual.saldoAlTermino ?? 0,
+        rendimientoAnual: this.inversionCuentaActual.rendimientoAnual ?? 0
       };
   
       arregloInversiones.push(inversionCompleta); 
@@ -135,11 +113,13 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
             this.inversionActual
           );*/
           if (this.clienteActual.cuentaSeleccionada) {
-            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
-          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
+          this.inversionCuentaActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
           this.unificarInversionCuenta()
           this.guardarInversion()
+          console.log("AQUÏÏÏÏ",this.inversionCuentaActual);
+          
           break;
         case 'Reinvertir inversion':
           /*this.instruccionVServicio.reinvertirInversion(
@@ -148,9 +128,9 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
             this.inversionActual
           );*/
           if (this.clienteActual.cuentaSeleccionada) {
-            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
-          this.inversionActual.instruccionVencimiento = 'Reinvertir inversion';
+          this.inversionCuentaActual.instruccionVencimiento = 'Reinvertir inversion';
           this.unificarInversionCuenta()
           this.guardarInversion()
           break;
@@ -161,9 +141,9 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
             this.inversionActual
           );*/
           if (this.clienteActual.cuentaSeleccionada) {
-            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionActual.saldoInicial;
+            this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
-          this.inversionActual.instruccionVencimiento = 'Reembolso total';
+          this.inversionCuentaActual.instruccionVencimiento = 'Reembolso total';
           this.unificarInversionCuenta()          
           this.guardarInversion()
           break;

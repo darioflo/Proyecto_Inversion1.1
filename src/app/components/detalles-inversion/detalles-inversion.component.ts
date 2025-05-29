@@ -20,6 +20,7 @@ export class DetallesInversionComponent extends TraerInversion implements OnInit
 
 ngOnInit(): void {
   this.suscribirseAInversion(this.servicioInversion)
+  
 }
 
 regresar() {

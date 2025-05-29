@@ -11,6 +11,8 @@ export class ClienteService {
   private http = inject(HttpClient);
   clienteSeleccionado: Cliente | null;
   cuentaSeleccionada: Cuenta | null = null;
+  api_clientes_url :string = 'http://localhost:8080/clientes'
+  api_cuentas_url: string = 'http://localhost:8080/cuentas'
   
 
 constructor(){
@@ -23,7 +25,7 @@ constructor(){
   }
 
   obtenerCuentas():Observable<Cuenta[]>{
-    return this.http.get<Cuenta[]>('api/cuentas')
+    return this.http.get<Cuenta[]>('api/cuentas');
   }
 
   obtenerClienteSeleccionado(): Cliente | null {

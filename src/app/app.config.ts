@@ -22,7 +22,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
     importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(InversionesBDService)
+      HttpClientInMemoryWebApiModule.forRoot(InversionesBDService, { passThruUnknownUrl: true })
     ),
   ],
 };

@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Location, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
-
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
@@ -11,7 +10,7 @@ import { TipoError } from '../../models/Error';
 
 @Component({
   selector: 'app-seleccionar-saldo-plazo',
-  standalone: true,                     // ↓ CAMBIO: Convertimos el componente a standalone
+  standalone: true,                     
   imports: [ReactiveFormsModule, NgIf, ErrorComponentComponent],
   templateUrl: './seleccionar-saldo-plazo.component.html',
   styleUrls: ['./seleccionar-saldo-plazo.component.css']
@@ -36,6 +35,8 @@ export class SeleccionarSaldoPlazoComponent extends TraerInversion implements On
       Validators.min(1)
     ]),
   });
+
+
   constructor() {
     super();
   }
@@ -58,15 +59,15 @@ caso de que la inversión sea menor al valor mínimo introducido.
     event.preventDefault();
     if (this.formMonto.valid && this.inversionActual && this.clienteServicio.cuentaSeleccionada) {
       const { saldo } = this.formMonto.value;
-
       if (saldo! > this.clienteServicio.cuentaSeleccionada?.saldo) {
         this.tipoError = 'saldoSuperior'
         return
       }
-      this.inversionActual.saldoInicial = saldo!;
+      this.servicioInversionCuenta.inversionCuentaActual.saldoInicial = saldo!
       this.paso = 2;
     } else {
       this.tipoError = 'saldoInferior'
+      
     }
   }
 
@@ -76,12 +77,13 @@ caso de que la inversión sea menor al valor mínimo introducido.
   a su valor correspondiente en la inversiónActual. */
   actualizarTasaYRendimiento() {
     this.mostrar = true
-    if ( this.formPlazo.valid && this.inversionActual && this.inversionActual.saldoInicial ) {
+    if ( this.formPlazo.valid && this.inversionActual) {
       const plazo = this.formPlazo.value.plazo!;
-      const saldo = this.inversionActual.saldoInicial;
-      const tasa = this.servicioInversion.calcularTasa(saldo, plazo);
-      this.inversionActual.tasa = tasa;
-      this.inversionActual.rendimientoAnual = this.servicioInversion.calcularRendimientoAnual(saldo,tasa,plazo)
+      const saldo = this.servicioInversionCuenta.inversionCuentaActual.saldoInicial;
+      const tasa = this.servicioInversionCuenta.calcularTasa(saldo, plazo);
+      this.servicioInversionCuenta.inversionCuentaActual.tasa = tasa
+
+      this.servicioInversionCuenta.inversionCuentaActual.rendimientoAnual = this.servicioInversionCuenta.calcularRendimientoAnual(saldo,tasa,plazo)
     }
   }
 
@@ -89,7 +91,9 @@ caso de que la inversión sea menor al valor mínimo introducido.
     event.preventDefault();
     if (this.formPlazo.valid && this.inversionActual) {
       const { plazo } = this.formPlazo.value;
-      this.inversionActual.plazo = plazo!;
+      this.servicioInversionCuenta.inversionCuentaActual.plazo = plazo!
+    
+      
       this.router.navigate([
         `vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`
       ]);
@@ -97,7 +101,7 @@ caso de que la inversión sea menor al valor mínimo introducido.
       this.tipoError = 'seleccionarPlazo'
     }
   }
-
+  
   regresar() {
     this.ubicacion.back();
   }

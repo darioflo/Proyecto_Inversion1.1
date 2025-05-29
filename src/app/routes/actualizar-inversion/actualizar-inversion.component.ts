@@ -7,6 +7,7 @@ import { InversionesService } from '../../services/inversiones.service';
 import { ErrorComponentComponent } from "../../components/error-component/error-component.component";
 import { TipoError } from '../../models/Error';
 import { Router } from '@angular/router';
+import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 
 @Component({
   selector: 'app-actualizar-inversion',
@@ -18,7 +19,7 @@ export class ActualizarInversionComponent implements OnInit{
 
   indiceSeleccionado! : number | null
   inversionesDelCliente!: inversionCompleta[] | null
-  inversionesServicio = inject(InversionesService)
+  servicioInversionCuenta = inject(InversionesCuentasService)
   tipoError: TipoError = ''
   router = inject(Router)
 
@@ -49,7 +50,7 @@ de que los datos introducidos no sean los correctos.*/
           inversion.saldoInicial,
           inversion.plazo,
           inversion.instruccionVencimiento,
-          this.inversionesServicio,
+          this.servicioInversionCuenta,
           (error: TipoError) => {this.tipoError = error}
         );
       

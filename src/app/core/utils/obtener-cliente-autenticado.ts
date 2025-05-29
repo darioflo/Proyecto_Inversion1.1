@@ -49,6 +49,7 @@ obtenerCuentas(){
     this.clienteServicio.obtenerCuentas().subscribe({
       next:(cuentas)=>{
         this.cuentasDeCliente = cuentas
+        console.log(this.cuentasDeCliente);
         if (typeof localStorage !== 'undefined') {
           let actualizarCuenta = localStorage.getItem('inversionesDelCliente');
           if (actualizarCuenta) {

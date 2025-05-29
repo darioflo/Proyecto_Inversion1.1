@@ -2,6 +2,7 @@ import { Router } from "@angular/router";
 import { inversionCompleta } from "../../routes/consulta-inversiones/consulta-inversiones.component";
 import { InversionesService } from "../../services/inversiones.service";
 import { TipoError } from "../../models/Error";
+import { InversionesCuentasService } from "../../services/inversiones-cuentas.service";
 
 
 export interface Command {
@@ -16,7 +17,7 @@ export class EditarInversionCommand implements Command{
         private nuevoSaldo: number,
         private nuevoPlazo: number,
         private nuevaInstruccionVencimiento: string,
-        private inversionesServicio : InversionesService,
+        private servicioInversionCuenta : InversionesCuentasService,
         private setTipoError: (error:TipoError)=> void
     ){
     
@@ -40,8 +41,8 @@ de los nuevos valores a las claves de la inversión seleccionada. */
         this.inversiones[this.indice].saldoInicial = this.nuevoSaldo,
         this.inversiones[this.indice].plazo = this.nuevoPlazo
 
-        const nuevaTasa = this.inversionesServicio.calcularTasa(this.nuevoSaldo,this.nuevoPlazo)
-        const nuevoRendimiento = this.inversionesServicio.calcularRendimientoAnual(this.nuevoSaldo, nuevaTasa, this.nuevoPlazo)
+        const nuevaTasa = this.servicioInversionCuenta.calcularTasa(this.nuevoSaldo,this.nuevoPlazo)
+        const nuevoRendimiento = this.servicioInversionCuenta.calcularRendimientoAnual(this.nuevoSaldo, nuevaTasa, this.nuevoPlazo)
 
         this.inversiones[this.indice].tasa= nuevaTasa
         this.inversiones[this.indice].rendimientoAnual= nuevoRendimiento

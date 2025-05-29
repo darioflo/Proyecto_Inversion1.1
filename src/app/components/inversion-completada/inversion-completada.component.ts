@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { TraerInversion } from '../../core/utils/obtener-inversion-actual';
 import { InversionesService } from '../../services/inversiones.service';
 import { Router } from '@angular/router';
-import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
+
 
 @Component({
   selector: 'app-inversion-completada',
@@ -19,6 +19,8 @@ router = inject(Router);
 ngOnInit(): void {
   this.suscribirseAInversion(this.servicioInversion);
   console.log(this.inversionActual);
+  console.log(this.servicioInversionCuenta.inversionCuentaActual);
+  
 }
 
 irAlHome() {
