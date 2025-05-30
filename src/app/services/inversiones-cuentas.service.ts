@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { InversionCuenta } from "../models/Inversion_Cuenta";
+import { HttpClient } from "@angular/common/http";
 
 
 @Injectable({
@@ -7,9 +8,10 @@ import { InversionCuenta } from "../models/Inversion_Cuenta";
 })
 export class InversionesCuentasService {
   inversionCuentaActual : InversionCuenta 
-  inversionesCuentas : InversionCuenta[] = [] 
+  inversionesCuentas : InversionCuenta[] = []
+  private apiUrl = 'http://localhost:8080/inversionesCuentas' 
   
-  constructor(){
+  constructor(private httpClient : HttpClient){
     this.inversionCuentaActual = {
       idInversionCuenta: '',
       idCuenta: { idCuenta: '' },
@@ -56,14 +58,16 @@ export class InversionesCuentasService {
         return 0
       }
     
-    
-    
     /*Esta función calcula el rendimiento anual en base al monto, la tasa y el plazo de inversión seleccionado por el cliente. 
     Asigna el valor al montoTotalInv de la multiplicación del monto, la tasa y el plazo dividido en 365 días.  */
       calcularRendimientoAnual(monto: number, tasa: number, plazo: number): number {
         const tasaDecimal = tasa / 100;
         let montoTotalInv = (monto * tasaDecimal * plazo)/365;
         return Number(montoTotalInv.toFixed(2));
+      }
+
+      agregarInversionCuenta(inversionCuenta: InversionCuenta){
+        return this.httpClient.post<InversionCuenta>(this.apiUrl,inversionCuenta)
       }
     
   }

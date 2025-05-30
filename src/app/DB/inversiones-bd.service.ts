@@ -15,8 +15,8 @@ export class InversionesBDService implements InMemoryDbService {
       {
         idCliente: 'Cliente-001',
         nombre: 'Emilio',
-        apellido_paterno: 'Delgado',
-        apellido_materno: 'Martínez',
+        apellidoPaterno: 'Delgado',
+        apellidoMaterno: 'Martínez',
         direccion: 'Ciudad de México',
       },
     ];
@@ -26,11 +26,13 @@ export class InversionesBDService implements InMemoryDbService {
         idCuenta:'Cuenta-001',
         idCliente: { idCliente: clientes[0].idCliente },
         saldo: 18000,
+        tipoCuenta: 'Ahorro'
       },
       {
         idCuenta:'Cuenta-002',
         idCliente: { idCliente: clientes[0].idCliente },
         saldo: 12000,
+        tipoCuenta: 'Inversión'
       }
     ]
 

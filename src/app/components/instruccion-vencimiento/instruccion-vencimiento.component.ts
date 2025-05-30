@@ -43,7 +43,6 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
     this.suscribirseAInversion(this.servicioInversion);
   }
 
-
 /*Esta función la va a desencadenar el método onChange() del select y lo que hará es evaluar si existe la inversiónActual 
 y una vez comprobado esto guardará en la variable opcionSeleccionada el elemento que desencadenó el evento y guarda el valor 
 del elemento seleccionado por el usuario en la variable instruccionSeleccionada. */
@@ -53,13 +52,6 @@ del elemento seleccionado por el usuario en la variable instruccionSeleccionada.
       this.instruccionSeleccionada = opcionSeleccionada.value;
     }
   }
-
-  unificarInversionCuenta() {
-    this.inversionCuentaActual.estaActiva = true
-    this.inversionCuentaActual.idInversionCuenta = String(Date.now())
-    this.servicioInversionCuenta.inversionesCuentas.push(this.inversionCuentaActual)
-  }
-
 
 /*Esta función verifica que existan los datos necesarios de la inversión, el cliente y la cuenta de inversión actual. Si es 
 así, recupera del localStorage las inversiones previamente guardadas (o crea un arreglo vacío si no hay ninguna), construye 
@@ -74,7 +66,7 @@ disponible tanto en memoria como en almacenamiento persistente. */
   
       const inversionCompleta = {
         nombreCliente: this.clienteActual.clienteSeleccionado?.nombre,
-        apellidoCliente: this.clienteActual.clienteSeleccionado?.apellido_paterno,
+        apellidoCliente: this.clienteActual.clienteSeleccionado?.apellidoPaterno,
         idCuentaInvertida: this.inversionCuentaActual?.idCuenta,
         saldo: this.clienteActual.cuentaSeleccionada?.saldo ?? 0,
         idInversion: this.inversionActual.idInversion,
@@ -87,13 +79,25 @@ disponible tanto en memoria como en almacenamiento persistente. */
         saldoALTermino: this.inversionCuentaActual.saldoAlTermino ?? 0,
         rendimientoAnual: this.inversionCuentaActual.rendimientoAnual ?? 0
       };
-  
       arregloInversiones.push(inversionCompleta); 
       localStorage.setItem('inversionesDelCliente', JSON.stringify(arregloInversiones))
       this.servicioInversion.inversionesDelCliente = arregloInversiones;
+
+      this.inversionCuentaActual.estaActiva = true
+      this.inversionCuentaActual.idInversionCuenta = String(Date.now())
+      this.servicioInversionCuenta.inversionesCuentas.push(this.inversionCuentaActual)
+      
+      this.servicioInversionCuenta.agregarInversionCuenta(this.inversionCuentaActual)
+      .subscribe({
+        next: (respuesta) => {
+          console.log('InversiónCuenta guardada en la base de datos:', respuesta);
+        },
+        error: (error) => {
+          console.error('Error al guardar la inversiónCuenta:', error);
+        }
+      });
     }
   }
-
 
 /*Esta función comprueba el estado del formulario y la existencia de la inversionActual y luego en un switch-case comprobará 
 el valor de la variable instruccionSeleccionada que siempre será una de las instrucciones previamente determinadas 
@@ -116,7 +120,6 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
             this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
           this.inversionCuentaActual.instruccionVencimiento = 'Reinvertir inversion-ganancia';
-          this.unificarInversionCuenta()
           this.guardarInversion()
           console.log("AQUÏÏÏÏ",this.inversionCuentaActual);
           
@@ -131,7 +134,6 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
             this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
           this.inversionCuentaActual.instruccionVencimiento = 'Reinvertir inversion';
-          this.unificarInversionCuenta()
           this.guardarInversion()
           break;
         case 'Reembolso total':
@@ -143,8 +145,7 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
           if (this.clienteActual.cuentaSeleccionada) {
             this.clienteActual.cuentaSeleccionada.saldo -= this.inversionCuentaActual.saldoInicial ?? 0;
           }
-          this.inversionCuentaActual.instruccionVencimiento = 'Reembolso total';
-          this.unificarInversionCuenta()          
+          this.inversionCuentaActual.instruccionVencimiento = 'Reembolso total';        
           this.guardarInversion()
           break;
         default:
@@ -152,7 +153,7 @@ funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía 
       }
       
       this.router.navigate([
-        `vistaTerminada/${this.clienteActual.cuentaSeleccionada?.idCuenta}/${this.inversionActual?.idInversion}`,
+        `vistaTerminada/${this.clienteActual.cuentaSeleccionada?.id}/${this.inversionActual?.idInversion}`,
       ]);
     } else {
           this.tipoError = 'seleccionarInstruccion'

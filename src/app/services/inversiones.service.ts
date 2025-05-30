@@ -16,7 +16,7 @@ export class InversionesService {
   
 
   obtenerInversiones(): Observable<Inversion[]> {
-    return this.http.get<Inversion[]>('api/inversiones');
+    return this.http.get<Inversion[]>(this.api_inversiones_url);
   }
 
   actualizarInversionActual(inversion: Inversion): void {

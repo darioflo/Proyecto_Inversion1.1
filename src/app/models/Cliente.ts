@@ -1,7 +1,7 @@
 export interface Cliente {
   idCliente: string;
   nombre: string;
-  apellido_paterno: string;
-  apellido_materno: string;
+  apellidoPaterno: string;
+  apellidoMaterno: string;
   direccion: string;
 }

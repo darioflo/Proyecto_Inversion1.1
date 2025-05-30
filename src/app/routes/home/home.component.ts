@@ -14,6 +14,7 @@ export class HomeComponent extends ObtenerClienteAutenticado implements OnInit {
   ngOnInit(): void {
     if (!this.clienteServicio.clienteSeleccionado) {
       this.obtenerClienteAutenticado();
+      console.log(this.clienteServicio.clienteSeleccionado);
     }
     this.obtenerCuentas(); 
   }

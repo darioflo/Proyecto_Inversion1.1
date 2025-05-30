@@ -20,6 +20,8 @@ export class DetallesInversionComponent extends TraerInversion implements OnInit
 
 ngOnInit(): void {
   this.suscribirseAInversion(this.servicioInversion)
+  console.log(this.clienteServicio.clienteSeleccionado);
+  
   
 }
 
@@ -28,7 +30,7 @@ regresar() {
 }
 continuar() {
   this.router.navigate([
-    `/vistaInstruccion/${this.servicioCLiente.cuentaSeleccionada?.idCuenta}/${this.inversionActual?.idInversion}`,
+    `/vistaInstruccion/${this.servicioCLiente.cuentaSeleccionada?.id}/${this.inversionActual?.idInversion}`,
   ]);
 }
 }

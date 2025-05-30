@@ -13,7 +13,6 @@ export class ClienteService {
   cuentaSeleccionada: Cuenta | null = null;
   api_clientes_url :string = 'http://localhost:8080/clientes'
   api_cuentas_url: string = 'http://localhost:8080/cuentas'
-  
 
 constructor(){
   this.clienteSeleccionado = null
@@ -21,11 +20,11 @@ constructor(){
 }
 
   obtenerClientes(): Observable<Cliente[]> {
-    return this.http.get<Cliente[]>('api/clientes');
+    return this.http.get<Cliente[]>(this.api_clientes_url);
   }
 
   obtenerCuentas():Observable<Cuenta[]>{
-    return this.http.get<Cuenta[]>('api/cuentas');
+    return this.http.get<Cuenta[]>(this.api_cuentas_url);
   }
 
   obtenerClienteSeleccionado(): Cliente | null {

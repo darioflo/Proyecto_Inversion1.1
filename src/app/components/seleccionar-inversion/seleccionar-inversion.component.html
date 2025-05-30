@@ -11,7 +11,7 @@
           class="inversion"
           [routerLink]="[
             '/vistaSeleccion',
-            servicioCliente.cuentaSeleccionada?.idCuenta,
+            servicioCliente.cuentaSeleccionada?.id,
             inversion.idInversion
           ]"
           (click)="obtenerInversionActual(inversion.idInversion)"

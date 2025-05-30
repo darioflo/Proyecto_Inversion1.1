@@ -75,8 +75,8 @@ obtenerCuentas(){
 del servicio clienteServicio el resultado de la callback .find() cuya funcion es descubrir si el id de la cuenta seleccionda por el cliente coincide con alguno
 de los ids de las cuentas que tiene a su cargo*/
 
-  obtenerCuentaActual(idCuenta: string) {
-      this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.idCuenta === idCuenta)) ?? null;
+  obtenerCuentaActual(id: string) {
+      this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.id === id)) ?? null;
   }
 
 
