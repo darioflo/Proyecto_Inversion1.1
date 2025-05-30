@@ -3,7 +3,7 @@ import { Inversion } from "./Inversion";
 
 export interface InversionCuenta{
     idInversionCuenta: string,
-    idCuenta : Pick<Cuenta,'idCuenta'>
+    idCuenta : Pick<Cuenta,'id'>
     idInversion : Pick<Inversion,'idInversion'>
     estaActiva : boolean
     plazo: number;

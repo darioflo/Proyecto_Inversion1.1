@@ -23,13 +23,13 @@ export class InversionesBDService implements InMemoryDbService {
 
     const cuentas : Cuenta[] = [
       {
-        idCuenta:'Cuenta-001',
+        id:'Cuenta-001',
         idCliente: { idCliente: clientes[0].idCliente },
         saldo: 18000,
         tipoCuenta: 'Ahorro'
       },
       {
-        idCuenta:'Cuenta-002',
+        id:'Cuenta-002',
         idCliente: { idCliente: clientes[0].idCliente },
         saldo: 12000,
         tipoCuenta: 'Inversión'
@@ -39,12 +39,12 @@ export class InversionesBDService implements InMemoryDbService {
     const contratos : Contrato[]=[
       {
         idContrato:"Contrato-001",
-        idCuenta:{idCuenta:cuentas[0].idCuenta},
+        idCuenta:{id:cuentas[0].id},
         tipoContrato: 'Cuenta de Ahorro'
       },
       {
         idContrato:"Contrato-002",
-        idCuenta:{idCuenta:cuentas[1].idCuenta},
+        idCuenta:{id:cuentas[1].id},
         tipoContrato: 'Crédito Bancario'
       }
     ]

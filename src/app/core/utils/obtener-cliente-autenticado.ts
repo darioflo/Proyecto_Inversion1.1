@@ -12,7 +12,7 @@ export class ObtenerClienteAutenticado {
   clienteServicio = inject(ClienteService);
   servicioInversioCuenta = inject(InversionesCuentasService)
   inversionCuentaActual = this.servicioInversioCuenta.inversionCuentaActual
-  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
+  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.id
 
 
 /*Esta función se suscribe al método obtenerCliente() del servicio clienteServicio una vez que la función se ejecuta 
@@ -57,7 +57,7 @@ obtenerCuentas(){
             let inversionHecha = JSON.parse(actualizarCuenta);
             inversionHecha.forEach((inversion: InversionCuenta) => {
               this.cuentasDeCliente?.forEach((cuenta)=>{
-                if (inversion.idCuenta.idCuenta === cuenta.idCuenta) {
+                if (inversion.idCuenta.id === cuenta.id) {
                     cuenta.saldo = Math.min(cuenta.saldo, inversion.saldoInicial);
                 }
               })
@@ -96,7 +96,7 @@ las inversiones disponibles en un arreglo donde solo se encuentren las inversion
           const inversionesGuardadas: InversionCuenta[] = JSON.parse(inversionesPosibles);
   
         const idsInversionesDeCuenta = inversionesGuardadas
-            .filter(inv => inv.idCuenta.idCuenta === this.clienteServicio.cuentaSeleccionada?.idCuenta)
+            .filter(inv => inv.idCuenta.id === this.clienteServicio.cuentaSeleccionada?.id)
             .map(inv => inv.idInversion);
           this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
             inv => !idsInversionesDeCuenta.includes(inv)

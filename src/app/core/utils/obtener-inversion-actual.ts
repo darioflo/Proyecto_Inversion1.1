@@ -17,7 +17,7 @@ export class TraerInversion {
         this.inversionActual = data
         if (this.inversionActual && this.idCuentaSeleccionada) {
           this.servicioInversionCuenta.inversionCuentaActual.idInversion = { idInversion: this.inversionActual.idInversion };
-          this.servicioInversionCuenta.inversionCuentaActual.idCuenta = {idCuenta: this.idCuentaSeleccionada}
+          this.servicioInversionCuenta.inversionCuentaActual.idCuenta = {id: this.idCuentaSeleccionada}
         }
       },
       error: (error) => console.log('Error:', error),
