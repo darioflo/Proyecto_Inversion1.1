@@ -1,5 +1,5 @@
 <section class="consulta-seccion">
-    <div class="anuncio" *ngIf="!inversiones?.length; else listaInversiones">
+    <div class="anuncio" *ngIf="!inversionesCuentas?.length; else listaInversiones">
       <button class="boton-continuar" routerLink="/">Regresar</button>
       <h2>No tiene inversiones disponibles en este momento</h2>
     </div>
@@ -8,7 +8,7 @@
       <button class="boton-continuar" routerLink="/">Regresar</button>
       <div class="contenedor-inversiones">
         <h2>Consulta de inversiones</h2>
-        <div class="inversion" *ngFor="let inversion of inversiones">
+        <div class="inversion" *ngFor="let inversion of inversionesCuentas">
           <div class="inversion-detalles">
             <p>
               <strong>Instrucción:</strong> {{ inversion.instruccionVencimiento }}

@@ -1,6 +1,8 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
+import { InversionCuenta } from '../../models/Inversion_Cuenta';
 
 export type inversionCompleta  = {
         nombreCliente: string,
@@ -27,13 +29,22 @@ export type inversionCompleta  = {
 
 export class ConsultaInversionesComponent implements OnInit {
   inversiones: inversionCompleta[] = [];
+  servicioInversionCuenta = inject(InversionesCuentasService)
+  inversionesCuentas : InversionCuenta[] = []
+  idCuenta : string[] =[]
 
   ngOnInit(): void {
-    const inversionesCliente = localStorage.getItem('inversionesDelCliente');
-    if (inversionesCliente) {
-      this.inversiones = JSON.parse(inversionesCliente)
-      this.inversiones = this.inversiones.reverse()
-      console.log('Inversiones listas: ', this.inversiones);
-    }
+    this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
+      next:(data)=>{
+        this.inversionesCuentas = data
+        this.inversionesCuentas.map(inversion => this.idCuenta.push(inversion.idCuenta.id))
+        console.log(this.idCuenta);
+        console.log(this.inversionesCuentas);
+      },
+      error:(error)=>{
+        console.log('Error :', error);
+        
+      }
+    })
   }
 }
