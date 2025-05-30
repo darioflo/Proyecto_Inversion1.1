@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { InversionCuenta } from "../models/Inversion_Cuenta";
 import { HttpClient } from "@angular/common/http";
+import { Cuenta } from "../models/Cuenta";
 
 
 @Injectable({
@@ -8,7 +9,6 @@ import { HttpClient } from "@angular/common/http";
 })
 export class InversionesCuentasService {
   inversionCuentaActual : InversionCuenta 
-  inversionesCuentas : InversionCuenta[] = []
   private apiUrl = 'http://localhost:8080/inversionesCuentas' 
   
   constructor(private httpClient : HttpClient){
@@ -68,6 +68,20 @@ export class InversionesCuentasService {
 
       agregarInversionCuenta(inversionCuenta: InversionCuenta){
         return this.httpClient.post<InversionCuenta>(this.apiUrl,inversionCuenta)
+      }
+
+      obtenerInversionesCuenta(){
+        return this.httpClient.get<InversionCuenta[]>("http://localhost:8080/inversionesCuentas")
+      }
+
+      actualizarNuevoSaldo(idCuenta: string,nuevoSaldo: number){
+        return this.httpClient.put(`http://localhost:8080/cuentas/${idCuenta}/saldo`,nuevoSaldo,{
+          headers:{'Content-type':'application/json'}
+        })
+      }
+
+      obtenerCuentasEnInversion(id:string){
+        return this.httpClient.get<Cuenta[]>(`http://localhost:8080/cuentas/cuentasCliente/${id}`)
       }
     
   }

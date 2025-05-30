@@ -60,33 +60,9 @@ y lo agrega al arreglo arregloInversiones. Finalmente, actualiza el localStorage
 propiedad inversionesDelCliente del servicio correspondiente, asegurando que la inversión recién realizada quede registrada y 
 disponible tanto en memoria como en almacenamiento persistente. */
   guardarInversion() {
-    if (this.inversionActual && this.clienteActual && this.inversionCuentaActual) {
-      const inversionesGuardadas = localStorage.getItem('inversionesDelCliente');
-      const arregloInversiones = inversionesGuardadas ? JSON.parse(inversionesGuardadas) : [];
-  
-      const inversionCompleta = {
-        nombreCliente: this.clienteActual.clienteSeleccionado?.nombre,
-        apellidoCliente: this.clienteActual.clienteSeleccionado?.apellidoPaterno,
-        idCuentaInvertida: this.inversionCuentaActual?.idCuenta,
-        saldo: this.clienteActual.cuentaSeleccionada?.saldo ?? 0,
-        idInversion: this.inversionActual.idInversion,
-        descripcion: this.inversionActual.descripcion,
-        instruccionVencimiento: this.inversionCuentaActual.instruccionVencimiento,
-        nombre: this.inversionActual.nombre,
-        plazo: this.inversionCuentaActual.plazo ?? 0,
-        tasa: this.inversionCuentaActual.tasa ?? 0,
-        saldoInicial: this.inversionCuentaActual.saldoInicial ?? 0,
-        saldoALTermino: this.inversionCuentaActual.saldoAlTermino ?? 0,
-        rendimientoAnual: this.inversionCuentaActual.rendimientoAnual ?? 0
-      };
-      arregloInversiones.push(inversionCompleta); 
-      localStorage.setItem('inversionesDelCliente', JSON.stringify(arregloInversiones))
-      this.servicioInversion.inversionesDelCliente = arregloInversiones;
-
+    if (this.inversionActual &&  this.inversionCuentaActual) {
       this.inversionCuentaActual.estaActiva = true
       this.inversionCuentaActual.idInversionCuenta = String(Date.now())
-      this.servicioInversionCuenta.inversionesCuentas.push(this.inversionCuentaActual)
-      
       this.servicioInversionCuenta.agregarInversionCuenta(this.inversionCuentaActual)
       .subscribe({
         next: (respuesta) => {
@@ -96,6 +72,18 @@ disponible tanto en memoria como en almacenamiento persistente. */
           console.error('Error al guardar la inversiónCuenta:', error);
         }
       });
+      if (this.clienteActual.cuentaSeleccionada?.id) {
+        this.servicioInversionCuenta.actualizarNuevoSaldo(this.clienteActual.cuentaSeleccionada?.id,this.clienteActual.cuentaSeleccionada?.saldo)
+        .subscribe({
+          next:(cuentaActualizada)=>{
+            console.log('Cuenta actualizada correctamente', cuentaActualizada);
+          },
+          error:(error)=>{
+            console.log('Error al actualizar el saldo', error);
+            
+          }
+        })
+      }
     }
   }
 

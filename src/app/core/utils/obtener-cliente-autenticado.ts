@@ -3,7 +3,8 @@ import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { Cuenta } from '../../models/Cuenta';
-import { inversionCompleta } from '../../routes/consulta-inversiones/consulta-inversiones.component';
+import { InversionCuenta } from '../../models/Inversion_Cuenta';
+
 
 export class ObtenerClienteAutenticado {
   cuentasDeCliente: Cuenta[] | null = null;
@@ -54,10 +55,10 @@ obtenerCuentas(){
           let actualizarCuenta = localStorage.getItem('inversionesDelCliente');
           if (actualizarCuenta) {
             let inversionHecha = JSON.parse(actualizarCuenta);
-            inversionHecha.forEach((inversion: inversionCompleta) => {
+            inversionHecha.forEach((inversion: InversionCuenta) => {
               this.cuentasDeCliente?.forEach((cuenta)=>{
-                if (inversion.idCuentaInvertida.idCuenta === cuenta.idCuenta) {
-                    cuenta.saldo = Math.min(cuenta.saldo, inversion.saldo);
+                if (inversion.idCuenta.idCuenta === cuenta.idCuenta) {
+                    cuenta.saldo = Math.min(cuenta.saldo, inversion.saldoInicial);
                 }
               })
             }
@@ -92,13 +93,13 @@ las inversiones disponibles en un arreglo donde solo se encuentren las inversion
         this.servicioInversiones.inversionesDisponibles = inversiones;
         const inversionesPosibles = localStorage.getItem('inversionesDelCliente');
         if (inversionesPosibles) {
-          const inversionesGuardadas: inversionCompleta[] = JSON.parse(inversionesPosibles);
+          const inversionesGuardadas: InversionCuenta[] = JSON.parse(inversionesPosibles);
   
         const idsInversionesDeCuenta = inversionesGuardadas
-            .filter(inv => inv.idCuentaInvertida.idCuenta === this.clienteServicio.cuentaSeleccionada?.idCuenta)
+            .filter(inv => inv.idCuenta.idCuenta === this.clienteServicio.cuentaSeleccionada?.idCuenta)
             .map(inv => inv.idInversion);
           this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
-            inv => !idsInversionesDeCuenta.includes(inv.idInversion)
+            inv => !idsInversionesDeCuenta.includes(inv)
           );
           console.log('Inversiones disponibles filtradas:', this.servicioInversiones.inversionesDisponibles);
         }
