@@ -9,7 +9,7 @@ export class TraerInversion {
   protected inversionActual!: Inversion | null;
   clienteServicio = inject(ClienteService);
   servicioInversionCuenta = inject(InversionesCuentasService)
-  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
+  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.id
 
   protected suscribirseAInversion(servicioInversiones: InversionesService) {
     servicioInversiones.inversionActual$.subscribe({
