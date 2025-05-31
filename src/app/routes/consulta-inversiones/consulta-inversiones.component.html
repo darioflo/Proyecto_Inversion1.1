@@ -11,6 +11,9 @@
         <div class="inversion" *ngFor="let inversion of inversionesCuentas">
           <div class="inversion-detalles">
             <p>
+              <strong>Inversión:</strong> {{ inversion.inversion.nombre }}
+            </p>
+            <p>
               <strong>Instrucción:</strong> {{ inversion.instruccionVencimiento }}
             </p>
             <p><strong>Plazo:</strong> {{ inversion.plazo }} días</p>
@@ -18,6 +21,12 @@
             <p><strong>Tasa:</strong> {{ inversion.tasa }}%</p>
             <p>
               <strong>Inversión inicial:</strong> ${{ inversion.saldoInicial }}
+            </p>
+            <p>
+              <strong>Cuenta de inversión:</strong> ${{ inversion.cuenta.numeroCuenta }}
+            </p>
+            <p>
+              <strong>Saldo en cuenta:</strong> ${{ inversion.cuenta.saldo }}
             </p>
           </div>
         </div>

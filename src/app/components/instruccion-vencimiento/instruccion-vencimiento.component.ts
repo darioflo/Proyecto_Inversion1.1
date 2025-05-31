@@ -63,8 +63,8 @@ disponible tanto en memoria como en almacenamiento persistente. */
     if (this.inversionActual &&  this.inversionCuentaActual) {
       this.inversionCuentaActual.estaActiva = true
       this.inversionCuentaActual.idInversionCuenta = String(Date.now())
-      this.inversionCuentaActual.idCuenta.id = this.idCuentaSeleccionada ?? 'no cogió'
-      this.inversionCuentaActual.idInversion.idInversion = this.inversionActual.idInversion ?? 'no cogió'
+      this.inversionCuentaActual.cuenta.saldo = this.clienteActual.cuentaSeleccionada?.saldo ?? 0 
+      this.inversionCuentaActual.cuenta.numeroCuenta = this.clienteActual.cuentaSeleccionada?.numeroCuenta ?? ''
       
       this.servicioInversionCuenta.agregarInversionCuenta(this.inversionCuentaActual)
       .subscribe({

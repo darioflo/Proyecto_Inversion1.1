@@ -57,7 +57,7 @@ obtenerCuentas(){
             let inversionHecha = JSON.parse(actualizarCuenta);
             inversionHecha.forEach((inversion: InversionCuenta) => {
               this.cuentasDeCliente?.forEach((cuenta)=>{
-                if (inversion.idCuenta.id === cuenta.id) {
+                if (inversion.cuenta.id === cuenta.id) {
                     cuenta.saldo = Math.min(cuenta.saldo, inversion.saldoInicial);
                 }
               })
@@ -96,8 +96,8 @@ las inversiones disponibles en un arreglo donde solo se encuentren las inversion
           const inversionesGuardadas: InversionCuenta[] = JSON.parse(inversionesPosibles);
   
         const idsInversionesDeCuenta = inversionesGuardadas
-            .filter(inv => inv.idCuenta.id === this.clienteServicio.cuentaSeleccionada?.id)
-            .map(inv => inv.idInversion);
+            .filter(inv => inv.cuenta.id === this.clienteServicio.cuentaSeleccionada?.id)
+            .map(inv => inv.inversion);
           this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
             inv => !idsInversionesDeCuenta.includes(inv)
           );

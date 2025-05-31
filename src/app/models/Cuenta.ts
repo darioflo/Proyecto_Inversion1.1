@@ -6,4 +6,5 @@ export interface Cuenta {
   idCliente: Pick<Cliente, 'idCliente'>;
   saldo: number;
   tipoCuenta : 'Ahorro' | 'Inversión' | 'Corriente';
+  numeroCuenta: string;
 }

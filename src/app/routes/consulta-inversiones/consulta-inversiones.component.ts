@@ -37,7 +37,7 @@ export class ConsultaInversionesComponent implements OnInit {
     this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
       next:(data)=>{
         this.inversionesCuentas = data
-        this.inversionesCuentas.map(inversion => this.idCuenta.push(inversion.idCuenta.id))
+        this.inversionesCuentas.map(inversion => this.idCuenta.push(inversion.cuenta.id))
         console.log(this.idCuenta);
         console.log(this.inversionesCuentas);
       },
