@@ -43,9 +43,7 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
     this.suscribirseAInversion(this.servicioInversion);
   }
 
-/*Esta función la va a desencadenar el método onChange() del select y lo que hará es evaluar si existe la inversiónActual 
-y una vez comprobado esto guardará en la variable opcionSeleccionada el elemento que desencadenó el evento y guarda el valor 
-del elemento seleccionado por el usuario en la variable instruccionSeleccionada. */
+
   elegirInstruccion(evento: Event) {
     if (this.inversionActual) {
       let opcionSeleccionada = evento.target as HTMLSelectElement;
@@ -53,12 +51,7 @@ del elemento seleccionado por el usuario en la variable instruccionSeleccionada.
     }
   }
 
-/*Esta función verifica que existan los datos necesarios de la inversión, el cliente y la cuenta de inversión actual. Si es 
-así, recupera del localStorage las inversiones previamente guardadas (o crea un arreglo vacío si no hay ninguna), construye 
-un objeto con toda la información relevante de la inversión actual (como nombre del cliente, cuenta, saldo, plazo, tasa, etc.) 
-y lo agrega al arreglo arregloInversiones. Finalmente, actualiza el localStorage con el nuevo arreglo y también actualiza la 
-propiedad inversionesDelCliente del servicio correspondiente, asegurando que la inversión recién realizada quede registrada y 
-disponible tanto en memoria como en almacenamiento persistente. */
+
   guardarInversion() {
     if (this.inversionActual &&  this.inversionCuentaActual) {
       this.inversionCuentaActual.estaActiva = true
