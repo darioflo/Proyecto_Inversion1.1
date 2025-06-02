@@ -15,12 +15,7 @@ export class ObtenerClienteAutenticado {
   idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.id
 
 
-/*Esta función se suscribe al método obtenerCliente() del servicio clienteServicio una vez que la función se ejecuta 
-correctamente guarda en la variable clienteSeleccionado del servicio clienteServicio el primer cliente que trae la respuesta 
-del Observable.
-Este método asume que ya existe un único cliente autenticado por eso siempre trae un único cliente… Más adelante este 
-deberá ser sustituido por un método de autenticación.
-*/
+
 obtenerClienteAutenticado() {
     this.clienteServicio.obtenerClientes().subscribe({
       next: (cliente) => {
@@ -37,15 +32,6 @@ obtenerClienteAutenticado() {
     });
   }
 
-
-
-/*Esta función se suscribe al método obtenerCuentas() del servicio clienteServicio y lo primero que hace es asignarle el valor 
-que trae la función a la variable this.CuentasDeCliente, luego verifica que esté disponible el localStorage y guarda en 
-la variable actualizarCuenta el atributo con nombre ‘inversionesDelCLiente’ y si hay elementos dentro de esta convierte a 
-arreglo JS los elementos guardados en actualizarCuenta y los asigna a la variable inversionHecha y le pasamos la callback 
-.forEach() y también aplicará lo mismo la variable this.CuentasDeCliente para luego comparar el id de cada una de esas cuentas
-con el id de cuenta de cada inversión y cuando coincidan ambos elementos le asignará al saldo de la cuenta en cuestión 
-el valor mínimo existente entre el saldo de la inversión y el saldo de la cuenta seleccionada. */
 obtenerCuentas(){
     this.clienteServicio.obtenerCuentas().subscribe({
       next:(cuentas)=>{
@@ -71,10 +57,6 @@ obtenerCuentas(){
     })
   }
 
-
-/*Este método va a seleccionar la cuenta con la cual el cliente va a completar las inversiones y lo que hace es asignarle a la variable cuentaSeleccionada
-del servicio clienteServicio el resultado de la callback .find() cuya funcion es descubrir si el id de la cuenta seleccionda por el cliente coincide con alguno
-de los ids de las cuentas que tiene a su cargo*/
 
   obtenerCuentaActual(id: string) {
       this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.id === id)) ?? null;
