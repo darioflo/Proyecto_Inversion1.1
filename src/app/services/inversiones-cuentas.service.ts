@@ -9,6 +9,7 @@ import { Cuenta } from "../models/Cuenta";
 })
 export class InversionesCuentasService {
   inversionCuentaActual : InversionCuenta 
+  inversionesEnProceso :InversionCuenta[] = []
   private apiUrl = 'http://localhost:8080/inversionesCuentas' 
   
   constructor(private httpClient : HttpClient){
@@ -80,7 +81,7 @@ export class InversionesCuentasService {
         })
       }
 
-      obtenerCuentasEnInversion(id:string){
+      obtenerInversionEnCuentas(id:string){
         return this.httpClient.get<Cuenta[]>(`http://localhost:8080/cuentas/cuentasCliente/${id}`)
       }
     

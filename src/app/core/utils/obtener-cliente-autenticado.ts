@@ -62,29 +62,22 @@ obtenerCuentas(){
       this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.id === id)) ?? null;
   }
 
-
-/*Este método se suscribe al método obtenerInversiones() del servicio servicioInversiones y una vez se ejecute correctamente la petición le asigna 
-a la variable inversionesDisponibles del servicio servicioInversiones. Luego guarda en la variable inversionesPosibles el valor del elemento 
-“inversionesDelCliente”, y si hay elementos dentro de esa variable va a parsearlos y convertirlos en un arreglo JS guardados en la variable i
-nversionesGuardadas. El siguiente paso será guardar en el arreglo idsInversionesDeCuenta el resultado de primeramente filtrar el id de la cuenta 
-de las inversiones y el id de la cuenta seleccionada por el cliente, para luego mapearlas y dejarlas solo en el id de las que coincidan. Y convertirá 
-las inversiones disponibles en un arreglo donde solo se encuentren las inversiones que no esten en la cuenta seleccionada por el cliente. */
   mostrarInversiones() {
     this.servicioInversiones.obtenerInversiones().subscribe({
       next: (inversiones) => {
-        this.servicioInversiones.inversionesDisponibles = inversiones;
-        const inversionesPosibles = localStorage.getItem('inversionesDelCliente');
-        if (inversionesPosibles) {
-          const inversionesGuardadas: InversionCuenta[] = JSON.parse(inversionesPosibles);
-  
-        const idsInversionesDeCuenta = inversionesGuardadas
-            .filter(inv => inv.cuenta.id === this.clienteServicio.cuentaSeleccionada?.id)
-            .map(inv => inv.inversion);
-          this.servicioInversiones.inversionesDisponibles = this.servicioInversiones.inversionesDisponibles.filter(
-            inv => !idsInversionesDeCuenta.includes(inv)
-          );
-          console.log('Inversiones disponibles filtradas:', this.servicioInversiones.inversionesDisponibles);
-        }
+          this.servicioInversioCuenta.obtenerInversionesCuenta().subscribe({
+            next:(inversionesRealizadas)=>{
+              const inversionesDeEstaCuenta = inversionesRealizadas.filter(inversion => this.idCuentaSeleccionada === inversion.cuenta.id)
+              const idInversionesRealizadas = inversionesDeEstaCuenta.map(inversion=> inversion.inversion.idInversion)
+              this.servicioInversiones.inversionesDisponibles = inversiones.filter(inversion=>
+                !idInversionesRealizadas.includes(inversion.idInversion)
+              )
+              
+            },
+            error:(error)=>{
+              console.log(error);
+            }
+          })
       },
       error: (error) => {
         console.log('Error', error);

@@ -31,15 +31,11 @@ export class ConsultaInversionesComponent implements OnInit {
   inversiones: inversionCompleta[] = [];
   servicioInversionCuenta = inject(InversionesCuentasService)
   inversionesCuentas : InversionCuenta[] = []
-  idCuenta : string[] =[]
 
   ngOnInit(): void {
     this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
       next:(data)=>{
         this.inversionesCuentas = data
-        this.inversionesCuentas.map(inversion => this.idCuenta.push(inversion.cuenta.id))
-        console.log(this.idCuenta);
-        console.log(this.inversionesCuentas);
       },
       error:(error)=>{
         console.log('Error :', error);

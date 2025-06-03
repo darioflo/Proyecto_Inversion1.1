@@ -3,7 +3,6 @@ import { inversionCompleta } from '../consulta-inversiones/consulta-inversiones.
 import { NgFor, NgIf } from '@angular/common';
 import { FormsModule, NgModel } from '@angular/forms';
 import { EditarInversionCommand } from '../../core/utils/Command';
-import { InversionesService } from '../../services/inversiones.service';
 import { ErrorComponentComponent } from "../../components/error-component/error-component.component";
 import { TipoError } from '../../models/Error';
 import { Router } from '@angular/router';
@@ -30,7 +29,8 @@ export class ActualizarInversionComponent implements OnInit{
           console.log('Inversiones editables: ',this.inversionesDelCliente);
         }
       }
-    mostrarCampos(i: number): void {
+    
+      mostrarCampos(i: number): void {
       this.indiceSeleccionado = this.indiceSeleccionado === i ? null : i;
     }
 
