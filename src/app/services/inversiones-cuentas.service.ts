@@ -84,6 +84,10 @@ export class InversionesCuentasService {
       obtenerInversionEnCuentas(id:string){
         return this.httpClient.get<Cuenta[]>(`http://localhost:8080/cuentas/cuentasCliente/${id}`)
       }
+
+      editarInversionCuenta( id:string ,inversionCuenta :InversionCuenta){
+        return this.httpClient.put<InversionCuenta>(`http://localhost:8080/inversionesCuentas/editar/${id}`,inversionCuenta)
+      }
     
   }
 

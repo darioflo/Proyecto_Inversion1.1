@@ -22,7 +22,7 @@
       [class.activa]="i === indiceSeleccionado"
     >
       <div class="inversion-resumen">
-        <span><strong>{{ inversion.nombre }}</strong> ({{ inversion.descripcion }})</span>
+        <span><strong>{{ inversion.inversion.nombre }}</strong></span>
         <span style="color: var(--tercer-color); cursor: pointer;">Editar ▼</span>
       </div>
       <div class="inversion-detalle" *ngIf="i === indiceSeleccionado">

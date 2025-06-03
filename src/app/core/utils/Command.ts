@@ -1,8 +1,8 @@
-import { Router } from "@angular/router";
-import { inversionCompleta } from "../../routes/consulta-inversiones/consulta-inversiones.component";
-import { InversionesService } from "../../services/inversiones.service";
 import { TipoError } from "../../models/Error";
 import { InversionesCuentasService } from "../../services/inversiones-cuentas.service";
+import { InversionCuenta } from "../../models/Inversion_Cuenta";
+import { inject } from "@angular/core";
+import { ClienteService } from "../../services/cliente.service";
 
 
 export interface Command {
@@ -11,8 +11,9 @@ export interface Command {
 
 export class EditarInversionCommand implements Command{
 
+
     constructor(
-        private inversiones: inversionCompleta[],
+        private inversiones: InversionCuenta[],
         private indice : number,
         private nuevoSaldo: number,
         private nuevoPlazo: number,
@@ -29,7 +30,7 @@ de la cuenta del cliente o inferior a los 1000 MXN permitidos como valor mínimo
 de los nuevos valores a las claves de la inversión seleccionada. */
 
     editar(): void {
-        if (this.nuevoSaldo > this.inversiones[this.indice].saldo) {
+        if (this.nuevoSaldo > this.inversiones[this.indice].cuenta.saldo) {
             this.setTipoError('saldoSuperior')
             return
         }
@@ -46,12 +47,22 @@ de los nuevos valores a las claves de la inversión seleccionada. */
 
         this.inversiones[this.indice].tasa= nuevaTasa
         this.inversiones[this.indice].rendimientoAnual= nuevoRendimiento
-        this.inversiones[this.indice].instruccionVencimiento = this.nuevaInstruccionVencimiento
+        this.inversiones[this.indice].instruccionVencimiento = this.nuevaInstruccionVencimiento  as
+        "" | "Reinvertir inversion-ganancia" | "Reinvertir inversion" | "Reembolso total";
 
         //this.inversiones[this.indice].saldoALTermino= this.nuevoSaldo + nuevoRendimiento 
-        this.inversiones[this.indice].saldo-=this.nuevoSaldo
+        this.inversiones[this.indice].cuenta.saldo -= this.nuevoSaldo
 
-        localStorage.setItem('inversionesDelCliente',JSON.stringify(this.inversiones))
+        this.servicioInversionCuenta.editarInversionCuenta(this.inversiones[this.indice].idInversionCuenta,this.inversiones[this.indice])
+        .subscribe({
+            next:(data)=>{
+                console.log('Datos actualizados correctamente: ',data);
+            },
+            error:(error)=>{
+                console.log(error);
+                
+            }
+        })
         this.setTipoError('cambiosAplicados')
     }
 }

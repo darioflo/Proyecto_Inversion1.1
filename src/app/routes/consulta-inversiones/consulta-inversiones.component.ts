@@ -4,21 +4,6 @@ import { RouterLink } from '@angular/router';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { InversionCuenta } from '../../models/Inversion_Cuenta';
 
-export type inversionCompleta  = {
-        nombreCliente: string,
-        apellidoCliente: string,
-        idCuentaInvertida: any,
-        saldo: number,
-        idInversion: string,
-        descripcion: string,
-        instruccionVencimiento: string,
-        nombre: string,
-        plazo: number,
-        tasa: number,
-        saldoInicial: number,
-        saldoALTermino: number,
-        rendimientoAnual: number,
-}
 
 @Component({
   selector: 'app-consulta-inversiones',
@@ -28,7 +13,7 @@ export type inversionCompleta  = {
 })
 
 export class ConsultaInversionesComponent implements OnInit {
-  inversiones: inversionCompleta[] = [];
+  inversiones: InversionCuenta[] = [];
   servicioInversionCuenta = inject(InversionesCuentasService)
   inversionesCuentas : InversionCuenta[] = []
 
