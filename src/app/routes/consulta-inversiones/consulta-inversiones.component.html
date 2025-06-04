@@ -28,9 +28,25 @@
             <p>
               <strong>Saldo en cuenta:</strong> ${{ inversion.cuenta.saldo }}
             </p>
+            <button
+            class="boton-cancelar-inversion"
+            (click)="cancelarInversion(inversion.idInversionCuenta, inversion)"
+            type="button"
+          >
+            Cancelar inversión
+          </button>
           </div>
         </div>
       </div>
     </ng-template>
+      <div class="modal-cancelar" *ngIf="paso === 1">
+        <div class="modal-contenido">
+          <h3>¿Desea cancelar la inversión?</h3>
+          <div class="modal-botones">
+            <button class="boton-confirmar" (click)="confirmarEliminacion()">Sí, cancelar</button>
+            <button class="boton-cancelar" (click)="paso = 0">No, volver</button>
+          </div>
+        </div>
+      </div>
   </section>
   

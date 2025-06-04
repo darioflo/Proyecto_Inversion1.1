@@ -87,6 +87,65 @@
   .inversion-detalles p strong {
     color: var(--segundo-color);
   }
+
+  .boton-cancelar-inversion {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .boton-cancelar-inversion:hover {
+    background-color: #d9363e;
+  }
+  
+  .modal-cancelar {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-contenido {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    min-width: 300px;
+    text-align: center;
+  }
+  .modal-botones {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  .boton-confirmar {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .boton-cancelar {
+    background: #aaa;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .boton-confirmar:hover { background: #d9363e; }
+  .boton-cancelar:hover { background: #888; }
+
   
   /* Responsividad */
   @media (max-width: 768px) {

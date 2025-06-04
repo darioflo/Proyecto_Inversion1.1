@@ -10,6 +10,7 @@ import { Cuenta } from "../models/Cuenta";
 export class InversionesCuentasService {
   inversionCuentaActual : InversionCuenta 
   inversionesEnProceso :InversionCuenta[] = []
+  
   private apiUrl = 'http://localhost:8080/inversionesCuentas' 
   
   constructor(private httpClient : HttpClient){
@@ -89,5 +90,12 @@ export class InversionesCuentasService {
         return this.httpClient.put<InversionCuenta>(`http://localhost:8080/inversionesCuentas/editar/${id}`,inversionCuenta)
       }
     
+      eliminarInversionCuenta(id: string){
+        return this.httpClient.delete<InversionCuenta>(`http://localhost:8080/inversionesCuentas/eliminarInvCuenta/${id}`)
+      }
+
+      agregarInversionAlHistorial(inversion : InversionCuenta){
+        return this.httpClient.post<InversionCuenta>("http://localhost:8080/historialInversion",inversion)
+      }
   }
 

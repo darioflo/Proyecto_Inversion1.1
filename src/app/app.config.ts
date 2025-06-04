@@ -12,8 +12,7 @@ import {
 } from '@angular/platform-browser';
 
 import { provideHttpClient, withFetch } from '@angular/common/http';
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-import { InversionesBDService } from './DB/inversiones-bd.service';
+
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,8 +20,5 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideClientHydration(withEventReplay()),
     provideHttpClient(withFetch()),
-    importProvidersFrom(
-      HttpClientInMemoryWebApiModule.forRoot(InversionesBDService, { passThruUnknownUrl: true })
-    ),
   ],
 };
