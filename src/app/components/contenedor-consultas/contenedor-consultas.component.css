@@ -11,6 +11,25 @@
   z-index: 2;
 }
 
+.boton-limpiar {
+  position: absolute;
+  top: 1rem;
+  right: 2rem;
+  margin: 0;
+  z-index: 2;
+  background-color: var(--segundo-color);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.2s;
+  padding: 1rem;
+}
+
+.boton-limpiar:hover {
+  background-color: var(--tercer-color);
+}
+
 .contenedor-inversiones {
   padding-top: 2.5rem !important; 
 }

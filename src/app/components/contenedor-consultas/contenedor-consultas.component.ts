@@ -49,6 +49,7 @@ export class ContenedorConsultasComponent {
     })
     this.servicioInversionCuenta.agregarInversionAlHistorial(this.inversionAlHistorial).subscribe({
       next:()=>{
+        this.inversionAlHistorial.fechaFin = this.servicioInversionCuenta.obtenerFechaActual()
         console.log("Inversión agregada al historial: ", this.inversionAlHistorial);
       },
       error:(error)=>{
@@ -57,4 +58,23 @@ export class ContenedorConsultasComponent {
       }
     })
   }
+
+  limpiarHistorial(){
+    this.paso = 1;
+  }
+
+  confirmarEliminacionHistorial(){
+    this.servicioInversionCuenta.eliminarHistorial()
+    this.paso = 0
+    this.servicioInversionCuenta.obtenerInversionHistorial().subscribe({
+      next: (data) => {
+        this.inversionesCuentas.emit(data.reverse());
+        this.paso = 0;
+      },
+      error: (error) => {
+        console.log('Error al recargar:', error);
+      }
+    });
+  }
+
 }

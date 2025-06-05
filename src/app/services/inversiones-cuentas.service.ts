@@ -25,7 +25,9 @@ export class InversionesCuentasService {
       rendimientoAnual: 0,
       saldoInicial: 0,
       saldoAlTermino: 0,
-      instruccionVencimiento: ''
+      instruccionVencimiento: '',
+      fechaInicio:'',
+      fechaFin:''
     };
     }
 
@@ -69,6 +71,24 @@ export class InversionesCuentasService {
         return Number(montoTotalInv.toFixed(2));
       }
 
+      obtenerFechaActual(): string {
+        const hoy = new Date();
+        const dia = String(hoy.getDate()).padStart(2, '0');
+        const mes = String(hoy.getMonth() + 1).padStart(2, '0');
+        const anio = hoy.getFullYear();
+        return `${dia}/${mes}/${anio}`;
+      }
+
+      sumarPlazoAFecha(fecha: string, dias: number): string {
+        const [dia, mes, anio] = fecha.split('/').map(Number);
+        const fechaObj = new Date(anio, mes - 1, dia);
+        fechaObj.setDate(fechaObj.getDate() + dias);
+        const nuevoDia = String(fechaObj.getDate()).padStart(2, '0');
+        const nuevoMes = String(fechaObj.getMonth() + 1).padStart(2, '0');
+        const nuevoAnio = fechaObj.getFullYear();
+        return `${nuevoDia}/${nuevoMes}/${nuevoAnio}`;
+      }
+
       agregarInversionCuenta(inversionCuenta: InversionCuenta){
         return this.httpClient.post<InversionCuenta>(this.apiUrl,inversionCuenta)
       }
@@ -101,6 +121,18 @@ export class InversionesCuentasService {
 
       obtenerInversionHistorial (): Observable<InversionCuenta[]>{
         return this.httpClient.get<InversionCuenta[]>("http://localhost:8080/historialInversion")
+      }
+
+      eliminarHistorial(): void {
+        this.httpClient.delete<void>("http://localhost:8080/historialInversion")
+          .subscribe({
+            next: () => {
+              console.log('Historial eliminado correctamente');
+            },
+            error: (error) => {
+              console.log('Error al eliminar el historial:', error);
+            }
+          });
       }
   }
 

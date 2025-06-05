@@ -12,4 +12,6 @@ export interface InversionCuenta{
     saldoInicial: number,
     saldoAlTermino: number,
     instruccionVencimiento:'Reinvertir inversion-ganancia' | 'Reinvertir inversion' | 'Reembolso total' | '';
+    fechaInicio: string;
+    fechaFin : string
 }

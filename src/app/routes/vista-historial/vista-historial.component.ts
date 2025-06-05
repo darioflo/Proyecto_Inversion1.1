@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { InversionCuenta } from '../../models/Inversion_Cuenta';
 import { ContenedorConsultasComponent } from "../../components/contenedor-consultas/contenedor-consultas.component";
@@ -9,20 +9,22 @@ import { ContenedorConsultasComponent } from "../../components/contenedor-consul
   templateUrl: './vista-historial.component.html',
   styleUrl: './vista-historial.component.css'
 })
-export class VistaHistorialComponent implements OnInit{
-
+export class VistaHistorialComponent implements OnInit {
   servicioInversionCuenta = inject(InversionesCuentasService)
-  historialnversiones! : any
+  historialnversiones = signal<InversionCuenta[]>([]);
 
   ngOnInit(): void {
     this.servicioInversionCuenta.obtenerInversionHistorial().subscribe({
-      next:(data)=>{
-        this.historialnversiones = data.reverse()
-        console.log(this.historialnversiones);
+      next: (data) => {
+        this.historialnversiones.set(data.reverse());
       },
-      error:(error)=>{
+      error: (error) => {
         console.log(error);
       }
     })
+  }
+
+  actualizarHistorial(nuevoHistorial: InversionCuenta[]) {
+    this.historialnversiones.set(nuevoHistorial);
   }
 }

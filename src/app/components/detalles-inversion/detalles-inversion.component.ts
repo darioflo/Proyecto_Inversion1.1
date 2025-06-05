@@ -19,10 +19,7 @@ export class DetallesInversionComponent extends TraerInversion implements OnInit
   router = inject(Router)
 
 ngOnInit(): void {
-  this.suscribirseAInversion(this.servicioInversion)
-  console.log(this.clienteServicio.clienteSeleccionado);
-  
-  
+  this.suscribirseAInversion(this.servicioInversion)  
 }
 
 regresar() {

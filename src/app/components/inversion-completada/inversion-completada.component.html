@@ -32,6 +32,14 @@
         <p class="valor">{{servicioInversionCuenta.inversionCuentaActual.instruccionVencimiento}}</p>
       </div>
       <div class="fila">
+        <p class="label">Fecha de inicio:</p>
+        <p class="valor">{{servicioInversionCuenta.inversionCuentaActual.fechaInicio}}</p>
+      </div>
+      <div class="fila">
+        <p class="label">Fecha de cierre:</p>
+        <p class="valor">{{servicioInversionCuenta.inversionCuentaActual.fechaFin}}</p>
+      </div>
+      <div class="fila">
         <p class="label">Cuenta asociada:</p>
         <p class="valor" id="cuenta">
           ID: {{this.clienteServicio.cuentaSeleccionada?.id}}<br />

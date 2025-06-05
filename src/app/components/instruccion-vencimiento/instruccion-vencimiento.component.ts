@@ -58,6 +58,8 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
       this.inversionCuentaActual.idInversionCuenta = String(Date.now())
       this.inversionCuentaActual.cuenta.saldo = this.clienteActual.cuentaSeleccionada?.saldo ?? 0 
       this.inversionCuentaActual.cuenta.numeroCuenta = this.clienteActual.cuentaSeleccionada?.numeroCuenta ?? ''
+      this.inversionCuentaActual.fechaInicio = this.servicioInversionCuenta.obtenerFechaActual()
+      this.inversionCuentaActual.fechaFin = this.servicioInversionCuenta.sumarPlazoAFecha(this.inversionCuentaActual.fechaInicio,Number(this.inversionCuentaActual.plazo))
       
       this.servicioInversionCuenta.agregarInversionCuenta(this.inversionCuentaActual)
       .subscribe({
