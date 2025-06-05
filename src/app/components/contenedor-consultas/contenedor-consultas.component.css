@@ -1,0 +1,218 @@
+
+.boton-continuar{
+    margin-right: 95%;
+  }
+  
+  .anuncio {
+    text-align: center;
+    background-color: var(--segundo-color);
+    color: var(--primer-color);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  .anuncio h2 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    margin: 0;
+    color: var(--primer-color);
+  }
+  
+  .contenedor-inversiones {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+    padding: 1rem;
+    width: 100%;
+    max-width: 1200px;
+  }
+  
+  .contenedor-inversiones h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--segundo-color);
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .inversion {
+    padding: 1.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    background-color: var(--primer-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 350px;
+    text-align: left;
+  }
+  
+  .inversion:hover {
+    transform: translateY(-5px);
+  }
+  
+  .inversion-titulo {
+    color: var(--segundo-color);
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .inversion-descripcion {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--tercer-color);
+    margin-bottom: 1rem;
+  }
+  
+  .inversion-detalles p {
+    font-size: 0.9rem;
+    color: var(--cuarto-color);
+    margin: 0.25rem 0;
+  }
+  
+  .inversion-detalles p strong {
+    color: var(--segundo-color);
+  }
+
+  .boton-cancelar-inversion {
+    background-color: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1rem;
+  }
+  
+  .boton-cancelar-inversion:hover {
+    background-color: #d9363e;
+  }
+  
+  .modal-cancelar {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  .modal-contenido {
+    background: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    min-width: 300px;
+    text-align: center;
+  }
+  .modal-botones {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-around;
+  }
+  .boton-confirmar {
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .boton-cancelar {
+    background: #aaa;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1.2rem;
+    border-radius: 4px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .boton-confirmar:hover { background: #d9363e; }
+  .boton-cancelar:hover { background: #888; }
+
+  
+  /* Responsividad */
+  @media (max-width: 768px) {
+
+    .consulta-seccion{
+      margin-top: 5rem;
+    }
+
+    .contenedor-inversiones {
+      gap: 1.5rem;
+      padding: 0.5rem;
+    }
+  
+    .boton-continuar{
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+
+    .contenedor-inversiones h2 {
+      font-size: 1.75rem;
+    }
+  
+    .inversion {
+      padding: 1rem;
+      width: 100%;
+    }
+  
+    .inversion-titulo {
+      font-size: 1.25rem;
+    }
+  
+    .inversion-descripcion {
+      font-size: 0.9rem;
+    }
+  
+    .inversion-detalles p {
+      font-size: 0.85rem;
+    }
+  }
+  
+  @media (max-width: 480px) {
+
+    .consulta-seccion{
+      margin-top: 3rem;
+    }
+
+    .contenedor-inversiones {
+      gap: 1rem;
+      padding: 0.25rem;
+    }
+  
+    .boton-continuar{
+      position: absolute;
+      top: 1rem;
+      left: 1rem;
+    }
+
+    .contenedor-inversiones h2 {
+      font-size: 1.5rem;
+    }
+  
+    .inversion {
+      padding: 0.75rem;
+      width: 100%;
+    }
+  
+    .inversion-titulo {
+      font-size: 1rem;
+    }
+  
+    .inversion-descripcion {
+      font-size: 0.8rem;
+    }
+  
+    .inversion-detalles p {
+      font-size: 0.75rem;
+    }
+  }
+  
