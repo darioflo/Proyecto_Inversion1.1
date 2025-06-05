@@ -17,6 +17,7 @@ export class ContenedorConsultasComponent {
   paso: number = 0
   idInversionCuenta! : string
   inversionAlHistorial! : InversionCuenta
+  titulo = input<string>("Consulta")
 
   cancelarInversion(idInversionCuenta: string, inversionCuenta : InversionCuenta) {
     this.paso = 1

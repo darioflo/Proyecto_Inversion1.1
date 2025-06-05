@@ -6,7 +6,7 @@
   <ng-template #listaInversiones>
     <button class="boton-continuar" routerLink="/">Regresar</button>
     <div class="contenedor-inversiones">
-      <h2>Consulta de inversiones</h2>
+      <h2>{{titulo()}} de inversiones</h2>
       <div class="inversion" *ngFor="let inversion of inversiones()">
         <div class="inversion-detalles">
           <p>
@@ -31,6 +31,7 @@
           class="boton-cancelar-inversion"
           (click)="cancelarInversion(inversion.idInversionCuenta, inversion)"
           type="button"
+          *ngIf="titulo() === 'Consulta'"
         >
           Cancelar inversión
         </button>

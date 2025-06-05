@@ -1,8 +1,19 @@
 
-.boton-continuar{
-    margin-right: 95%;
-  }
-  
+.consulta-seccion {
+  position: relative;
+}
+
+.boton-continuar {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  margin: 0;
+  z-index: 2;
+}
+
+.contenedor-inversiones {
+  padding-top: 2.5rem !important; 
+}
   .anuncio {
     text-align: center;
     background-color: var(--segundo-color);
@@ -29,6 +40,7 @@
     padding: 1rem;
     width: 100%;
     max-width: 1200px;
+    padding-top: 5rem;
   }
   
   .contenedor-inversiones h2 {

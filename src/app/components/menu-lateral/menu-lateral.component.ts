@@ -27,8 +27,4 @@ export class SidenavAutosizeExample {
     this.showFiller = false
   }
 
-  limpiar(){
-    localStorage.clear()
-    window.location.reload()
-  }
 }

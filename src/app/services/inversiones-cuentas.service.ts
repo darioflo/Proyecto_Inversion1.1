@@ -2,6 +2,7 @@ import { Injectable } from "@angular/core";
 import { InversionCuenta } from "../models/Inversion_Cuenta";
 import { HttpClient } from "@angular/common/http";
 import { Cuenta } from "../models/Cuenta";
+import { Observable } from "rxjs";
 
 
 @Injectable({
@@ -96,6 +97,10 @@ export class InversionesCuentasService {
 
       agregarInversionAlHistorial(inversion : InversionCuenta){
         return this.httpClient.post<InversionCuenta>("http://localhost:8080/historialInversion",inversion)
+      }
+
+      obtenerInversionHistorial (): Observable<InversionCuenta[]>{
+        return this.httpClient.get<InversionCuenta[]>("http://localhost:8080/historialInversion")
       }
   }
 

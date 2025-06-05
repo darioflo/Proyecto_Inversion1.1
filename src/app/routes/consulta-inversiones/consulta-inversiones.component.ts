@@ -9,29 +9,23 @@ import { ContenedorConsultasComponent } from "../../components/contenedor-consul
   templateUrl: './consulta-inversiones.component.html',
   styleUrl: './consulta-inversiones.component.css'
 })
-
 export class ConsultaInversionesComponent implements OnInit  {
 
   servicioInversionCuenta = inject(InversionesCuentasService)
-  inversionesCuentas! :InversionCuenta[]
   inversiones = signal<InversionCuenta[]>([]);
-    
-  
-  ngOnInit(): void {
-      this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
-        next:(data)=>{
-          this.inversionesCuentas = data.reverse()
-          console.log(this.inversionesCuentas);
-          
-        },
-        error:(error)=>{
-          console.log('Error :', error);
-          
-        }
-      })
-    }
 
-    actualizarInversiones(nuevasInversiones: InversionCuenta[]) {
-      this.inversiones.set(nuevasInversiones);
-    }
+  ngOnInit(): void {
+    this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
+      next: (data) => {
+        this.inversiones.set(data.reverse());
+      },
+      error: (error) => {
+        console.log('Error :', error);
+      }
+    })
+  }
+
+  actualizarInversiones(nuevasInversiones: InversionCuenta[]) {
+    this.inversiones.set(nuevasInversiones);
+  }
 }

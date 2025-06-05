@@ -8,6 +8,7 @@ import { ConsultaInversionesComponent } from './routes/consulta-inversiones/cons
 import { SeleccionarInversionComponent } from './components/seleccionar-inversion/seleccionar-inversion.component';
 import { inversionGuard } from './core/guard/inversion.guard';
 import { ActualizarInversionComponent } from './routes/actualizar-inversion/actualizar-inversion.component';
+import { VistaHistorialComponent } from './routes/vista-historial/vista-historial.component';
 
 
 export const routes: Routes = [
@@ -43,6 +44,15 @@ export const routes: Routes = [
     component: ConsultaInversionesComponent,
     canActivate: [inversionGuard],
   },
-  {path:'actualizarInversion', component: ActualizarInversionComponent, canActivate:[inversionGuard]},
+  { 
+    path:'actualizarInversion', 
+    component: ActualizarInversionComponent, 
+    canActivate:[inversionGuard]
+  },
+  { 
+    path:'historialInversiones', 
+    component: VistaHistorialComponent, 
+    canActivate:[inversionGuard]
+  },
   { path: '**', component: HomeComponent },
 ];
