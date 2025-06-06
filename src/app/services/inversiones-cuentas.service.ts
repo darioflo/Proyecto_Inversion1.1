@@ -134,5 +134,9 @@ export class InversionesCuentasService {
             }
           });
       }
+
+      nuevaFechaDeEliminacion(id: string){
+        return this.httpClient.patch<InversionCuenta>(`http://localhost:8080/historialInversion/modificarFechaFin/${id}`,{})
+      }
   }
 

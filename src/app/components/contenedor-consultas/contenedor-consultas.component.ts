@@ -18,6 +18,7 @@ export class ContenedorConsultasComponent {
   idInversionCuenta! : string
   inversionAlHistorial! : InversionCuenta
   titulo = input<string>("Consulta")
+  nuevaFecha! : string
 
   cancelarInversion(idInversionCuenta: string, inversionCuenta : InversionCuenta) {
     this.paso = 1
@@ -29,6 +30,12 @@ export class ContenedorConsultasComponent {
   confirmarEliminacion(){
     this.paso = 2
     console.log(this.paso);
+    
+    this.servicioInversionCuenta.nuevaFechaDeEliminacion(this.inversionAlHistorial.idInversionCuenta)
+    
+    console.log(this.inversionAlHistorial.fechaFin);
+    
+
     this.servicioInversionCuenta.eliminarInversionCuenta(this.idInversionCuenta).subscribe({
       next:()=>{
           console.log('Inversion eliminada correctamente :)');
@@ -49,7 +56,6 @@ export class ContenedorConsultasComponent {
     })
     this.servicioInversionCuenta.agregarInversionAlHistorial(this.inversionAlHistorial).subscribe({
       next:()=>{
-        this.inversionAlHistorial.fechaFin = this.servicioInversionCuenta.obtenerFechaActual()
         console.log("Inversión agregada al historial: ", this.inversionAlHistorial);
       },
       error:(error)=>{
@@ -67,8 +73,8 @@ export class ContenedorConsultasComponent {
     this.servicioInversionCuenta.eliminarHistorial()
     this.paso = 0
     this.servicioInversionCuenta.obtenerInversionHistorial().subscribe({
-      next: (data) => {
-        this.inversionesCuentas.emit(data.reverse());
+      next: () => {
+        this.inversionesCuentas.emit([]);
         this.paso = 0;
       },
       error: (error) => {
