@@ -85,10 +85,8 @@ obtenerCuentas(){
       },
     });
   }
-/*
-Este método se activará una vez el cliente haya hecho click en uno de los contenedores de las inversiones, tomará el id de la inversión seleccionada y luego de volver 
-obtener las inversiones utilizará la callback .find() para encontrar el id de la inversión que coincida con el id pasado como argumento que será el seleccionado 
-por el usuario */
+
+  
   obtenerInversionActual(idInversion: string) {
     this.servicioInversiones.obtenerInversiones().subscribe({
       next: (inversiones) => {
