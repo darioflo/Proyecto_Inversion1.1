@@ -30,12 +30,6 @@ export class ContenedorConsultasComponent {
   confirmarEliminacion(){
     this.paso = 2
     console.log(this.paso);
-    
-    this.servicioInversionCuenta.nuevaFechaDeEliminacion(this.inversionAlHistorial.idInversionCuenta)
-    
-    console.log(this.inversionAlHistorial.fechaFin);
-    
-
     this.servicioInversionCuenta.eliminarInversionCuenta(this.idInversionCuenta).subscribe({
       next:()=>{
           console.log('Inversion eliminada correctamente :)');
