@@ -60,3 +60,7 @@ export class GraficoCrecimientoComponent implements OnChanges {
   }
   
 }
+
+
+
+      
