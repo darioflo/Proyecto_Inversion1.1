@@ -13,6 +13,9 @@
       <button mat-raised-button [routerLink]="['/historialInversiones']">
         Historial de inversiones
       </button>
+      <button mat-raised-button [routerLink]="['/graficosInversiones']">
+        Ver gráficos
+      </button>
     </mat-drawer>
   
     <div class="overlay" *ngIf="drawer.opened" (click)="drawer.close()"></div>

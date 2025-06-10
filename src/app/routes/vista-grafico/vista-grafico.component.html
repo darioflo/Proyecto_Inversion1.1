@@ -1,1 +1,9 @@
-<p>vista-grafico works!</p>
+<section class="grafico-seccion">
+    <div *ngFor="let inversion of inversiones">
+        <app-grafico-inversion
+        [nombreInversion]="inversion.inversion.nombre" 
+        [saldoInicial]="inversion.saldoInicial"
+        [plazo]="inversion.plazo"
+        [tasa]="inversion.tasa">></app-grafico-inversion>
+    </div>
+</section>

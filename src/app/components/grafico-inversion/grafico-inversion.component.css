@@ -1,0 +1,74 @@
+:host {
+  display: block;
+  width: 100%;
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+.grafico-contenedor {
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  padding: 2rem 1rem;
+  text-align: center;
+}
+
+.titulo-inversion {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: #c62828;
+  margin: 0;
+}
+
+.descripcion-grafico {
+  font-size: 0.95rem;
+  color: #444;
+  margin: 0.5rem 0 1.5rem;
+}
+
+canvas {
+  width: 120% !important;
+  height: 420px !important; 
+  max-width: 100vw;
+  display: block;
+  margin: 0 auto;
+}
+
+@media (max-width: 900px) {
+  :host {
+    max-width: 98vw;
+    padding: 0.5rem;
+  }
+  .grafico-contenedor {
+    padding: 1.2rem 0.5rem;
+    border-radius: 12px;
+  }
+  .titulo-inversion {
+    font-size: 1.3rem;
+  }
+}
+
+/* Móviles */
+@media (max-width: 600px) {
+  :host {
+    max-width: 100vw;
+    padding: 0.2rem;
+  }
+  .grafico-contenedor {
+    padding: 0.5rem 0.1rem;
+    border-radius: 8px;
+  }
+  .titulo-inversion {
+    font-size: 1.1rem;
+  }
+  .descripcion-grafico {
+    font-size: 0.8rem;
+    margin-bottom: 0.8rem;
+  }
+  canvas {
+    height: 220px !important;
+    min-height: 180px;
+  }
+}
