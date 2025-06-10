@@ -29,7 +29,6 @@ export class ContenedorConsultasComponent {
 
   confirmarEliminacion(){
     this.paso = 2
-    console.log(this.paso);
     this.servicioInversionCuenta.eliminarInversionCuenta(this.idInversionCuenta).subscribe({
       next:()=>{
           console.log('Inversion eliminada correctamente :)');
