@@ -1,9 +1,18 @@
 <section class="grafico-seccion">
-    <div *ngFor="let inversion of inversiones">
-        <app-grafico-inversion
-        [nombreInversion]="inversion.inversion.nombre" 
-        [saldoInicial]="inversion.saldoInicial"
-        [plazo]="inversion.plazo"
-        [tasa]="inversion.tasa">></app-grafico-inversion>
+    <button class="boton-continuar" routerLink="/">Regresar</button>
+    <div class="alerta-wrapper" *ngIf="!inversiones.length; else graficoInversiones"> 
+        <div class="alerta">
+            <h2>No tiene inversiones disponibles en este momento</h2>
+        </div>
     </div>
+    <ng-template #graficoInversiones>
+        <div *ngFor="let inversion of inversiones">
+            <app-grafico-inversion
+            [nombreInversion]="inversion.inversion.nombre" 
+            [saldoInicial]="inversion.saldoInicial"
+            [plazo]="inversion.plazo"
+            [tasa]="inversion.tasa">
+            </app-grafico-inversion>
+        </div>
+    </ng-template>
 </section>
