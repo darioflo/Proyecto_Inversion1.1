@@ -6,7 +6,7 @@
         </div>
     </div>
     <ng-template #graficoInversiones>
-        <div *ngFor="let inversion of inversiones">
+        <div *ngFor="let inversion of inversiones" class="grafico">
             <app-grafico-inversion
             [nombreInversion]="inversion.inversion.nombre" 
             [saldoInicial]="inversion.saldoInicial"

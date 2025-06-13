@@ -53,7 +53,7 @@ export class GraficoCrecimientoComponent implements OnChanges {
           borderColor: '#c62828',             
           backgroundColor: 'rgba(198, 40, 40, 0.1)', 
           pointBackgroundColor: '#c62828',     
-          tension: 0.3                         
+          tension: 0.3,                        
         }
       ]
     };
