@@ -17,7 +17,7 @@
     <h3 style="color: var(--tercer-color);">Inversiones disponibles</h3>
     <div 
       class="inversion-card"
-      *ngFor="let inversion of inversionesDelCliente; let i = index"
+      *ngFor="let inversion of inversionesDelCliente(); let i = index"
       (click)="mostrarCampos(i)"
       [class.activa]="i === indiceSeleccionado"
     >

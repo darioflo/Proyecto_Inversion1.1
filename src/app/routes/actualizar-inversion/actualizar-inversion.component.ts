@@ -1,6 +1,6 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { NgFor, NgIf } from '@angular/common';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule, } from '@angular/forms';
 import { EditarInversionCommand } from '../../core/utils/Command';
 import { ErrorComponentComponent } from "../../components/error-component/error-component.component";
 import { TipoError } from '../../models/Error';
@@ -17,7 +17,7 @@ import { InversionCuenta } from '../../models/Inversion_Cuenta';
 export class ActualizarInversionComponent implements OnInit{
 
   indiceSeleccionado! : number | null
-  inversionesDelCliente!: InversionCuenta[] | null
+  inversionesDelCliente = signal<InversionCuenta[]>([])
   servicioInversionCuenta = inject(InversionesCuentasService)
   tipoError: TipoError = ''
   router = inject(Router)
@@ -25,7 +25,7 @@ export class ActualizarInversionComponent implements OnInit{
     ngOnInit(): void {
         this.servicioInversionCuenta.obtenerInversionesCuenta().subscribe({
           next:(data)=>{
-            this.inversionesDelCliente = data
+            this.inversionesDelCliente.set(data.reverse())
           },
           error:(error)=>{
             console.log(error);
@@ -40,10 +40,10 @@ export class ActualizarInversionComponent implements OnInit{
     
     guardarCambios(i:number){
       if (this.inversionesDelCliente) {
-        const inversion = this.inversionesDelCliente[i];
+        const inversion = this.inversionesDelCliente()[i];
 
         const commandoEditar = new EditarInversionCommand(
-          this.inversionesDelCliente,
+          this.inversionesDelCliente(),
           i,
           inversion.saldoInicial,
           inversion.plazo,

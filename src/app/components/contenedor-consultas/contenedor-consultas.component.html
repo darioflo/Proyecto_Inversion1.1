@@ -29,6 +29,12 @@
             <strong>Saldo en cuenta:</strong> ${{ inversion.cuenta.saldo }}
           </p>
           <p>
+            <strong>
+              Está activa:
+              <b>{{ titulo() === 'Historial' ? 'No' : 'Sí' }}</b>
+            </strong>
+          </p>
+          <p>
             <strong>Fecha de inicio:</strong> <b> {{ inversion.fechaInicio }}</b>
           </p>
           <p>
