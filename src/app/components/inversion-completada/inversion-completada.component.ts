@@ -24,6 +24,6 @@ ngOnInit(): void {
 }
 
 irAlHome() {
-  this.router.navigate(['']);
+  this.router.navigate(['/home']);
 }
 }

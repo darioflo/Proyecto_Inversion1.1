@@ -22,9 +22,18 @@ export class FormularioLoginComponent {
     ) {}
   
     iniciarSesion() {
-        this.autenticacionServicio.iniciarSesion(this.nombreUsuario, this.clave);
-        this.error = null;
-        this.router.navigate(['/home']); 
+      this.autenticacionServicio.iniciarSesion(this.nombreUsuario, this.clave)
+      .subscribe({
+        next: (respuesta) => {
+          if (typeof window !== 'undefined' && window.localStorage) {
+            localStorage.setItem('token', respuesta.jwt); 
+          }
+          this.router.navigate(['/home']);
+        },
+        error: (error) => {
+          this.error = 'Usuario o clave incorrectos';
+        }
+      });
     }
   }
   

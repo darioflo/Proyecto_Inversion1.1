@@ -85,12 +85,6 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
     }
   }
 
-/*Esta función comprueba el estado del formulario y la existencia de la inversionActual y luego en un switch-case comprobará 
-el valor de la variable instruccionSeleccionada que siempre será una de las instrucciones previamente determinadas 
-(el código comentado es el que aplica los cálculos correspondientes a la elección de cada instrucción de vencimiento) 
-luego comprueba la existencia de la cuentaSeleccionada y resta al saldo de la cuenta el saldo inicial de la inversión le 
-asigna al atributo instruccionVencimiento de la inversionActual el valor de la instrucción seleccionada y ejecuta las 
-funciones unificarInversionCuenta() y guardarInversion(). Finalmente nos envía a la página donde veremos el resumen de la compra.*/
   finalizarCompra(evento: Event) {
     evento.preventDefault();
     if (this.formulario.valid && this.inversionActual) {

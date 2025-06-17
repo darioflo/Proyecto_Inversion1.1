@@ -6,63 +6,65 @@ import { VistaInstruccionComponent } from './routes/vista-instruccion/vista-inst
 import { VistaTerminadaComponent } from './routes/vista-terminada/vista-terminada.component';
 import { ConsultaInversionesComponent } from './routes/consulta-inversiones/consulta-inversiones.component';
 import { SeleccionarInversionComponent } from './components/seleccionar-inversion/seleccionar-inversion.component';
-import { inversionGuard } from './core/guard/inversion.guard';
 import { ActualizarInversionComponent } from './routes/actualizar-inversion/actualizar-inversion.component';
 import { VistaHistorialComponent } from './routes/vista-historial/vista-historial.component';
 import { VistaGraficoComponent } from './routes/vista-grafico/vista-grafico.component';
 import { FormularioLoginComponent } from './components/formulario-login/formulario-login.component';
+import { AuthGuard } from './core/guard/inversion.guard';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', 
-    component:FormularioLoginComponent},
+    component:FormularioLoginComponent
+  },
   { path: 'home', 
-    component: HomeComponent },
+    component: HomeComponent 
+  },
   {
     path: 'vistaInversion/:idCuenta',
     component: SeleccionarInversionComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'vistaSeleccion/:idCuenta/:idInversion',
     component: VistaSeleccionComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'vistaResumen/:idCuenta/:idInversion',
     component: VistaResumenComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'vistaInstruccion/:idCuenta/:idInversion',
     component: VistaInstruccionComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'vistaTerminada/:idCuenta/:idInversion',
     component: VistaTerminadaComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   {
     path: 'consultaInversiones',
     component: ConsultaInversionesComponent,
-    canActivate: [inversionGuard],
+    canActivate: [AuthGuard],
   },
   { 
     path:'actualizarInversion', 
     component: ActualizarInversionComponent, 
-    canActivate:[inversionGuard]
+    canActivate:[AuthGuard]
   },
   { 
     path:'historialInversiones', 
     component: VistaHistorialComponent, 
-    canActivate:[inversionGuard]
+    canActivate:[AuthGuard]
   },
   { 
     path:'graficosInversiones', 
     component: VistaGraficoComponent, 
-    canActivate:[inversionGuard]
+    canActivate:[AuthGuard]
   },
   { path: '**', component: HomeComponent },
 ];

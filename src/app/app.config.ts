@@ -15,7 +15,8 @@ import {
   withFetch,
   withInterceptors,
 } from '@angular/common/http';
-import { authInterceptor } from './core/interceptors/interceptor';
+import { authInterceptorFn } from './core/interceptors/interceptor';
+
 
 
 
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(withEventReplay()),
     provideHttpClient(
       withFetch(),
-      withInterceptors([authInterceptor])
+      withInterceptors([authInterceptorFn])
     ),
   ],
 };

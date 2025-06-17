@@ -1,18 +1,22 @@
-import { CanActivateFn } from '@angular/router';
-import { Router } from '@angular/router';
 import { inject } from '@angular/core';
+import { CanActivateFn, Router } from '@angular/router';
+import { AutenticacionService } from '../../services/auth-service.service';
 import { ClienteService } from '../../services/cliente.service';
+import { Location } from '@angular/common';
 
 
-
-/*Este guard se encarga de reenviarnos al home mientras no haya un cliente seleccionado esto evita que si se recarga la 
-página en cualquier interfaz esta se muestre sin ningún tipo de datos.  */
-export const inversionGuard: CanActivateFn = (route, state) => {
-  const cliente = inject(ClienteService);
+export const AuthGuard: CanActivateFn = (route, state) => {
+  const auth = inject(AutenticacionService);
   const router = inject(Router);
+  const clienteServicio = inject(ClienteService)
 
-  if (!cliente.clienteSeleccionado) {
-    router.navigate(['login']);
+  if (!auth.estaAutenticado() && !clienteServicio.clienteSeleccionado ) {
+    router.navigate(['/']);
+    return false;
+  }
+
+  if (auth.estaAutenticado() && !clienteServicio.clienteSeleccionado) {
+    router.navigate(['/home']);
     return false;
   }
 

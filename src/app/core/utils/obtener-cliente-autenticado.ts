@@ -80,7 +80,6 @@ obtenerCuentas(){
       },
       error: (error) => {
         console.log('Error', error);
-        alert(`Error: ${error}`);
       },
     });
   }
@@ -97,7 +96,6 @@ obtenerCuentas(){
       },
       error: (error) => {
         console.error('Error al obtener inversiones:', error);
-        alert(`Error: ${error}`);
       },
     });
   };

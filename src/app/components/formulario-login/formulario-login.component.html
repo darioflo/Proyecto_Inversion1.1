@@ -1,31 +1,34 @@
-<div class="contenedor-login">
-  <form (submit)="iniciarSesion(); $event.preventDefault()">
-    <h2>Iniciar Sesión</h2>
+<div class="fondo-login">
+  <div class="contenedor-login">
+    <h2>Bienvenido a tu servicio de inversiones</h2>
+    <form (submit)="iniciarSesion(); $event.preventDefault()">
+      <h3>Iniciar Sesión</h3>
 
-    <div class="campo-formulario">
-      <label for="nombreUsuario">Usuario</label>
-      <input
-        type="text"
-        id="nombreUsuario"
-        [(ngModel)]="nombreUsuario"
-        name="nombreUsuario"
-        required
-      />
-    </div>
+      <div class="campo-formulario">
+        <label for="nombreUsuario">Usuario</label>
+        <input
+          type="text"
+          id="nombreUsuario"
+          [(ngModel)]="nombreUsuario"
+          name="nombreUsuario"
+          required
+        />
+      </div>
 
-    <div class="campo-formulario">
-      <label for="clave">Contraseña</label>
-      <input
-        type="password"
-        id="clave"
-        [(ngModel)]="clave"
-        name="clave"
-        required
-      />
-    </div>
+      <div class="campo-formulario">
+        <label for="clave">Contraseña</label>
+        <input
+          type="password"
+          id="clave"
+          [(ngModel)]="clave"
+          name="clave"
+          required
+        />
+      </div>
 
-    <button type="submit">Ingresar</button>
+      <button type="submit">Ingresar</button>
 
-    <p *ngIf="error" class="error">{{ error }}</p>
-  </form>
+      <p *ngIf="error" class="error">{{ error }}</p>
+    </form>
+  </div>
 </div>
