@@ -12,7 +12,7 @@ export const inversionGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (!cliente.clienteSeleccionado) {
-    router.navigate(['/home']);
+    router.navigate(['login']);
     return false;
   }
 

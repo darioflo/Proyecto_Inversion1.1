@@ -9,13 +9,16 @@ import { SeleccionarInversionComponent } from './components/seleccionar-inversio
 import { inversionGuard } from './core/guard/inversion.guard';
 import { ActualizarInversionComponent } from './routes/actualizar-inversion/actualizar-inversion.component';
 import { VistaHistorialComponent } from './routes/vista-historial/vista-historial.component';
-import { GraficoCrecimientoComponent } from './components/grafico-inversion/grafico-inversion.component';
 import { VistaGraficoComponent } from './routes/vista-grafico/vista-grafico.component';
+import { FormularioLoginComponent } from './components/formulario-login/formulario-login.component';
 
 
 export const routes: Routes = [
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: 'login', 
+    component:FormularioLoginComponent},
+  { path: 'home', 
+    component: HomeComponent },
   {
     path: 'vistaInversion/:idCuenta',
     component: SeleccionarInversionComponent,

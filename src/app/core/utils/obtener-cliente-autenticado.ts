@@ -27,7 +27,6 @@ obtenerClienteAutenticado() {
       },
       error: (error) => {
         console.log(error);
-        alert(`Error: ${error}`);
       },
     });
   }
