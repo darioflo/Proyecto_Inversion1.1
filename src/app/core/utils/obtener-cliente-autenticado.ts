@@ -3,7 +3,7 @@ import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { Cuenta } from '../../models/Cuenta';
-import { InversionCuenta } from '../../models/Inversion_Cuenta';
+
 
 
 export class ObtenerClienteAutenticado {
@@ -12,7 +12,7 @@ export class ObtenerClienteAutenticado {
   clienteServicio = inject(ClienteService);
   servicioInversioCuenta = inject(InversionesCuentasService)
   inversionCuentaActual = this.servicioInversioCuenta.inversionCuentaActual
-  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.id
+  idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
 
 
 
@@ -35,20 +35,7 @@ obtenerCuentas(){
     this.clienteServicio.obtenerCuentas().subscribe({
       next:(cuentas)=>{
         this.cuentasDeCliente = cuentas
-        console.log(this.cuentasDeCliente);
-        if (typeof localStorage !== 'undefined') {
-          let actualizarCuenta = localStorage.getItem('inversionesDelCliente');
-          if (actualizarCuenta) {
-            let inversionHecha = JSON.parse(actualizarCuenta);
-            inversionHecha.forEach((inversion: InversionCuenta) => {
-              this.cuentasDeCliente?.forEach((cuenta)=>{
-                if (inversion.cuenta.id === cuenta.id) {
-                    cuenta.saldo = Math.min(cuenta.saldo, inversion.saldoInicial);
-                }
-              })
-            }
-          )}
-        }  
+        console.log(this.cuentasDeCliente); 
       },
       error:(error)=>{
         console.log(error);
@@ -58,7 +45,7 @@ obtenerCuentas(){
 
 
   obtenerCuentaActual(id: string) {
-      this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.id === id)) ?? null;
+      this.clienteServicio.cuentaSeleccionada = (this.cuentasDeCliente?.find((cuenta) => cuenta.idCuenta === id)) ?? null;
   }
 
   mostrarInversiones() {
@@ -66,7 +53,7 @@ obtenerCuentas(){
       next: (inversiones) => {
           this.servicioInversioCuenta.obtenerInversionesCuenta().subscribe({
             next:(inversionesRealizadas)=>{
-              const inversionesDeEstaCuenta = inversionesRealizadas.filter(inversion => this.idCuentaSeleccionada === inversion.cuenta.id)
+              const inversionesDeEstaCuenta = inversionesRealizadas.filter(inversion => this.idCuentaSeleccionada === inversion.cuenta.idCuenta)
               const idInversionesRealizadas = inversionesDeEstaCuenta.map(inversion=> inversion.inversion.idInversion)
               this.servicioInversiones.inversionesDisponibles = inversiones.filter(inversion=>
                 !idInversionesRealizadas.includes(inversion.idInversion)

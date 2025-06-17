@@ -27,7 +27,7 @@ regresar() {
 }
 continuar() {
   this.router.navigate([
-    `/vistaInstruccion/${this.servicioCLiente.cuentaSeleccionada?.id}/${this.inversionActual?.idInversion}`,
+    `/vistaInstruccion/${this.servicioCLiente.cuentaSeleccionada?.idCuenta}/${this.inversionActual?.idInversion}`,
   ]);
 }
 }

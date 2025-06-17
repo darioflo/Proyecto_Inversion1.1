@@ -95,7 +95,7 @@ caso de que la inversión sea menor al valor mínimo introducido.
     
       
       this.router.navigate([
-        `vistaResumen/${this.servicioCliente.cuentaSeleccionada?.id}/${this.inversionActual.idInversion}`
+        `vistaResumen/${this.servicioCliente.cuentaSeleccionada?.idCuenta}/${this.inversionActual.idInversion}`
       ]);
     } else {
       this.tipoError = 'seleccionarPlazo'

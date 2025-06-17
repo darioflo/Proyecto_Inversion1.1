@@ -15,7 +15,8 @@ export class SeleccionarInversionComponent extends ObtenerClienteAutenticado imp
   servicioCliente = inject(ClienteService)
   
     ngOnInit(): void {
-      this.mostrarInversiones() 
+      this.mostrarInversiones()
+      this.idCuentaSeleccionada
       console.log('Inversiones disponibles :',this.servicioInversiones.inversionesDisponibles);
 }
 }

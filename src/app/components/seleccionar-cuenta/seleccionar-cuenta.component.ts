@@ -15,6 +15,7 @@ implements OnInit{
   ngOnInit(): void {
     if (!this.clienteServicio.clienteSeleccionado) {
       this.obtenerClienteAutenticado();
+      this.idCuentaSeleccionada
     }
     this.obtenerCuentas();
   }

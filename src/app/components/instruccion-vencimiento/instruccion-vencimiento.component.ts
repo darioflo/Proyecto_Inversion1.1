@@ -70,8 +70,8 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
           console.error('Error al guardar la inversiónCuenta:', error);
         }
       });
-      if (this.clienteActual.cuentaSeleccionada?.id) {
-        this.servicioInversionCuenta.actualizarNuevoSaldo(this.clienteActual.cuentaSeleccionada?.id,this.clienteActual.cuentaSeleccionada?.saldo)
+      if (this.clienteActual.cuentaSeleccionada?.idCuenta) {
+        this.servicioInversionCuenta.actualizarNuevoSaldo(this.clienteActual.cuentaSeleccionada?.idCuenta,this.clienteActual.cuentaSeleccionada?.saldo)
         .subscribe({
           next:(cuentaActualizada)=>{
             console.log('Cuenta actualizada correctamente', cuentaActualizada);
@@ -133,7 +133,7 @@ export class InstruccionVencimientoComponent extends TraerInversion implements O
       }
       
       this.router.navigate([
-        `vistaTerminada/${this.clienteActual.cuentaSeleccionada?.id}/${this.inversionActual?.idInversion}`,
+        `vistaTerminada/${this.clienteActual.cuentaSeleccionada?.idCuenta}/${this.inversionActual?.idInversion}`,
       ]);
     } else {
           this.tipoError = 'seleccionarInstruccion'

@@ -17,7 +17,7 @@ export class InversionesCuentasService {
   constructor(private httpClient : HttpClient){
     this.inversionCuentaActual = {
       idInversionCuenta: '',
-      cuenta: { id: '' , numeroCuenta: '', saldo: 0},
+      cuenta: { idCuenta: '' , numeroCuenta: '', saldo: 0},
       inversion: { idInversion: '' , nombre:''},
       estaActiva: false,
       plazo: 0,
