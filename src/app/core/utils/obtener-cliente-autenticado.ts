@@ -14,24 +14,36 @@ export class ObtenerClienteAutenticado {
   servicioInversioCuenta = inject(InversionesCuentasService)
   inversionCuentaActual = this.servicioInversioCuenta.inversionCuentaActual
   idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
-  idCliente = localStorage.getItem('idCliente')
+  idCliente! : string | null
 
-obtenerClienteAutenticado() {
-    this.clienteServicio.obtenerClientePorID(this.idCliente!).subscribe({
-      next: (cliente) => {
-        this.clienteServicio.clienteSeleccionado = cliente;
-        console.log(
-          'Cliente en sesion: ',
-          this.clienteServicio.clienteSeleccionado
-        );
-      },
-      error: (error) => {
-        console.log(error);
-      },
-    });
+
+  cargarIdCliente() {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      this.idCliente = localStorage.getItem('idCliente');
+    }
   }
 
-obtenerCuentas(){
+  obtenerClienteAutenticado() {
+    this.cargarIdCliente();
+    if (this.idCliente!!) {
+      this.clienteServicio.obtenerClientePorID(this.idCliente!).subscribe({
+        next: (cliente) => {
+          this.clienteServicio.clienteSeleccionado = cliente;
+          console.log(
+            'Cliente en sesion: ',
+            this.clienteServicio.clienteSeleccionado
+          );
+        },
+        error: (error) => {
+          console.log(error);
+        },
+      });
+    }
+    }
+
+  obtenerCuentas(){
+  this.cargarIdCliente();
+  if (this.idCliente!!) {
     this.clienteServicio.obtenerCuentasPorCliente(this.idCliente!).subscribe({
       next:(cuentas)=>{
         this.cuentasDeCliente = cuentas
@@ -41,6 +53,7 @@ obtenerCuentas(){
         console.log(error);
       }
     })
+  }
   }
 
 

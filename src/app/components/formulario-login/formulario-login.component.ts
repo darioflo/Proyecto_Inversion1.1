@@ -21,7 +21,7 @@ export class FormularioLoginComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        if (window.localStorage && typeof window !== 'undefined' && localStorage.getItem("token")) {
+        if (typeof window !== 'undefined' && window.localStorage && localStorage.getItem("token")) {
           this.router.navigate(['/home']);
         }
       
