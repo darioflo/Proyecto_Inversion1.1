@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Usuario } from '../models/Usuario';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class AutenticacionService{
   constructor(private http : HttpClient) { }
 
   iniciarSesion(nombreUsuario: string, clave: string) {
-    return this.http.post<{ jwt: string }>(`${this.apiUrl}/login`, {
+    return this.http.post<{ jwt: string, usuario: Usuario }>(`${this.apiUrl}/login`, {
       nombreUsuario: nombreUsuario,
       clave: clave,
     });

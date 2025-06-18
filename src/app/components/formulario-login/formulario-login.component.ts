@@ -21,7 +21,7 @@ export class FormularioLoginComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        if (localStorage.getItem("token")) {
+        if (window.localStorage && typeof window !== 'undefined' && localStorage.getItem("token")) {
           this.router.navigate(['/home']);
         }
       
@@ -32,8 +32,10 @@ export class FormularioLoginComponent implements OnInit {
       .subscribe({
         next: (respuesta) => {
           if (typeof window !== 'undefined' && window.localStorage) {
-            localStorage.setItem('token', respuesta.jwt); 
+            localStorage.setItem('token', respuesta.jwt);
+            localStorage.setItem('idCliente',String(respuesta.usuario.idCliente)) 
           }
+
           this.router.navigate(['/home']);
         },
         error: (error) => {

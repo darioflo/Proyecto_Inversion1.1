@@ -16,7 +16,7 @@ export class HomeComponent extends ObtenerClienteAutenticado implements OnInit {
   router = inject(Router)
 
   ngOnInit(): void {
-    if (localStorage.getItem("token")) {
+    if (window.localStorage && typeof window !== 'undefined' && localStorage.getItem("token")) {
       if (!this.clienteServicio.clienteSeleccionado) {
         this.obtenerClienteAutenticado();
         console.log(this.clienteServicio.clienteSeleccionado);

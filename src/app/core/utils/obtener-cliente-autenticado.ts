@@ -3,6 +3,7 @@ import { InversionesService } from '../../services/inversiones.service';
 import { ClienteService } from '../../services/cliente.service';
 import { InversionesCuentasService } from '../../services/inversiones-cuentas.service';
 import { Cuenta } from '../../models/Cuenta';
+import { AutenticacionService } from '../../services/auth-service.service';
 
 
 
@@ -13,13 +14,12 @@ export class ObtenerClienteAutenticado {
   servicioInversioCuenta = inject(InversionesCuentasService)
   inversionCuentaActual = this.servicioInversioCuenta.inversionCuentaActual
   idCuentaSeleccionada =  this.clienteServicio.cuentaSeleccionada?.idCuenta
-
-
+  idCliente = localStorage.getItem('idCliente')
 
 obtenerClienteAutenticado() {
-    this.clienteServicio.obtenerClientes().subscribe({
+    this.clienteServicio.obtenerClientePorID(this.idCliente!).subscribe({
       next: (cliente) => {
-        this.clienteServicio.clienteSeleccionado = cliente[0];
+        this.clienteServicio.clienteSeleccionado = cliente;
         console.log(
           'Cliente en sesion: ',
           this.clienteServicio.clienteSeleccionado
@@ -32,7 +32,7 @@ obtenerClienteAutenticado() {
   }
 
 obtenerCuentas(){
-    this.clienteServicio.obtenerCuentas().subscribe({
+    this.clienteServicio.obtenerCuentasPorCliente(this.idCliente!).subscribe({
       next:(cuentas)=>{
         this.cuentasDeCliente = cuentas
         console.log(this.cuentasDeCliente); 

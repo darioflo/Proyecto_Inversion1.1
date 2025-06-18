@@ -23,8 +23,16 @@ constructor(){
     return this.http.get<Cliente[]>(this.api_clientes_url);
   }
 
+  obtenerClientePorID(id:string):Observable<Cliente>{
+    return this.http.get<Cliente>(`${this.api_clientes_url}/${id}`)
+  }
+
   obtenerCuentas():Observable<Cuenta[]>{
     return this.http.get<Cuenta[]>(this.api_cuentas_url);
+  }
+
+  obtenerCuentasPorCliente(id: string):Observable<Cuenta[]>{
+    return this.http.get<Cuenta[]>(`${this.api_cuentas_url}/cuentasCliente/${id}`)
   }
 
   obtenerClienteSeleccionado(): Cliente | null {
