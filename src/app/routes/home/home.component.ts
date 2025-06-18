@@ -16,17 +16,23 @@ export class HomeComponent extends ObtenerClienteAutenticado implements OnInit {
   router = inject(Router)
 
   ngOnInit(): void {
-    if (typeof window !== 'undefined' && window.localStorage && localStorage.getItem("token")) {
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const token = localStorage.getItem("token");
+      if (!token || this.autenticacionService.tokenVencido(token)) {
+        if (this.router.url !== '/login') {
+          this.router.navigate(['/login']);
+        }
+        return;
+      }
       if (!this.clienteServicio.clienteSeleccionado) {
         this.obtenerClienteAutenticado();
         console.log(this.clienteServicio.clienteSeleccionado);
       }
-      this.obtenerCuentas(); 
-      console.log(this.autenticacionService.estaAutenticado());
+      this.obtenerCuentas();
+    } else {
+      if (this.router.url !== '/login') {
+        this.router.navigate(['/login']);
+      }
     }
-    else{
-      this.router.navigate(['/login']);
-    }
-    
   }
 }

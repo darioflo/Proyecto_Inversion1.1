@@ -21,10 +21,14 @@ export class FormularioLoginComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        if (typeof window !== 'undefined' && window.localStorage && localStorage.getItem("token")) {
-          this.router.navigate(['/home']);
+      if (typeof window !== 'undefined' && window.localStorage) {
+        const token = localStorage.getItem('token');
+        if (token && !this.autenticacionServicio.tokenVencido(token)) {
+          if (this.router.url !== '/home') {
+            this.router.navigate(['/home']);
+          }
         }
-      
+      }
     }
   
     iniciarSesion() {

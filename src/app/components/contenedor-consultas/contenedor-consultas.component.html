@@ -8,7 +8,7 @@
     <button class="boton-limpiar" (click)="limpiarHistorial()" *ngIf="titulo()==='Historial'">Limpiar historial</button>
     <div class="contenedor-inversiones">
       <h2>{{titulo()}} de inversiones</h2>
-      <div class="inversion" *ngFor="let inversion of inversiones()">
+      <div class="inversion animate__animated animate__zoomIn" *ngFor="let inversion of inversiones()">
         <div class="inversion-detalles">
           <p>
             <strong>Inversión:</strong> {{ inversion.inversion.nombre }}

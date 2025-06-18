@@ -1,5 +1,5 @@
 <div class="contenedor-formulario">
-  <div class="datos">
+  <div class="datos animate__animated animate__zoomIn">
     <h3 class="nombre-inversion">{{ inversionActual?.nombre }}</h3>
     <p class="nombre-cliente">
       {{ servicioCliente.clienteSeleccionado?.nombre }}
@@ -24,7 +24,7 @@
     *ngIf="paso === 1"
     [formGroup]="formMonto"
     (submit)="enviarMonto($event)"
-    class="formulario"
+    class="formulario animate__animated animate__zoomIn"
   >
   <div class="grupo-formulario sombreado">
     <label for="saldo" class="etiqueta">Monto a invertir (MXN):</label>
