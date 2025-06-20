@@ -8,7 +8,6 @@ export interface Command {
 
 export class EditarInversionCommand implements Command{
 
-
     constructor(
         private inversiones: InversionCuenta[],
         private indice : number,
