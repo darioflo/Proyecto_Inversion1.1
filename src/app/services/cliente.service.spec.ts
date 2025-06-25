@@ -1,19 +1,14 @@
-import { provideHttpClient } from '@angular/common/http';
-import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ClienteService } from './cliente.service';
 
-
-runTest(() => {
+describe('ClienteService', () => {
   let service: ClienteService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [
-        provideHttpClient(),         // para HttpClient real (no recomendado aquí)
-        provideHttpClientTesting(), // para pruebas
-        ClienteService
-      ]
+      imports: [HttpClientTestingModule], 
+      providers: [ClienteService]
     });
     service = TestBed.inject(ClienteService);
   });
@@ -22,7 +17,3 @@ runTest(() => {
     expect(service).toBeTruthy();
   });
 });
-
-function runTest(arg0: () => void) {
-  throw new Error('Function not implemented.');
-}

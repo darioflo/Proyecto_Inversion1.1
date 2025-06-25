@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { DetallesInversionComponent } from './detalles-inversion.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('DetallesInversionComponent', () => {
   let component: DetallesInversionComponent;
@@ -8,7 +8,10 @@ describe('DetallesInversionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [DetallesInversionComponent]
+      imports: [
+        DetallesInversionComponent,
+        HttpClientTestingModule 
+      ]
     })
     .compileComponents();
 

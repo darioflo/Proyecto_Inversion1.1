@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ActualizarInversionComponent } from './actualizar-inversion.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('ActualizarInversionComponent', () => {
   let component: ActualizarInversionComponent;
@@ -8,7 +8,10 @@ describe('ActualizarInversionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ActualizarInversionComponent]
+      imports: [
+        ActualizarInversionComponent,
+        HttpClientTestingModule 
+      ]
     })
     .compileComponents();
 

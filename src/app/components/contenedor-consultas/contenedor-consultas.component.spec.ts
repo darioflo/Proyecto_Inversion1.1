@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ContenedorConsultasComponent } from './contenedor-consultas.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('ContenedorConsultasComponent', () => {
   let component: ContenedorConsultasComponent;
@@ -8,7 +10,21 @@ describe('ContenedorConsultasComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ContenedorConsultasComponent]
+      imports: [
+        ContenedorConsultasComponent,
+        HttpClientTestingModule
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            paramMap: of({
+              get: () => null
+            })
+          }
+        }
+      ]
     })
     .compileComponents();
 

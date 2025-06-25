@@ -1,7 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { GraficoCrecimientoComponent } from './grafico-inversion.component';
+import { Chart, registerables } from 'chart.js'; 
 
+Chart.register(...registerables); 
 describe('GraficoCrecimientoComponent', () => {
   let component: GraficoCrecimientoComponent;
   let fixture: ComponentFixture<GraficoCrecimientoComponent>;

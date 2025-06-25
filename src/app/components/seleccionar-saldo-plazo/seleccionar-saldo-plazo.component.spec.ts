@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SeleccionarSaldoPlazoComponent } from './seleccionar-saldo-plazo.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SeleccionarSaldoPlazoComponent', () => {
   let component: SeleccionarSaldoPlazoComponent;
@@ -8,7 +8,10 @@ describe('SeleccionarSaldoPlazoComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SeleccionarSaldoPlazoComponent]
+      imports: [
+        SeleccionarSaldoPlazoComponent,
+        HttpClientTestingModule 
+      ]
     })
     .compileComponents();
 

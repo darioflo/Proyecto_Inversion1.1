@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SeleccionarInversionComponent } from './seleccionar-inversion.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SeleccionarInversionComponent', () => {
   let component: SeleccionarInversionComponent;
@@ -8,7 +8,10 @@ describe('SeleccionarInversionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SeleccionarInversionComponent]
+      imports: [
+        SeleccionarInversionComponent,
+        HttpClientTestingModule 
+      ]
     })
     .compileComponents();
 
