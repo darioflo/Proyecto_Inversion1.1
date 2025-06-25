@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GraficoInversionComponent } from './grafico-inversion.component';
+import { GraficoCrecimientoComponent } from './grafico-inversion.component';
 
-describe('GraficoInversionComponent', () => {
-  let component: GraficoInversionComponent;
-  let fixture: ComponentFixture<GraficoInversionComponent>;
+describe('GraficoCrecimientoComponent', () => {
+  let component: GraficoCrecimientoComponent;
+  let fixture: ComponentFixture<GraficoCrecimientoComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [GraficoInversionComponent]
+      imports: [GraficoCrecimientoComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(GraficoInversionComponent);
+    fixture = TestBed.createComponent(GraficoCrecimientoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

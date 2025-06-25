@@ -1,17 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { CanActivateFn } from '@angular/router';
+import { AuthGuard } from './inversion.guard';
 
-import { inversionGuard } from './inversion.guard';
-
-describe('inversionGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => inversionGuard(...guardParameters));
-
+describe('AuthGuard', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({});
   });
 
-  it('should be created', () => {
-    expect(executeGuard).toBeTruthy();
+  it('should be defined', () => {
+    expect(AuthGuard).toBeDefined();
   });
 });

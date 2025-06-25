@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MenuLateralComponent } from './menu-lateral.component';
+import { SidenavAutosizeExample } from './menu-lateral.component';
 
-describe('MenuLateralComponent', () => {
-  let component: MenuLateralComponent;
-  let fixture: ComponentFixture<MenuLateralComponent>;
+describe('SidenavAutosizeExample', () => {
+  let component: SidenavAutosizeExample;
+  let fixture: ComponentFixture<SidenavAutosizeExample>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MenuLateralComponent]
+      imports: [SidenavAutosizeExample]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MenuLateralComponent);
+    fixture = TestBed.createComponent(SidenavAutosizeExample);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
