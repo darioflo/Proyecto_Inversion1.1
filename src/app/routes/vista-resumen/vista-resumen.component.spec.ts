@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VistaResumenComponent } from './vista-resumen.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaResumenComponent', () => {
   let component: VistaResumenComponent;
@@ -8,7 +10,26 @@ describe('VistaResumenComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VistaResumenComponent]
+      imports: [
+        VistaResumenComponent,
+        HttpClientTestingModule // <-- Agrega esto
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            paramMap: of({
+              get: () => null
+            }),
+            snapshot: {
+              paramMap: {
+                get: () => null
+              }
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VistaInstruccionComponent } from './vista-instruccion.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaInstruccionComponent', () => {
   let component: VistaInstruccionComponent;
@@ -8,7 +10,27 @@ describe('VistaInstruccionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VistaInstruccionComponent]
+      imports: [
+        VistaInstruccionComponent,
+        HttpClientTestingModule
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            snapshot: {
+              paramMap: {
+                get: (key: string) => {
+                  if (key === 'idInversion') return '123';
+                  if (key === 'idCuenta') return '456';
+                  return null;
+                }
+              }
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 

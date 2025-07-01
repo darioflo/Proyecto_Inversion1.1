@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { VistaSeleccionComponent } from './vista-seleccion.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaSeleccionComponent', () => {
   let component: VistaSeleccionComponent;
@@ -8,7 +10,26 @@ describe('VistaSeleccionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [VistaSeleccionComponent]
+      imports: [
+        VistaSeleccionComponent,
+        HttpClientTestingModule 
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            paramMap: of({
+              get: () => null
+            }),
+            snapshot: {
+              paramMap: {
+                get: () => null
+              }
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 

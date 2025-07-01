@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ConsultaInversionesComponent } from './consulta-inversiones.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('ConsultaInversionesComponent', () => {
   let component: ConsultaInversionesComponent;
@@ -10,7 +12,18 @@ describe('ConsultaInversionesComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         ConsultaInversionesComponent,
-        HttpClientTestingModule 
+        HttpClientTestingModule
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            paramMap: of({
+              get: () => null
+            })
+          }
+        }
       ]
     })
     .compileComponents();

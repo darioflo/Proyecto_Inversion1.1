@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { SidenavAutosizeExample } from './menu-lateral.component';
+import { ActivatedRoute } from '@angular/router';
+import { of } from 'rxjs';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SidenavAutosizeExample', () => {
   let component: SidenavAutosizeExample;
@@ -8,7 +10,26 @@ describe('SidenavAutosizeExample', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SidenavAutosizeExample]
+      imports: [
+        SidenavAutosizeExample,
+        HttpClientTestingModule // <-- Agrega esto
+      ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+            params: of({}),
+            paramMap: of({
+              get: () => null
+            }),
+            snapshot: {
+              paramMap: {
+                get: () => null
+              }
+            }
+          }
+        }
+      ]
     })
     .compileComponents();
 

@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { InversionCpmpletadaComponent } from './inversion-completada.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('InversionCpmpletadaComponent', () => {
   let component: InversionCpmpletadaComponent;
@@ -8,7 +8,10 @@ describe('InversionCpmpletadaComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [InversionCpmpletadaComponent]
+      imports: [
+        InversionCpmpletadaComponent,
+        HttpClientTestingModule 
+      ]
     })
     .compileComponents();
 

@@ -1,7 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { VistaInversionComponent } from './vista-inversion.component';
 import { ActivatedRoute } from '@angular/router';
-import { of } from 'rxjs';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('VistaInversionComponent', () => {
@@ -18,10 +17,15 @@ describe('VistaInversionComponent', () => {
         {
           provide: ActivatedRoute,
           useValue: {
-            params: of({ id: '123' }),
-            paramMap: of({
-              get: (key: string) => key === 'id' ? '123' : null
-            })
+            snapshot: {
+              paramMap: {
+                get: (key: string) => {
+                  if (key === 'idInversion') return '123';
+                  if (key === 'idCuenta') return '456';
+                  return null;
+                }
+              }
+            }
           }
         }
       ]

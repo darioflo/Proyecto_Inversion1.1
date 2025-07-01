@@ -19,9 +19,15 @@ describe('VistaTerminadaComponent', () => {
           provide: ActivatedRoute,
           useValue: {
             params: of({ id: '123' }),
-            paramMap: of({
-              get: (key: string) => key === 'id' ? '123' : null
-            })
+            snapshot: {
+              paramMap: {
+                get: (key: string) => {
+                  if (key === 'idInversion') return '123';
+                  if (key === 'idCuenta') return '456';
+                  return null;
+                }
+              }
+            }
           }
         }
       ]
