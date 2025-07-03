@@ -25,6 +25,5 @@ export class SidenavAutosizeExample {
 
   constructor(){
     this.showFiller = false
-  
   }
 }
